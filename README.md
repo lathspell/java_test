@@ -3,8 +3,8 @@ java_test
 
 Misc Java snippets
 
-    https://lathspellsphp.svn.sourceforge.net/svnroot/lathspellsphp/java_test/
+Moved from
+  https://lathspellsphp.svn.sourceforge.net/svnroot/lathspellsphp/java_test/
+to 
+  https://github.com/lathspell/java_test.git
 
-or
-    
-    https://github.com/lathspell/java_test.git
