@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LanguageCreateDlg" widgetVar="LanguageCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.CreateLanguageTitle}">
+
+            <h:form id="LanguageCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{languageController.selected != null}">
+
+                        <p:outputLabel value="#{admin.CreateLanguageLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{languageController.selected.code}" title="#{admin.CreateLanguageTitle_code}" required="true" requiredMessage="#{admin.CreateLanguageRequiredMessage_code}"/>
+
+                        <p:outputLabel value="#{admin.CreateLanguageLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{languageController.selected.name}" title="#{admin.CreateLanguageTitle_name}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{languageController.saveNew}" value="#{admin.Save}" update="display,:LanguageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LanguageCreateDialog);"/>
+                    <p:commandButton value="#{admin.Cancel}" onclick="LanguageCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

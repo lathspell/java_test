@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <title>Java EE 7 Stack 1</title>
+    </h:head>
+    <h:body>
+        <div>Test</div>
+
+        <h:form id="exampleForm">
+            <h:messages globalOnly="true" />
+            <pe:ajaxErrorHandler />
+
+            <h:outputLabel for="nickname" value="Nickname: "/>
+            <h:inputText id="nickname" value="#{formBacking.nickname}" />
+            <h:message for="nickname" />
+
+            <h:commandButton value="submit" action="#{formBacking.submit()}"/>
+        </h:form>
+
+        <h:outputText value="Hello #{formBacking.nickname}!" rendered="#{not empty formBacking.nickname}" />
+
+    </h:body>
+</html>

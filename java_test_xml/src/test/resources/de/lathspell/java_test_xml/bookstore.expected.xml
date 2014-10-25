@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Collection>
+    <books>
+        <book itemId="307">
+            <name>JAXB today and beyond</name>
+            <ISBN>0</ISBN>
+            <promotion>
+                <Discount>5% off regular price</Discount>
+            </promotion>
+        </book>
+    </books>
+</Collection>

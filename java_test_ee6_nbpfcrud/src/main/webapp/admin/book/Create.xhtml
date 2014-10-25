@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BookCreateDlg" widgetVar="BookCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.CreateBookTitle}">
+
+            <h:form id="BookCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bookController.selected != null}">
+
+                        <p:outputLabel value="#{admin.CreateBookLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{bookController.selected.title}" title="#{admin.CreateBookTitle_title}" required="true" requiredMessage="#{admin.CreateBookRequiredMessage_title}"/>
+
+                        <p:outputLabel value="#{admin.CreateBookLabel_publishedIn}" for="publishedIn" />
+                        <p:calendar id="publishedIn" pattern="MM/dd/yyyy" value="#{bookController.selected.publishedIn}" title="#{admin.EditBookTitle_publishedIn}" required="true" requiredMessage="#{admin.EditBookRequiredMessage_publishedIn}" showOn="button"/>
+
+                        <p:outputLabel value="#{admin.CreateBookLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{bookController.selected.status}" title="#{admin.CreateBookTitle_status}" required="true" requiredMessage="#{admin.CreateBookRequiredMessage_status}"/>
+
+                        <p:outputLabel value="#{admin.CreateBookLabel_languageId}" for="languageId" />
+                        <p:selectOneMenu id="languageId" value="#{bookController.selected.languageId}" required="true" requiredMessage="#{admin.EditBookRequiredMessage_languageId}">
+                            <f:selectItem itemLabel="#{admin.SelectOneMessage}"/>
+                            <f:selectItems value="#{languageController.items}"
+                                           var="languageIdItem"
+                                           itemValue="#{languageIdItem}"
+                                           itemLabel="#{languageIdItem.name.toString()}"
+                                           />
+                            <f:converter binding="#{languageConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{admin.CreateBookLabel_authorId}" for="authorId" />
+                        <p:selectOneMenu id="authorId" value="#{bookController.selected.authorId}" required="true" requiredMessage="#{admin.EditBookRequiredMessage_authorId}">
+                            <f:selectItem itemLabel="#{admin.SelectOneMessage}"/>
+                            <f:selectItems value="#{authorController.items}"
+                                           var="authorIdItem"
+                                           itemValue="#{authorIdItem}"
+                                           itemLabel="#{authorIdItem.lastName.toString()}"
+                                           />
+                            <f:converter binding="#{authorConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bookController.saveNew}" value="#{admin.Save}" update="display,:BookListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,BookCreateDialog);"/>
+                    <p:commandButton value="#{admin.Cancel}" onclick="BookCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

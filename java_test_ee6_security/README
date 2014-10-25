@@ -1,0 +1,80 @@
+= Java EE Security =
+
+== j_security_check ==
+
+The Java EE6 standard "Java Authentication and Authorization Service" (JAAS)
+defines a basic security handler in form of the "j_security_check" servlet that
+is mandatory for all application servers.
+
+Pages are created as *.xhtml files and folders below webapp/. In this example,
+all secured pages go under /secure/*, index and login stay on top-level.
+
+web.xml activates the j_security_check mechanism by defining the "login-config"
+element. The referred form-*-pages have to be created manually.
+
+    <login-config>
+      <auth-method>FORM</auth-method>
+      <realm-name>MyJSecurityLogin</realm-name>
+      <form-login-config>
+         <form-login-page>/login_j_security.xhtml</form-login-page>
+         <form-error-page>/login_j_security_error.xhtml</form-error-page>
+      </form-login-config>
+    </login-config>
+
+web.xml contains "<security-constraint>" elements that limits access to certain
+URL locations (e.g. /security/dept_a.xhtml) to specific "roles".
+
+    <security-constraint>
+        <display-name>Department B</display-name>
+        <web-resource-collection>
+            <web-resource-name>dept_b</web-resource-name>
+            <description/>
+            <url-pattern>/secure/dept_b.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>dept_b_role</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+web.xml also contains a list of "<security-role>" elements that define all
+possible values for the roles used in <security-constraint>.
+
+    <security-role>
+        <description>Department B</description>
+        <role-name>dept_b_role</role-name>
+    </security-role>
+
+The standard does not define how users and groups are mapped to roles so that
+goes to the implementation specific glassfish-web.xml. Here we have a list of
+"<security-role-mapping>" elements that grants roles to certain "principals"
+(i.e. users) or groups.
+
+    <security-role-mapping>
+      <role-name>dept_a_role</role-name>
+      <group-name>dept_a_group</group-name>
+      <group-name>admin_group</group-name>
+    </security-role-mapping>
+
+In the Glassfish administration interface at configuration -> server-config ->
+security -> realms various sources like JDBC, LDAP or text files can be
+specified for various realms.
+
+When using a password file, the individual users with their passwords and one
+or many group memberships can be defined at file -> manage users.
+The credentials are then stored in /opt/glassfish/glassfish/domains/domain1/config/keyfile
+
+    dept_a_user;{SSHA256}FG3X9lKxjA+8JPmSA1PDrPUsnZTcerbMrTJ3Ox8wa3I5xkc1cIr8+A==;dept_a_group
+    admin;{SSHA256}AVTrFetv8PJey+LBL5wxm8Of/NRuRMPOsleJpcrFAO1dUJPIUbhMBw==;admin_group
+
+Discussion:
+ + present on all Java EE6 servers
+ + central user list and user to group mapping for all applications in a
+   application server or even across multiple ones when using LDAP or SQL.
+ + multiple realms (e.g. one for employees and one for customers) are possible
+ - the realm used by the application must be configured by the application
+   server admin
+
+Links:
+* "Java EE6 Development with Netbeans 7", Page 103
+

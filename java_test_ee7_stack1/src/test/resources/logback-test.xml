@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="false">
+
+    <!--
+    The variable {com.sun.aas.instanceRoot:-.} contains the directory of the
+    Glassfish application server domain or when called using junit or probably
+    a different application server, the current working directory.
+    -->
+
+    <appender name="JUNIT_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <!-- Only time is relevant. -->
+            <pattern>%d{HH:mm:ss.SSS} %-5level %-40logger{40} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>my.debug.log</file>
+        <encoder>
+            <!-- Date and time and everything possibly useful. -->
+            <pattern>%d %-5level [%thread] %logger - %method: %msg [%file:%line]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.axis" level="INFO" />
+    <logger name="org.apache.axis.utils.JavaUtils" level="ERROR" />
+    <logger name="org.apache.commons.discovery" level="INFO" />
+
+    <root level="debug">
+        <appender-ref ref="JUNIT_STDOUT" />
+        <appender-ref ref="DEBUG_LOG" />
+    </root>
+</configuration>

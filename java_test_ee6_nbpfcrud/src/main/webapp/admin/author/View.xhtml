@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AuthorViewDlg" widgetVar="AuthorViewDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.ViewAuthorTitle}">
+
+            <h:form id="AuthorViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{authorController.selected != null}">
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_id}"/>
+                        <h:outputText value="#{authorController.selected.id}" title="#{admin.ViewAuthorTitle_id}"/>
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_firstName}"/>
+                        <h:outputText value="#{authorController.selected.firstName}" title="#{admin.ViewAuthorTitle_firstName}"/>
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_lastName}"/>
+                        <h:outputText value="#{authorController.selected.lastName}" title="#{admin.ViewAuthorTitle_lastName}"/>
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_dateOfBirth}"/>
+                        <h:outputText value="#{authorController.selected.dateOfBirth}" title="#{admin.ViewAuthorTitle_dateOfBirth}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_yearOfBirth}"/>
+                        <h:outputText value="#{authorController.selected.yearOfBirth}" title="#{admin.ViewAuthorTitle_yearOfBirth}"/>
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_distinguished}"/>
+                        <h:selectBooleanCheckbox id="distinguished" value="#{authorController.selected.distinguished}" title="#{admin.EditAuthorTitle_distinguished}"  disabled="true"/>
+
+                        <h:outputText value="#{admin.ViewAuthorLabel_bookCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{admin.Close}" onclick="AuthorViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

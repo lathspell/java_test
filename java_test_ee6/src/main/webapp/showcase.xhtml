@@ -1,0 +1,57 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="title">Showcase</ui:define>
+
+    <ui:define name="body">
+        <h3>OutputLink</h3>
+        <h:outputLink value="/">
+            <h:outputText value="index" />
+        </h:outputLink>
+
+        <h3>Spinner</h3>
+        <p:spinner />
+
+        <h3>Button</h3>
+        <p:button title="myTitle" value="myValue"/>
+
+        <h3>Output</h3>
+        <h:outputText value="myOutput"/>
+
+        <h3>Output from constant</h3>
+        <h:outputText value="#{myManagedBean.myString}"/>
+
+        <h3>input type=text</h3>
+        <p:inputText value="myValue" />
+
+        <h3>input type=radio</h3>
+        <p:selectOneRadio id="radio1">
+            <f:selectItem itemLabel="Option 1" itemValue="1" />
+            <f:selectItem itemLabel="Option 2" itemValue="2" />
+            <f:selectItem itemLabel="Option 3" itemValue="3" />
+        </p:selectOneRadio>
+
+        <h3>ConfirmDialog</h3>
+
+        <p:commandButton value="Show ConfirmDialog"  onclick="myConfirmDialog.show();" type="button" />
+        <p:confirmDialog header="My ConfirmDialog" widgetVar="myConfirmDialog" width="500" message="This is a confirm dialog!">
+            <p:commandButton id="confirm" value="Yeah, sure, whatever..." oncomplete="myConfirmDialog.hide()"/>
+        </p:confirmDialog>
+
+        <h3>Converter</h3>
+
+        <h:outputText value="${myManagedBean.myDate}" /> <br/>
+        <h:outputText value="${myManagedBean.myDate}">
+            <f:convertDateTime pattern="YYYY-MM-dd HH:mm:ssZ" locale="de_DE"/>
+        </h:outputText> <br/>
+        <h:outputText value="${myManagedBean.myDate}">
+            <f:convertDateTime dateStyle="long" timeStyle="long" type="both" timeZone="Europe/Berlin" />
+        </h:outputText>
+
+    </ui:define>
+</ui:composition>

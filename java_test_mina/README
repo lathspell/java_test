@@ -1,0 +1,42 @@
+
+== udp ==
+
+Simple UDP ping that encodes a random number in binary.
+
+The PingMessage and PongMessage classes are POJOs, all encoding and decoding
+ist done in MyProtocolCoder.
+
+Run with:
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp.Server
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp.Client -Dexec.args="--ping"
+
+== udp2 ==
+
+Same as "udp" but uses DemuxingProtocolCodecFactory and DemuxingIOHandler so
+that there are separate classes for Ping~/Pong~/~Encode/~Decoder.
+The initialization is a bit more complex but once running, the separation
+seems to be more clear.
+
+Run with:
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp2.Server
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp2.Client -Dexec.args="--ping"
+
+== udp3 ==
+
+Same as "udp" but
+* has two differente sub-protocols: "ping" and "nonsense"
+* has separate ClientHandler for each sub-protocol as the client does only
+  one thing, either sent a Ping request and wait for a pong response or does
+  the same for the Nonsense request/response but not both. The server has only
+  one handler as it serves both sub-protocols.
+* has encoding/decoding in the Message classes so that its easier to see which
+  properties must be encoded and keep constant names short
+* has one Codec class which just peeks into the signature bytes and actively
+  decides to which Message this package should get decoded (in opposite to the
+  DemuxingProtocolCodecFactory from "udp2" where the isDecodable() method of each
+  sub-protocol is called.
+
+Run with:
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp3.Server
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp3.Client -Dexec.args="--ping"
+    mvn exec:java -Dexec.mainClass=de.lathspell.java_test_mina.udp3.Client -Dexec.args="--nonsense"

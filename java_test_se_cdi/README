@@ -1,0 +1,7 @@
+NetBeans:
+  "Re-Run with Different Arguments": "run-sys-prop.env=devel"
+
+CLI:
+
+  mvn dependency:copy-dependencies
+  java -cp 'target/classes/:target/dependency/*' -Denv=devel de.lathspell.java_test_se_cdi.Cli

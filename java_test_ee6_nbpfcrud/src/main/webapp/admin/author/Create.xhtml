@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AuthorCreateDlg" widgetVar="AuthorCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.CreateAuthorTitle}">
+
+            <h:form id="AuthorCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{authorController.selected != null}">
+
+                        <p:outputLabel value="#{admin.CreateAuthorLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{authorController.selected.firstName}" title="#{admin.CreateAuthorTitle_firstName}" />
+
+                        <p:outputLabel value="#{admin.CreateAuthorLabel_lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{authorController.selected.lastName}" title="#{admin.CreateAuthorTitle_lastName}" required="true" requiredMessage="#{admin.CreateAuthorRequiredMessage_lastName}"/>
+
+                        <p:outputLabel value="#{admin.CreateAuthorLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{authorController.selected.dateOfBirth}" title="#{admin.EditAuthorTitle_dateOfBirth}"  showOn="button"/>
+
+                        <p:outputLabel value="#{admin.CreateAuthorLabel_yearOfBirth}" for="yearOfBirth" />
+                        <p:inputText id="yearOfBirth" value="#{authorController.selected.yearOfBirth}" title="#{admin.CreateAuthorTitle_yearOfBirth}" />
+
+                        <p:outputLabel value="#{admin.CreateAuthorLabel_distinguished}" for="distinguished" />
+                        <p:selectBooleanCheckbox id="distinguished" value="#{authorController.selected.distinguished}" title="#{admin.EditAuthorTitle_distinguished}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{authorController.saveNew}" value="#{admin.Save}" update="display,:AuthorListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AuthorCreateDialog);"/>
+                    <p:commandButton value="#{admin.Cancel}" onclick="AuthorCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

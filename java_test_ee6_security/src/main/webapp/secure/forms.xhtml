@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <head>
+        <link rel="stylesheet" type="text/css" href="../my.css"/>
+        <title>Administration</title>
+    </head>
+    <body>
+        <h3>Some secured forms</h3>
+
+        <c:if test="${!empty request.remoteUser}">
+            User: <code class="mark">User: ${request.remoteUser}</code><br/>
+            Roles:
+            <code class="mark">
+                <c:if test="${ request.isUserInRole('dept_a_role') }">dept_a_role </c:if>
+                <c:if test="${ request.isUserInRole('dept_b_role') }">dept_b_role </c:if>
+                <c:if test="${ request.isUserInRole('admin_role') }">admin_role </c:if>
+                <c:if test="${ request.isUserInRole('user_role') }">user_role </c:if>
+            </code>
+            <br/>
+            Messages: <h:messages globalOnly="true" class="error" /><br/>
+        </c:if>
+        <br/>
+
+        A button only for Department A - protected via <code>&lt;form rendered="\${request.isUserInRole(xxx)}"&gt;</code><br/>
+        <h:form id="DeptAForm" rendered="#{request.isUserInRole('dept_a_role')}">
+            <h:commandButton value="submit" action="#{forms.onlyForDeptA}" />
+        </h:form>
+        <br/>
+
+        A button only for Department B - protected via <code>&lt;h:if&gt; ...</code><br/>
+        <c:choose>
+            <c:when test="#{request.isUserInRole('dept_b_role')}">
+                <h:form id="DeptBForm">
+                    <h:commandButton value="submit" action="#{forms.onlyForDeptB}" />
+                </h:form>
+            </c:when>>
+            <c:otherwise>
+                <span class="grey">button hidden</span>
+            </c:otherwise>
+        </c:choose>
+    </body>
+</html>

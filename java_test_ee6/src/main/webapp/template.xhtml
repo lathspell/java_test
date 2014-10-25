@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title><ui:insert name="title"/></title>
+    </h:head>
+
+    <h:body>
+        <h:outputText value="Intern: " />
+        <p:selectOneMenu onchange="window.location.href = $(this).val();" >
+            <f:selectItem itemLabel="Choose One" itemValue="" />
+            <f:selectItem itemLabel="Index" itemValue="#{request.contextPath}" />
+            <f:selectItem itemLabel="Showcase" itemValue="#{request.contextPath}/faces/showcase.xhtml" />
+            <f:selectItem itemLabel="Blog" itemValue="#{request.contextPath}/faces/blog.xhtml" />
+        </p:selectOneMenu>
+
+        <h:outputText value="Extern: " />
+        <p:selectOneMenu onchange="window.open($(this).val());">
+            <f:selectItem itemLabel="Choose One" itemValue="" itemDisabled="true"/>
+            <f:selectItem itemValue="http://docs.oracle.com/javaee/6/tutorial/doc/" itemLabel="Oracle JavaEE6 Tutorial" />
+            <f:selectItem itemValue="http://www.primefaces.org/showcase/" itemLabel="Primefaces official UI showcase" />
+        </p:selectOneMenu>
+
+        <p:separator/>
+
+        <ui:insert name="body">Default body</ui:insert>
+
+    </h:body>
+</html>

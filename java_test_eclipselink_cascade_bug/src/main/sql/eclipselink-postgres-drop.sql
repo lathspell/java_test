@@ -1,0 +1,5 @@
+ALTER TABLE book_to_bookstore DROP CONSTRAINT FK_book_to_bookstore_book_id
+ALTER TABLE book_to_bookstore DROP CONSTRAINT FK_book_to_bookstore_bookstore_id
+DROP TABLE books CASCADE
+DROP TABLE book_to_bookstore CASCADE
+DROP TABLE bookstores CASCADE

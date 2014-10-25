@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE job SYSTEM "../../../../../../src/main/dtd/job.dtd">
+<job action="create">
+    <customerId>12345678</customerId>
+    <objectId>K24S4</objectId>
+    <date>2013-08-04</date>
+    <requestor>me@example.com</requestor>
+    <parts>
+        <address>
+            <company>Example GmbH</company>
+            <street>Neumarkt 1</street>
+            <city>Köln</city>
+        </address>
+        <book>
+            <author>Max Mustermann</author>
+            <title>README</title>
+            <date>1900-01-01</date>
+        </book>
+    </parts>
+</job>

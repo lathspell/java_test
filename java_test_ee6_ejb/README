@@ -1,0 +1,15 @@
+== Deploying the ear ==
+
+* asadmin deploy --force java_test_ee6_ejb-ear-1.0-SNAPSHOT.ear
+
+== Starting the app-client ==
+
+* asadmin get-client-stubs --appname java_test_ee6_ejb-ear-1.0-SNAPSHOT stub
+* cd stub/
+* cd java_test_ee6_ejb-ear-1.0-SNAPSHOTClient/
+* appclient -client *Client.jar
+
+Don't run the jar in stub/, use the one that's one directory deeper!
+
+
+

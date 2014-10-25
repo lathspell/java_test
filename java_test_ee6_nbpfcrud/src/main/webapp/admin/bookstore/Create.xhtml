@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BookstoreCreateDlg" widgetVar="BookstoreCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.CreateBookstoreTitle}">
+
+            <h:form id="BookstoreCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bookstoreController.selected != null}">
+
+                        <p:outputLabel value="#{admin.CreateBookstoreLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{bookstoreController.selected.name}" title="#{admin.CreateBookstoreTitle_name}" required="true" requiredMessage="#{admin.CreateBookstoreRequiredMessage_name}"/>
+
+                        <p:outputLabel value="#{admin.CreateBookstoreLabel_category}" for="category" />
+                        <p:inputText id="category" value="#{bookstoreController.selected.category}" title="#{admin.CreateBookstoreTitle_category}" required="true" requiredMessage="#{admin.CreateBookstoreRequiredMessage_category}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bookstoreController.saveNew}" value="#{admin.Save}" update="display,:BookstoreListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,BookstoreCreateDialog);"/>
+                    <p:commandButton value="#{admin.Cancel}" onclick="BookstoreCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<facelet-taglib version="2.2"
+                xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd">
+
+    <namespace>urn:de.lathspell</namespace>
+
+    <function>
+        <function-name>getDouble</function-name>
+        <function-description>Returns doubled value.</function-description>
+        <function-class>de.lathspell.java_test_ee7_jsf.taglib.TaglibFunctions</function-class>
+        <function-signature>int getDouble(int)</function-signature>
+    </function>
+
+    <tag>
+        <tag-name>l33tConverter</tag-name>
+        <converter>
+            <converter-id>de.lathspell.L33tConverter</converter-id>
+        </converter>
+    </tag>
+
+    <tag>
+        <tag-name>oddNumberValidator</tag-name>
+        <validator>
+            <validator-id>de.lathspell.OddNumberValidator</validator-id>
+        </validator>
+    </tag>
+
+</facelet-taglib>

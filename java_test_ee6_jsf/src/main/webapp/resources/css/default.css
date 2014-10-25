@@ -1,0 +1,19 @@
+body {
+    font-size: 12px;
+    font-family: Verdana, sans-serif;
+}
+
+#page_menu {
+    width: 100%;
+    background-color: grey;
+    margin-bottom: 1em;
+}
+
+#blogForm\:blogTable {
+    width: 50%;
+    margin-bottom: 1em;
+}
+
+#blogForm\:blogNew {
+    width: 25%;
+}

@@ -1,0 +1,128 @@
+<!-- BEWARE: Due to https://java.net/jira/browse/GLASSFISH-20748 xmlns:f cannot use xmlns.jcp.org! Fixed in javax.faces-2.2.6.jar! -->
+<ui:composition template="../template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Error Reporting</ui:define>
+    <ui:define name="body">
+
+    #{phasesBacking.processElMethod('html')}
+
+    <f:metadata>
+        <!-- Phase RESTORE_VIEW 1 -->
+        <!-- * No viewAction possible here. -->
+
+        <!-- Phase APPLY_REQUEST_VALUES 2 -->
+        <f:viewAction action="#{phasesBacking.processViewAction('APPLY_REQUEST_VALUES')}" phase="APPLY_REQUEST_VALUES" />
+
+        <!-- Phase PROCESS_VALIDATIONS 3 -->
+        <!-- Events are processed before viewActions. -->
+        <f:viewAction action="#{phasesBacking.processViewAction('PROCESS_VALIDATIONS')}" phase="PROCESS_VALIDATIONS" />
+        <f:event type="preValidate" listener="#{phasesBacking.processEvent}" />
+        <f:event type="postValidate" listener="#{phasesBacking.processEvent}" />
+
+        <!-- Phase UPDATE_MODEL_VALUES 4 -->
+        <f:viewAction action="#{phasesBacking.processViewAction('UPDATE_MODEL_VALUES')}" phase="UPDATE_MODEL_VALUES" />
+
+        <!-- Phase INVOKE_APPLICATION 5 -->
+        <f:viewAction action="#{phasesBacking.processViewAction('INVOKE_APPLICATION')}" phase="INVOKE_APPLICATION" />
+
+        <!-- Phase RENDER_RESPONSE 6 -->
+        <f:event type="postAddToView" listener="#{phasesBacking.processEvent}" />
+        <f:event type="preRenderView" listener="#{phasesBacking.processEvent}" />
+        <f:event type="preRenderComponent" listener="#{phasesBacking.processEvent}" />
+        <!-- * No viewAction possible here. -->
+
+        #{phasesBacking.processElMethod('f:metadata')} <!-- is never called! -->
+    </f:metadata>
+    <h:head>
+        #{phasesBacking.processElMethod('h:head')}
+    </h:head>
+    <h:body>
+        #{phasesBacking.processElMethod('h:body')}
+        <div>The different phases are visible in the logfile.</div>
+
+        <div>This is JSF #{phasesBacking.getJsfVersion()}</div>
+
+        <h:form>
+            <h:commandButton value="submit" />
+        </h:form>
+
+        <h3>On initial request</h3>
+        <pre>
+INFO:   00:53:26.700 [admin-listener(1)] DEBUG d.l.j.phases.SystemEventsListener - ~~~~ PostConstructApplicationEvent ~~~~
+INFO:   00:53:26.800 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesFilter       - !!!! Filter init !!!!
+
+INFO:   00:53:26.901 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase RESTORE_VIEW 1 starting vvvv
+INFO:   00:53:26.938 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase RESTORE_VIEW 1 ending ^^^^
+
+INFO:   00:53:26.939 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase APPLY_REQUEST_VALUES 2 starting vvvv
+INFO:   00:53:26.945 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - #### constructor ####
+INFO:   00:53:26.945 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - #### constructor ####
+INFO:   00:53:26.945 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - #### postConstruct ####
+INFO:   00:53:26.946 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** ViewAction(APPLY_REQUEST_VALUES) ****
+INFO:   00:53:26.946 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase APPLY_REQUEST_VALUES 2 ending ^^^^
+
+INFO:   00:53:26.946 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase PROCESS_VALIDATIONS 3 starting vvvv
+INFO:   00:53:26.946 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PreValidateEvent ****
+INFO:   00:53:26.947 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PostValidateEvent ****
+INFO:   00:53:26.947 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** ViewAction(PROCESS_VALIDATIONS) ****
+INFO:   00:53:26.948 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase PROCESS_VALIDATIONS 3 ending ^^^^
+
+INFO:   00:53:26.948 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase UPDATE_MODEL_VALUES 4 starting vvvv
+INFO:   00:53:26.948 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** ViewAction(UPDATE_MODEL_VALUES) ****
+INFO:   00:53:26.948 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase UPDATE_MODEL_VALUES 4 ending ^^^^
+
+INFO:   00:53:26.948 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase INVOKE_APPLICATION 5 starting vvvv
+INFO:   00:53:26.949 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** ViewAction(INVOKE_APPLICATION) ****
+INFO:   00:53:26.949 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase INVOKE_APPLICATION 5 ending ^^^^
+
+INFO:   00:53:26.949 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase RENDER_RESPONSE 6 starting vvvv
+INFO:   00:53:26.972 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PostAddToViewEvent ****
+INFO:   00:53:26.979 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PreRenderViewEvent ****
+INFO:   00:53:26.980 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PreRenderComponentEvent ****
+INFO:   00:53:26.980 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** EL Method in html ****
+INFO:   00:53:26.985 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** EL Method in h:head ****
+INFO:   00:53:26.985 [http-listener-1(5)] DEBUG d.l.j.phases.PhasesBacking      - **** EL Method in h:body ****
+INFO:   00:53:26.993 [http-listener-1(5)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase RENDER_RESPONSE 6 ending ^^^^
+        </pre>
+
+        <h3>After pressing submit</h3>
+        <div>(Using the default onPostback="false" on all f:viewAction elements)</div>
+        <pre>
+INFO:   00:57:16.300 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesFilter       - !!!! Servlet Filter !!!!
+
+INFO:   00:57:16.436 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase RESTORE_VIEW 1 starting vvvv
+INFO:   00:57:16.453 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - #### constructor ####
+INFO:   00:57:16.453 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - #### postConstruct ####
+INFO:   00:57:16.454 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PostAddToViewEvent ****
+INFO:   00:57:16.455 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase RESTORE_VIEW 1 ending ^^^^
+
+INFO:   00:57:16.455 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase APPLY_REQUEST_VALUES 2 starting vvvv
+INFO:   00:57:16.455 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase APPLY_REQUEST_VALUES 2 ending ^^^^
+
+INFO:   00:57:16.456 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase PROCESS_VALIDATIONS 3 starting vvvv
+INFO:   00:57:16.456 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PreValidateEvent ****
+INFO:   00:57:16.457 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PostValidateEvent ****
+INFO:   00:57:16.457 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase PROCESS_VALIDATIONS 3 ending ^^^^
+
+INFO:   00:57:16.457 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase UPDATE_MODEL_VALUES 4 starting vvvv
+INFO:   00:57:16.458 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase UPDATE_MODEL_VALUES 4 ending ^^^^
+
+INFO:   00:57:16.458 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase INVOKE_APPLICATION 5 starting vvvv
+INFO:   00:57:16.458 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase INVOKE_APPLICATION 5 ending ^^^^
+
+INFO:   00:57:16.458 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - vvvv Phase RENDER_RESPONSE 6 starting vvvv
+INFO:   00:57:16.459 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PreRenderViewEvent ****
+INFO:   00:57:16.460 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** Event PreRenderComponentEvent ****
+INFO:   00:57:16.460 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** EL Method in html ****
+INFO:   00:57:16.461 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** EL Method in h:head ****
+INFO:   00:57:16.462 [http-listener-1(1)] DEBUG d.l.j.phases.PhasesBacking      - **** EL Method in h:body ****
+INFO:   00:57:16.464 [http-listener-1(1)] DEBUG d.l.j.phases.DebugPhaseListener - ^^^^ Phase RENDER_RESPONSE 6 ending ^^^^
+        </pre>
+
+    </h:body>
+    </ui:define>
+</ui:composition>

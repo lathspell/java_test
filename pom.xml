@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.lathspell</groupId>
+  <artifactId>java_test</artifactId>
+  <version>1</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>java_test_eclipselink_cascade_bug</module>
+    <module>java_test_ee6_arquillian</module>
+    <module>java_test_ee6_cdi</module>
+    <module>java_test_ee6_cdiunit</module>
+    <module>java_test_ee6_daemon</module>
+    <module>java_test_ee6_ejb</module>
+    <module>java_test_ee6_jpa</module>
+    <module>java_test_ee6_jsf_cdiunit</module>
+    <module>java_test_ee6_jsf</module>
+    <module>java_test_ee6_jsf_selenium</module>
+    <module>java_test_ee6_logging</module>
+    <module>java_test_ee6</module>
+    <module>java_test_ee6_nbpfcrud</module>
+    <module>java_test_ee6_querydsl</module>
+    <module>java_test_ee6_rest</module>
+    <module>java_test_ee6_security</module>
+    <module>java_test_ee6_stack1</module>
+    <module>java_test_ee7_gfversion</module>
+    <module>java_test_ee7_jpa</module>
+    <module>java_test_ee7_rest_jpa</module>
+    <module>java_test_ee7_stack1</module>
+    <module>java_test_idn</module>
+    <module>java_test_jdbc_pools</module>
+    <module>java_test_jnlp</module>
+    <module>java_test_jooq</module>
+    <module>java_test_json</module>
+    <module>java_test_jsvc</module>
+    <module>java_test_mina</module>
+    <module>java_test_misc</module>
+    <module>java_test_mockito</module>
+    <module>java_test_multithread_jacoco</module>
+    <module>java_test_se_cdi</module>
+    <module>java_test_ws_standalone</module>
+    <module>java_test_xml</module>
+    <module>java_test_ee7_websockets</module>
+    <module>java_test_ee7_standalone</module>
+  </modules>
+</project>

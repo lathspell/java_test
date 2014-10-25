@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LanguageEditDlg" widgetVar="LanguageEditDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.EditLanguageTitle}">
+
+            <h:form id="LanguageEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{languageController.selected != null}">
+
+                        <h:outputLabel value="#{admin.EditLanguageLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{languageController.selected.id}" />
+
+                        <p:outputLabel value="#{admin.EditLanguageLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{languageController.selected.code}" title="#{admin.EditLanguageTitle_code}" required="true" requiredMessage="#{admin.EditLanguageRequiredMessage_code}"/>
+
+                        <p:outputLabel value="#{admin.EditLanguageLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{languageController.selected.name}" title="#{admin.EditLanguageTitle_name}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{languageController.save}" value="#{admin.Save}" update="display,:LanguageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LanguageEditDialog);"/>
+                    <p:commandButton value="#{admin.Cancel}" onclick="LanguageEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

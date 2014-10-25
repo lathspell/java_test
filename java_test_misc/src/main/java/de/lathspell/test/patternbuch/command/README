@@ -1,0 +1,8 @@
+ 
+Das Command-Muster
+    - kapselt einen Auftrag als Objekt und ermöglicht es so,
+        - andere Objekte mit verschiedenen Aufträgen zu parametrisieren,
+        - Aufträge in Warteschlangen einzureihen oder
+        - zu protokollieren oder
+        - das Rückgängigmachen von Operationen zu ermöglichen.
+

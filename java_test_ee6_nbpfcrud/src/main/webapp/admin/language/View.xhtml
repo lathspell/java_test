@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LanguageViewDlg" widgetVar="LanguageViewDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.ViewLanguageTitle}">
+
+            <h:form id="LanguageViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{languageController.selected != null}">
+
+                        <h:outputText value="#{admin.ViewLanguageLabel_id}"/>
+                        <h:outputText value="#{languageController.selected.id}" title="#{admin.ViewLanguageTitle_id}"/>
+
+                        <h:outputText value="#{admin.ViewLanguageLabel_code}"/>
+                        <h:outputText value="#{languageController.selected.code}" title="#{admin.ViewLanguageTitle_code}"/>
+
+                        <h:outputText value="#{admin.ViewLanguageLabel_name}"/>
+                        <h:outputText value="#{languageController.selected.name}" title="#{admin.ViewLanguageTitle_name}"/>
+
+                        <h:outputText value="#{admin.ViewLanguageLabel_bookCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{admin.Close}" onclick="LanguageViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

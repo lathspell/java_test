@@ -1,0 +1,61 @@
+<ui:composition template="../template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Error Reporting</ui:define>
+    <ui:define name="body">
+
+        <!-- forcing locale to English -->
+        <f:view locale="en" />
+
+        <h3>Hints</h3>
+        <div>
+            If the message "The form component needs to have a UIForm in its ancestry..." appears,
+            it can safely ignored as it results from a bug in Mojarra (JSF RI) that is triggered by
+            Primefaces. It won't be shown in Production-Stage.
+        </div>
+
+        <h3>Global error messages:</h3>
+        <p:messages id="messages" showDetail="true" autoUpdate="true" globalOnly="true" />
+
+
+        <h3>Form 1</h3>
+        <div>This JSF form will generate a global error on submit or a local one if empty:</div>
+        <h:form id="jsf_error_reporting_form">
+            <h:inputText id="txt1" value="#{errorReportingController.myValue}">
+                <f:validateRequired />
+            </h:inputText>
+            <h:message for="txt1" />
+            <h:commandButton value="submit" action="#{errorReportingController.submit()}" />
+        </h:form>
+
+        <h3>Form 2</h3>
+        <div>This Primefaces editable list will generate a local error (and a better looking one compared to the JSF version!)</div>
+        <h:form id="dataTableForm">
+            <p:messages id="dataTableMessages" />
+            <p:dataTable id="myDataTable" value="#{errorReportingController.myList}" var="myListItem" editable="true" editMode="cell" >
+                <p:ajax event="cellEdit" listener="#{errorReportingController.onCellEdit}" update=":dataTableForm:dataTableMessages" />
+                <p:column headerText="myListItem column">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{myListItem}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText id="modelInput" value="#{myListItem}">
+                                <f:validateRegex pattern="[0-9a-z]+" />
+                            </p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <h3>Form 3</h3>
+        <div>This form generates an error that is not told to the client.</div>
+        <h:form id="jsf_error_reporting_form2">
+            <h:commandButton value="submit" action="#{errorReportingController.submit3()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>

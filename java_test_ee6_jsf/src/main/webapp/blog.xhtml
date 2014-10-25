@@ -1,0 +1,38 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">Blog</ui:define>
+
+    <ui:define name="body">
+
+        <h:form id="blogForm">
+            <p:dataTable id="blogTable" value="#{blogController.getBlogArticleList()}" var="blogArticle">
+                <p:column>
+                    <f:facet name="header">Title</f:facet>
+                    <h:outputText value="#{blogArticle.title}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Text</f:facet>
+                    <h:outputText value="#{blogArticle.text}"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:panel id="blogNew" header="Enter new article:">
+                <h:panelGrid columns="2">
+                    Title: <!-- implicit h:outputText -->
+                    <!-- Either get attribute via getBlogArticle() and then use setTitle() -->
+                    <p:inputText value="#{blogController.blogArticle.title}" required="true" />
+                    Text:
+                    <!-- Or use a setText() method if blogArticle should be a private attribute -->
+                    <p:inputText value="#{blogController.text}" required="false" />
+                </h:panelGrid>
+                <p:commandButton value="submit" action="#{blogController.addBlogArticle()}" update="blogTable"/>
+            </p:panel>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

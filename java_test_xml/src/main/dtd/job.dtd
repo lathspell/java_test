@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!ELEMENT job (customerId, objectId, date, requestor, parts)>
+<!ATTLIST job
+    action (create|delete) #REQUIRED
+>
+
+<!ELEMENT customerId (#PCDATA)>
+<!ELEMENT objectId (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT requestor (#PCDATA)>
+<!ELEMENT parts (address?, book?)>
+
+<!ELEMENT address ((name|company), street, city)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT company (#PCDATA)>
+<!ELEMENT street (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+
+<!ELEMENT book (author, title, date)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT title (#PCDATA)>

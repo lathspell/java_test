@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AuthorListForm">
+
+        <p:panel header="#{admin.ListAuthorTitle}">
+
+            <p:dataTable id="datalist" value="#{authorController.items}" var="item"
+                         selectionMode="single" selection="#{authorController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{admin.ListAuthorTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.firstName}" filterBy="#{item.firstName}">
+                    <f:facet name="header">
+                        <h:outputText value="#{admin.ListAuthorTitle_firstName}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.firstName}"/>
+                </p:column>
+                <p:column sortBy="#{item.lastName}" filterBy="#{item.lastName}">
+                    <f:facet name="header">
+                        <h:outputText value="#{admin.ListAuthorTitle_lastName}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lastName}"/>
+                </p:column>
+                <p:column sortBy="#{item.dateOfBirth}" filterBy="#{item.dateOfBirth}">
+                    <f:facet name="header">
+                        <h:outputText value="#{admin.ListAuthorTitle_dateOfBirth}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dateOfBirth}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.yearOfBirth}" filterBy="#{item.yearOfBirth}">
+                    <f:facet name="header">
+                        <h:outputText value="#{admin.ListAuthorTitle_yearOfBirth}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.yearOfBirth}"/>
+                </p:column>
+                <p:column sortBy="#{item.distinguished}" filterBy="#{item.distinguished}">
+                    <f:facet name="header">
+                        <h:outputText value="#{admin.ListAuthorTitle_distinguished}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="distinguished" value="#{item.distinguished}" title="#{admin.EditAuthorTitle_distinguished}"  disabled="true"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{admin.Create}" actionListener="#{authorController.prepareCreate}" update=":AuthorCreateForm" oncomplete="AuthorCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{admin.View}" update=":AuthorViewForm" oncomplete="AuthorViewDialog.show()" disabled="#{empty authorController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{admin.Edit}" update=":AuthorEditForm" oncomplete="AuthorEditDialog.show()" disabled="#{empty authorController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{admin.Delete}" actionListener="#{authorController.delete}" update=":growl,datalist" disabled="#{empty authorController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

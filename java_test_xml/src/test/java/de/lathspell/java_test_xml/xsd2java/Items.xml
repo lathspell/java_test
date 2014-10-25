@@ -1,0 +1,18 @@
+<Items xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='Items.xsd'>
+
+    <Item id="LAP001">
+        <Name>Laptop</Name>
+        <Price>4343$</Price>
+    </Item>
+
+    <Item id="TV001">
+        <Name>Television</Name>
+        <Price>433$</Price>
+    </Item>
+
+    <Item id="DVD001">
+        <Name>DVD Player</Name>
+        <Price>763$</Price>
+    </Item>
+
+</Items>

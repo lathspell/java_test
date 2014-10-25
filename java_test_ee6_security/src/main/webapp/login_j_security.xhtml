@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <style type="text/css">
+            .error {
+                color: red
+            }
+        </style>
+    </head>
+    <body>
+        Please login (uses j_security_check servlet):<br/>
+        <br/>
+
+        <form method="POST" action="j_security_check">
+            Username: <input type="text" name="j_username"/><br/>
+            Password: <input type="password" name="j_password"/><br/>
+            <br/>
+            <input type="submit" value="Login"/>
+        </form>
+
+    </body>
+</html>

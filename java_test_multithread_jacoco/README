@@ -1,0 +1,5 @@
+Example for a JUnit test that uses java.util.concurrent to start a client
+and a server thread and generates code coverage for both sides.
+
+The JaCoCo coverage analysis is started "mvn prepare-package" and generate
+HTML files in target/site/jacoco/

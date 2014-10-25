@@ -1,0 +1,15 @@
+<calendar>
+
+    <event type="meeting">
+        <whom>With my Manager</whom>
+        <where>At the Conference Hall</where>
+        <date>June 09 2007</date>
+        <time>10.30AM</time>
+    </event>
+
+    <event type="birthday">
+        <whom>For my Girl Friend</whom>
+        <date>01 December</date>
+    </event>
+
+</calendar>

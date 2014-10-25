@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<entity-mappings
+    xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_1.xsd"
+    version="2.1">
+
+    <converter class="de.lathspell.java_test_ee7_jpa.model.MyEnumPostgresConverter"/>
+
+</entity-mappings>

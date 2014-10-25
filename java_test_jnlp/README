@@ -1,0 +1,11 @@
+== Docs ==
+
+* http://docs.oracle.com/javase/tutorial/deployment/webstart/index.html
+* http://docs.oracle.com/javase/7/docs/jre/api/javaws/jnlp/index.html
+
+* http://netbeans.org/kb/docs/java/javase-jws.html
+
+
+== jnlp-api ==
+
+ mvn install:install-file -DgroupId=javax.jnlp -DartifactId=jnlp -Dversion=1.7 -Dpackaging=jar -Dfile=/usr/lib/jvm/j2sdk1.7-oracle/jre/lib/javaws.jar

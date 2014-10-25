@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd">
+
+    <!-- http://logback.qos.ch/manual/ -->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %-80(%class) %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>log.debug</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %-80([%thread] %class) %msg \(%file:%line\)%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.jooq" level="INFO" />
+    <logger name="org.apache.mina.filter.codec.ProtocolCodecFilter" level="INFO" />
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DEBUG_LOG" />
+    </root>
+</configuration>

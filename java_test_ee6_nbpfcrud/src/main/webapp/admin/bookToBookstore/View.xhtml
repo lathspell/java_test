@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BookToBookstoreViewDlg" widgetVar="BookToBookstoreViewDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.ViewBookToBookstoreTitle}">
+
+            <h:form id="BookToBookstoreViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bookToBookstoreController.selected != null}">
+
+                        <h:outputText value="#{admin.ViewBookToBookstoreLabel_id}"/>
+                        <h:outputText value="#{bookToBookstoreController.selected.id}" title="#{admin.ViewBookToBookstoreTitle_id}"/>
+
+                        <h:outputText value="#{admin.ViewBookToBookstoreLabel_stock}"/>
+                        <h:outputText value="#{bookToBookstoreController.selected.stock}" title="#{admin.ViewBookToBookstoreTitle_stock}"/>
+
+                        <h:outputText value="#{admin.ViewBookToBookstoreLabel_createdAt}"/>
+                        <h:outputText value="#{bookToBookstoreController.selected.createdAt}" title="#{admin.ViewBookToBookstoreTitle_createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{admin.ViewBookToBookstoreLabel_updatedAt}"/>
+                        <h:outputText value="#{bookToBookstoreController.selected.updatedAt}" title="#{admin.ViewBookToBookstoreTitle_updatedAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{admin.ViewBookToBookstoreLabel_bookstoreId}"/>
+                        <h:outputText value="#{bookToBookstoreController.selected.bookstoreId.name}"/>
+
+                        <h:outputText value="#{admin.ViewBookToBookstoreLabel_bookId}"/>
+                        <h:outputText value="#{bookToBookstoreController.selected.bookId.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{admin.Close}" onclick="BookToBookstoreViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

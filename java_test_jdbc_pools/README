@@ -1,0 +1,47 @@
+= Comparison =
+
+== Discussion ==
+
+* http://blog.zenika.com/index.php?post/2013/01/30/Using-Tomcat-JDBC-connection-pool-in-a-standalone-environment
+
+== Apache Tomcat JDBC Pool ==
+
+* https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Plain_Ol%27_Java
+* Source http://svn.apache.org/viewvc/tomcat/trunk/modules/jdbc-pool/
+* Last releases (maybe:) http://svn.apache.org/viewvc/tomcat/trunk/modules/jdbc-pool/
+** "Tomcat JDBC Connection Pool 1.1.0.0"    2011-02-22      http://svn.apache.org/viewvc/tomcat/trunk/modules/jdbc-pool/doc/changelog.xml?r1=1069876&r2=1073532&diff_format=h
+* Bugs: https://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&component=Modules%3A%20jdbc-pool&product=Tomcat%207
+
+
+== c3p0 ==
+
+* http://www.mchange.com/projects/c3p0/
+* Source https://github.com/swaldman/c3p0 
+* Last releases on http://sourceforge.net/projects/c3p0/files/c3p0-bin/
+** c3p0-0.9.2.1     2013-03-20
+** c3p0-0.9.1.2     2007-05-21
+
+== Apache Commons DBCP ==
+
+* http://commons.apache.org/proper/commons-dbcp/
+* Last releases on http://commons.apache.org/proper/commons-dbcp/changes-report.html
+** 1.4              2010-02-14
+
+== BoneCP ==
+
+* Last release on https://github.com/wwadge/bonecp/releases 
+** 0.7.1            2011-04-05
+
+
+
+= Build =
+
+ mvn compile
+ mvn dependency:copy-dependencies
+
+= Run =
+ 
+ java -cp target/dependency/*:target/classes/ de.lathspell.java_test_jdbc_pools.commons_dbcp.App
+ java -cp target/dependency/*:target/classes/ de.lathspell.java_test_jdbc_pools.c3p0.App
+ java -cp target/dependency/*:target/classes/ de.lathspell.java_test_jdbc_pools.tomcat_jdbc.App
+

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="my.css"/>
+        <title>Java EE Security Example</title>
+    </h:head>
+    <h:body>
+        <h2>Java EE Security Example</h2>
+        <br />
+        <c:if test="${!empty request.remoteUser}">
+            Hello <code class="mark">${request.remoteUser}</code>!
+            You have the following roles:
+            <code class="mark">
+                <c:if test="${ request.isUserInRole('dept_a_role') }">dept_a_role </c:if>
+                <c:if test="${ request.isUserInRole('dept_b_role') }">dept_b_role </c:if>
+                <c:if test="${ request.isUserInRole('admin_role') }">admin_role </c:if>
+                <c:if test="${ request.isUserInRole('user_role') }">user_role </c:if>
+            </code>
+            <br/>
+        </c:if>
+
+        <br />
+        Links (some are restricted):
+        <li>
+            <ul><h:link outcome="guests.xhtml" value="Guests" /></ul>
+            <ul><h:link outcome="secure/dept_a.xhtml" value="Department A" /></ul>
+            <ul><h:link outcome="secure/dept_b.xhtml" value="Department B" /></ul>
+            <ul><h:link outcome="secure/administration.xhtml" value="Administration" /></ul>
+            <ul><h:link outcome="secure/forms.xhtml" value="Forms" /></ul>
+        </li>
+        Login/Logout:
+        <li>
+            <ul/>
+            <ul><h:link outcome="login_j_security.xhtml" value="Login (JSecurity form)" /></ul>
+            <ul><h:link outcome="login_custom_servlet30_auth_form.xhtml" value="Login (custom Servlet 3.0 compatible form)" /></ul>
+            <ul><h:link outcome="login_custom_module.xhtml" value="Login (custom provider implementing LoginModule)" /></ul>
+            <ul>
+                <h:form id="logoutForm">
+                    <h:commandButton id="LogoutButton" action="#{customServlet30AuthForm.logout}" value="logout (custom form)" />
+                </h:form>
+            </ul>
+        </li>
+
+        <div>
+            Possible users (username : password):
+            <code>
+                <ul>
+                    <li>dept_a_user : q</li>
+                    <li>dept_b_user : q</li>
+                    <li>guest_user : q</li>
+                    <li>admin_user : q</li>
+                </ul>
+            </code>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="mysqlJavaTestJpaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>de.lathspell.model.Book</class>
+    <class>de.lathspell.model.Language</class>
+    <class>de.lathspell.model.Author</class>
+    <class>de.lathspell.model.BookToBookstore</class>
+    <class>de.lathspell.model.Bookstore</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/java_test_ee6_jpa?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.password" value="secret"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <!-- The test database is always dropped and regenerated to ensure that it has no
+            stale table definitions. Also accidental changes in the DDL will be spotted due
+            to changes in SVN versioned files below src/main/sql. -->
+      <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.drop-ddl-jdbc-file-name" value="src/main/sql/eclipselink-mysql-drop.sql"/>
+      <property name="eclipselink.create-ddl-jdbc-file-name" value="src/main/sql/eclipselink-mysql-create.sql"/>
+      <!-- Logging is redirected to SFL2J via logging.properties and further configured in logback.xml -->
+      <property name="eclipselink.logging.level" value="ALL"/>
+      <property name="eclipselink.logging.logger" value="JavaLogger"/>
+      <property name="eclipselink.logging.session" value="false"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="postgresJavaTestJpaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>de.lathspell.model.Book</class>
+    <class>de.lathspell.model.Language</class>
+    <class>de.lathspell.model.Author</class>
+    <class>de.lathspell.model.BookToBookstore</class>
+    <class>de.lathspell.model.Bookstore</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql:java_test_ee6_jpa"/>
+      <property name="javax.persistence.jdbc.password" value="secret"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <!-- The test database is always dropped and regenerated to ensure that it has no
+            stale table definitions. Also accidental changes in the DDL will be spotted due
+            to changes in SVN versioned files below src/main/sql. -->
+      <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.drop-ddl-jdbc-file-name" value="src/main/sql/eclipselink-postgres-drop.sql"/>
+      <property name="eclipselink.create-ddl-jdbc-file-name" value="src/main/sql/eclipselink-postgres-create.sql"/>
+      <!-- Logging is redirected to SFL2J via logging.properties and further configured in logback.xml -->
+      <property name="eclipselink.logging.level" value="ALL"/>
+      <property name="eclipselink.logging.logger" value="JavaLogger"/>
+      <property name="eclipselink.logging.session" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>

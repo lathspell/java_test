@@ -1,0 +1,9 @@
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/exceptions/ApiProblemJsonMessageBodyWriter.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/exceptions/ApiProblemException.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/model/Person.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/MyRestLoggingFilter.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/MyRestConfig.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/exceptions/ApiProblem.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/MyRestResource.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/MyRestExceptionMapper.java
+/srv/home/james/workspace/java_test/java_test_ee7_rest/src/main/java/de/lathspell/test/webservices/exceptions/ApiProblemJsonMessageBodyReader.java

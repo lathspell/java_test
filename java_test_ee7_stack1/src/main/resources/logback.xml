@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="true" scan="true" scanPeriod="30 seconds">
+
+    <!--
+    The variable {com.sun.aas.instanceRoot:-.} contains the directory of the
+    Glassfish application server domain or when called using junit or probably
+    a different application server, the current working directory.
+    -->
+
+    <appender name="GF_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <!-- onMatch/onMismatch are not yet present in ThresholdFilter, see http://jira.qos.ch/browse/LOGBACK-983 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>%-5level %-40logger{40} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="GF_STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <encoder>
+            <pattern>%-5level %-40logger{40} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.sun.aas.instanceRoot:-.}/logs/my.debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${com.sun.aas.instanceRoot:-.}/logs/my.debug.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- can't get to work: <maxHistory>40</maxHistory> -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] [%X{domain}] %logger - %method: %msg [%file:%line]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>${com.sun.aas.instanceRoot:-.}/logs/my.info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${com.sun.aas.instanceRoot:-.}/logs/my.info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- can't get to work: <maxHistory>40</maxHistory> -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] [%X{domain}] %-40logger{40} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="WARN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <file>${com.sun.aas.instanceRoot:-.}/logs/my.warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${com.sun.aas.instanceRoot:-.}/logs/my.warn.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- can't get to work: <maxHistory>40</maxHistory> -->
+            <!-- can't get to work: <cleanHistoryOnStart>true</cleanHistoryOnStart> -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] [%X{domain}] %-40logger{40} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.axis" level="INFO" />
+    <logger name="org.apache.axis.utils.JavaUtils" level="ERROR" />
+    <logger name="org.apache.commons.discovery" level="INFO" />
+
+    <root level="debug">
+        <appender-ref ref="GF_STDOUT" />
+        <appender-ref ref="GF_STDERR" />
+        <appender-ref ref="DEBUG_LOG" />
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="WARN_LOG" />
+    </root>
+</configuration>

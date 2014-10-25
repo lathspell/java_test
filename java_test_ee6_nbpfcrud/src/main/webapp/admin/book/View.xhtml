@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BookViewDlg" widgetVar="BookViewDialog" modal="true" resizable="false" appendToBody="true" header="#{admin.ViewBookTitle}">
+
+            <h:form id="BookViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bookController.selected != null}">
+
+                        <h:outputText value="#{admin.ViewBookLabel_id}"/>
+                        <h:outputText value="#{bookController.selected.id}" title="#{admin.ViewBookTitle_id}"/>
+
+                        <h:outputText value="#{admin.ViewBookLabel_title}"/>
+                        <h:outputText value="#{bookController.selected.title}" title="#{admin.ViewBookTitle_title}"/>
+
+                        <h:outputText value="#{admin.ViewBookLabel_publishedIn}"/>
+                        <h:outputText value="#{bookController.selected.publishedIn}" title="#{admin.ViewBookTitle_publishedIn}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{admin.ViewBookLabel_status}"/>
+                        <h:outputText value="#{bookController.selected.status}" title="#{admin.ViewBookTitle_status}"/>
+
+                        <h:outputText value="#{admin.ViewBookLabel_languageId}"/>
+                        <h:outputText value="#{bookController.selected.languageId.name}"/>
+
+                        <h:outputText value="#{admin.ViewBookLabel_authorId}"/>
+                        <h:outputText value="#{bookController.selected.authorId.id}"/>
+
+                        <h:outputText value="#{admin.ViewBookLabel_bookToBookstoreList}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{admin.Close}" onclick="BookViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

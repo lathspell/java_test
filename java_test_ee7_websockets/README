@@ -1,0 +1,6 @@
+Simple chat using websockets.
+
+Ideas from:
+* https://netbeans.org/kb/docs/javaee/maven-websocketapi.html
+* http://www.hascode.com/2013/08/creating-a-chat-application-using-java-ee-7-websockets-and-glassfish-4/
+* http://tools.ietf.org/html/rfc6455 (Websockets)

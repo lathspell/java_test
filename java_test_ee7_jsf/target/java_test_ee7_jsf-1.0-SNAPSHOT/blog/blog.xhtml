@@ -1,0 +1,45 @@
+<ui:composition template="../template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">Blog</ui:define>
+
+    <ui:define name="body">
+
+        <h:form id="blogForm">
+            <p:messages globalOnly="true" />
+            <pe:ajaxErrorHandler />
+
+            <p:dataTable id="blogTable" value="#{blogController.getBlogArticleList()}" var="blogArticle">
+                <p:column>
+                    <f:facet name="header">#{msgs.blogTitle}</f:facet>
+                    <h:outputText value="#{blogArticle.title}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Text</f:facet>
+                    <h:outputText value="#{blogArticle.text}"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:panel id="blogNew" header="#{msgs.blogEnterNewArticle}:">
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="title" value="Title (3-50 chars):"/>
+                    <!-- Either get attribute via getBlogArticle() and then use setTitle() -->
+                    <p:inputText id="title" value="#{blogController.blogArticle.title}" required="true" />
+                    <p:message for="title"/>
+
+                    <p:outputLabel for="text" value="Text:"/>
+                        <!-- Or use a setText() method if blogArticle should be a private attribute -->
+                        <p:inputText id="text" value="#{blogController.text}" required="false" />
+                        <p:message for="text" />
+                </h:panelGrid>
+                <p:commandButton value="submit" action="#{blogController.addBlogArticle()}" update=":blogForm" />
+            </p:panel>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

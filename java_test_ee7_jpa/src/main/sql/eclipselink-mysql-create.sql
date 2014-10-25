@@ -1,0 +1,13 @@
+CREATE TABLE books (id INTEGER AUTO_INCREMENT NOT NULL, published_in DATE, status VARCHAR(255) NOT NULL, title VARCHAR(255), author_id INTEGER, language_id INTEGER, PRIMARY KEY (id))
+CREATE TABLE languages (id INTEGER AUTO_INCREMENT NOT NULL, code VARCHAR(255), name VARCHAR(255), PRIMARY KEY (id))
+CREATE TABLE authors (id INTEGER AUTO_INCREMENT NOT NULL, date_of_birth DATE, distinguished INTEGER, first_name VARCHAR(255), last_name VARCHAR(255), year_of_birth INTEGER, PRIMARY KEY (id))
+CREATE TABLE book_to_bookstore (id INTEGER AUTO_INCREMENT NOT NULL, created_at DATETIME, stock INTEGER, updated_at DATETIME, book_id INTEGER, bookstore_id INTEGER, PRIMARY KEY (id))
+CREATE TABLE bookstores (id INTEGER AUTO_INCREMENT NOT NULL, category SMALLINT, name VARCHAR(255), PRIMARY KEY (id))
+CREATE TABLE not_null_example (ID BIGINT AUTO_INCREMENT NOT NULL, A VARCHAR(255), B VARCHAR(255), C VARCHAR(255) NOT NULL, D VARCHAR(255) NOT NULL, PRIMARY KEY (ID))
+CREATE TABLE CASEEXAMPLE (ID BIGINT NOT NULL, FOOBAR VARCHAR(255), PRIMARY KEY (ID))
+CREATE TABLE enum_example (id BIGINT AUTO_INCREMENT NOT NULL, as_int INTEGER NOT NULL, as_string VARCHAR(255), PRIMARY KEY (id))
+CREATE TABLE mysql_enum_example (id BIGINT AUTO_INCREMENT NOT NULL, as_enum enum('RED', 'GREEN', 'BLUE') default 'RED' not null, as_int INTEGER NOT NULL, as_string VARCHAR(255), PRIMARY KEY (id))
+ALTER TABLE books ADD CONSTRAINT FK_books_language_id FOREIGN KEY (language_id) REFERENCES languages (id)
+ALTER TABLE books ADD CONSTRAINT FK_books_author_id FOREIGN KEY (author_id) REFERENCES authors (id)
+ALTER TABLE book_to_bookstore ADD CONSTRAINT FK_book_to_bookstore_book_id FOREIGN KEY (book_id) REFERENCES books (id) ON DELETE CASCADE
+ALTER TABLE book_to_bookstore ADD CONSTRAINT FK_book_to_bookstore_bookstore_id FOREIGN KEY (bookstore_id) REFERENCES bookstores (id)

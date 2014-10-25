@@ -1,0 +1,14 @@
+Trying to use Java EE technologies using a standalone program that
+bootstraps all necessary services in its main() method.
+
+The different handlers (Static, HTTP, REST, SOAP) can be combined as well.
+
+Glossary:
+* Grizzly   - Java NIO Server for HTTP; has Servlet, JAX-RS and JAX-WS containers
+* Jersey    - Java JAX-RS implementation
+* Jackson   - JSON libarary
+* Weld      - Java CDI implementation
+
+Links:
+* https://grizzly.java.net/jaxws.html
+* http://stackoverflow.com/questions/19478259/how-to-use-jersey-with-grizzly-2-3

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <style type="text/css">
+            .error {
+                color: red
+            }
+        </style>
+    </head>
+    <body>
+        Please Login (uses custom Auth.class JSF managed bean):<br/>
+
+        <br/>
+
+        <h:form id="LoginForm" >
+            <h:outputLabel for="username" value="Username" />
+            <h:inputText id="username" value="#{customServlet30AuthForm.username}" required="true" />
+            <h:message for="username" class="error" />
+            <br />
+            <h:outputLabel for="password" value="Password" />
+            <h:inputSecret id="password" value="#{customServlet30AuthForm.password}" required="true" />
+            <h:message for="password" class="error" />
+            <br />
+            <h:commandButton value="Login" action="#{customServlet30AuthForm.login}" />
+            <h:messages globalOnly="true" class="error" />
+        </h:form>
+    </body>
+</html>
