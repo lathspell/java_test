@@ -1,7 +1,6 @@
 package de.lathspell.test;
 
-import java.util.logging.Handler;
-import java.util.logging.Level;
+import java.io.InputStream;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ext.RuntimeDelegate;
@@ -13,7 +12,6 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import de.lathspell.test.webservices.MyRestApp;
 import de.lathspell.test.webservices.MyRestResource;
@@ -36,37 +34,19 @@ public class MyGrizzlyRestCdiServer {
     private static final int PORT = 4321;
 
     public static void main(String[] args) throws Exception {
-        log.trace("#42# slf4j trace");
-        log.debug("#42# slf4j debug");
-        log.info("#42# slf4j info");
+        log.info("Starting main()");
 
-        // SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
-
-//      ConsoleHandler ch = new ConsoleHandler();
-//        ch.setLevel(java.util.logging.Level.FINEST);
-
-        java.util.logging.Logger l = java.util.logging.Logger.getAnonymousLogger();
-        do {
-            log.info("jul Logger {} to ALL", l.getName());
-            l.setLevel(Level.ALL);
-
-            Handler[] handlers = l.getHandlers();
-            for (Handler h: handlers) {
-                log.info("jul Logger {} has Handler {}", l.getName(), h.getClass());
-                h.setLevel(Level.ALL);
-            }
-
-            l = l.getParent();
-        } while (l != null);
+        // Init JUL (redirect to SLF4J)
+        // Grizzly/HK2 logs some exceptions as DEBUG which are filtered by the
+        // JUL default level INFO.
+        InputStream julConfig = ClassLoader.getSystemResourceAsStream("logging.properties");
+        java.util.logging.LogManager.getLogManager().readConfiguration(julConfig);
 
         // Init CDI
         Weld weld = new Weld();
         WeldContainer container = weld.initialize();
 
         MyRestResource r = container.instance().select(MyRestResource.class).get();
-        log.debug("r={}", r);
-        log.debug("r.cdi={}", r.cdi());
 
         // Get REST application with all injected members using CDI
         Application application = container.instance().select(MyRestApp.class).get();

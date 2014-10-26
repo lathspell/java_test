@@ -4,11 +4,17 @@
         <!-- encoders are assigned the type
         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="jul" level="TRACE"/>
+    <logger name="org.jboss.weld" level="INFO"/>
+    <logger name="org.glassfish.jersey.internal" level="INFO" />
+    <logger name="org.glassfish.grizzly.filterchain.DefaultFilterChain" level="INFO" />
+    <logger name="org.glassfish.grizzly.ProcessorExecutor" level="INFO" />
+    <logger name="org.glassfish.grizzly.nio" level="INFO" />
+    <logger name="org.glassfish.jersey.server.model" level="INFO" />
+    <logger name="org.glassfish.grizzly.http.io" level="INFO" />
 
     <root level="TRACE">
         <appender-ref ref="STDOUT" />
