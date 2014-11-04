@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.lathspell.test.webservices.MyRestApp;
-import de.lathspell.test.webservices.MyRestResource;
 
 /**
  * Simple REST Server with CDI.
@@ -45,8 +44,6 @@ public class MyGrizzlyRestCdiServer {
         // Init CDI
         Weld weld = new Weld();
         WeldContainer container = weld.initialize();
-
-        MyRestResource r = container.instance().select(MyRestResource.class).get();
 
         // Get REST application with all injected members using CDI
         Application application = container.instance().select(MyRestApp.class).get();
