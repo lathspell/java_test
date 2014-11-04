@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+
+JAVA_HOME=/usr/lib/jvm/default-java
+
+%:
+	dh $@ --with javahelper

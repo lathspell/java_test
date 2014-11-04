@@ -1,0 +1,5 @@
+java-test-deb (1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Christian Brunotte <ch@debian.org>  Tue, 04 Nov 2014 22:11:51 +0100

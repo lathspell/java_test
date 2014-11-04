@@ -1,0 +1,8 @@
+Package: java_test
+Version: 1
+Architecture: all
+Maintainer: Christian Brunotte <cb@lathspell.de>
+Depends: java-runtime
+Priority: extra
+Description: Testpackage
+ This is a test package.

@@ -1,0 +1,9 @@
+Source: java-test-deb
+Maintainer: Christian Brunotte <cb@lathspell.de>
+Priority: extra
+
+Package: java-test-deb
+Architecture: all
+Depends: java-runtime
+Description: Testpackage
+ This is a test package.

@@ -1,0 +1,8 @@
+[Unit]
+Description=test daemon
+
+[Service]
+ExecStart=/usr/bin/java -jar /opt/java-test-deb/java-test-deb-1.deb
+
+[Install]
+WantedBy=multi-user.target

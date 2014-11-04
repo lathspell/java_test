@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/maven.mk
+# include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+
+JAVA_HOME := /usr/lib/jvm/default-java
+
+binary-post-install/lib$(PACKAGE)-java::
+	mh_installpoms -plib$(PACKAGE)-java
+	mh_installjar -plib$(PACKAGE)-java -l pom.xml target/$(PACKAGE)-$(VERSION).jar
+
+clean::
+	mh_clean 

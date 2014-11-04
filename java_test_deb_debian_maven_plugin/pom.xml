@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.lathspell</groupId>
+        <artifactId>java_test</artifactId>
+        <version>1</version>
+    </parent>
+    <artifactId>java_test_deb_jdeb</artifactId>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    <build>
+        <plugins>
+      <plugin>
+        <groupId>net.sf.debian-maven</groupId>
+        <artifactId>debian-maven-plugin</artifactId>
+        <version>1.0.6</version>
+        <configuration>
+          <packageName>java-test-deb</packageName>
+          <packageTitle>This is foo!</packageTitle>
+          <packageDescription>This is a test of how to make a deb from a Maven project.</packageDescription>
+          <maintainerName>Christian Brunotte</maintainerName>
+          <maintainerEmail>cb@lathspell.de</maintainerEmail>
+<!--
+          <packageVersion>1.0.0</packageVersion>
+          ...
+          -->
+        </configuration>
+      </plugin>
+        </plugins>
+    </build>
+</project>

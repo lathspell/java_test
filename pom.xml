@@ -42,6 +42,7 @@
     <module>java_test_xml</module>
     <module>java_test_ee7_websockets</module>
     <module>java_test_ee7_standalone</module>
-    <module>java_test_deb</module>
+    <module>java_test_deb_jdeb</module>
+    <module>java_test_deb_maven_debian_helper</module>
   </modules>
 </project>
