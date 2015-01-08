@@ -7,10 +7,23 @@ import java.util.regex.Pattern;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang.StringUtils;
-import static junit.framework.Assert.*;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class RegExTest {
+
+    @Test
+    public void testDotAll() {
+        String s = "test 123\n";
+        assertFalse(s.matches("^test.*")); // "." doesn't include "\n"
+        assertFalse(s.matches("^test.*$")); // "." doesn't include "\n"
+        assertTrue(s.matches("^test.*\n$")); // explicit "\n"
+        assertTrue(s.matches("(?s)^test.*")); // "(?s)" activates Pattern.DOTALL
+        assertTrue(Pattern.compile("^test.*", Pattern.DOTALL).matcher(s).matches());
+    }
 
     @Test
     public void testMultiline() {
