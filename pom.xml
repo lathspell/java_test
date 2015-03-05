@@ -44,5 +44,6 @@
     <module>java_test_ee7_standalone</module>
     <module>java_test_deb_jdeb</module>
     <module>java_test_deb_maven_debian_helper</module>
+    <module>java_test_tyrus</module>
   </modules>
 </project>
