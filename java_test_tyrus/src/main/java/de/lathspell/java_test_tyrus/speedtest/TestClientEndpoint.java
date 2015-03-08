@@ -1,6 +1,5 @@
 package de.lathspell.java_test_tyrus.speedtest;
 
-import java.io.IOException;
 
 import javax.websocket.ClientEndpoint;
 import javax.websocket.EndpointConfig;
@@ -13,28 +12,34 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ClientEndpoint
-public class MyClientEndpoint {
+public class TestClientEndpoint {
 
-    private static final Logger log = LoggerFactory.getLogger(MyClientEndpoint.class);
+    private static final Logger log = LoggerFactory.getLogger(TestClientEndpoint.class);
 
-    private int max = 100;
-    private int counter = 1;
+    private final int max = 50;
+
+    private int counter = 0;
 
     /**
      * Every websocket message creates a new class.
      */
-    public MyClientEndpoint() {
+    public TestClientEndpoint() {
         log.info(hashCode() + " ctor");
     }
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig endpointConfig) throws Exception {
-        log.info(hashCode() + " onOpen: starting download");
+        log.info(hashCode() + " onOpen: connecting");
+    }
+
+    @OnMessage
+    public void onMessage(String message, Session session) throws Exception {
+        log.info(hashCode() + " onMessage: got token {}", message);
         session.getBasicRemote().sendText("data " + counter);
     }
 
     @OnMessage
-    public void onMessage(byte[] message, Session session) throws IOException {
+    public void onMessage(byte[] message, Session session) throws Exception {
         log.info(hashCode() + " onMessage #" + counter);
         if (counter < max) {
             counter++;

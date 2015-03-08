@@ -14,9 +14,9 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 /**
  * Starts 100 Websocket clients more or less simultaneously.
  */
-public class MyClient {
+public class TestClient {
 
-    private static final Logger log = LoggerFactory.getLogger(MyClient.class);
+    private static final Logger log = LoggerFactory.getLogger(TestClient.class);
 
     private static final int numThreads = 4;
 
@@ -30,7 +30,7 @@ public class MyClient {
         List<Session> sessions = new ArrayList<>();
         for (int i = 1; i <= numThreads; i++) {
             ClientManager client = ClientManager.createClient();
-            Session session = client.connectToServer(MyClientEndpoint.class, new URI(URI + "?ClntThrd=" + i));
+            Session session = client.connectToServer(TestClientEndpoint.class, new URI(URI + "?ClntThrd=" + i));
             sessions.add(session);
         }
 
