@@ -1,4 +1,4 @@
-package de.lathspell.java_test_tyrus;
+package de.lathspell.java_test_tyrus.parallel;
 
 import java.util.HashMap;
 import java.util.Map;
