@@ -1,5 +1,6 @@
 package de.lathspell.java_test_tyrus.speedtest;
 
+import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -19,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * created, though, so private variables can safely be used.
  *
  */
-@ServerEndpoint(value = "/speedtest")
+@ServerEndpoint(value = "/speedtest", configurator = SpeedtestServerEndpointConfigurator.class)
 public class SpeedtestEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(SpeedtestServer.class);
@@ -31,10 +32,11 @@ public class SpeedtestEndpoint {
     private int counter;
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("thread") String remoteThread) throws Exception {
+    public void onOpen(Session session, EndpointConfig endpointConfig, @PathParam("thread") String remoteThread) throws Exception {
         String ip = ((TyrusSession) session).getRemoteAddr();
+        String userAgent = (String) endpointConfig.getUserProperties().get("user-agent");
         token = manager.start(ip);
-        log.info("*{} onOpen from {} of thread {}", token, ip, remoteThread);
+        log.info("*{} onOpen from {} using {} of thread {}", token, ip, userAgent, remoteThread);
         session.getBasicRemote().sendText("TOKEN " + token);
     }
 
