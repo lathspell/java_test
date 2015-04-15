@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class JacksonTest {
      * What happens if my model is only partially complete.
      *
      * The java.util.Date is converted to long according to Date.getTime().
-     * 
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -34,7 +35,7 @@ public class JacksonTest {
         // big JSON to small POJO
         Article producedArticle = new ObjectMapper().readValue(extendedArticleJson, Article.class);
         assertEquals(article.toCSV(), producedArticle.toCSV());
-        
+
         // The complete data structure below _links is stored as JsonNode to permit easy access.
         assertEquals("foo", producedArticle.getLinks().at("/x:a/href").textValue());
 
@@ -78,7 +79,7 @@ public class JacksonTest {
      *
      * The response of e.g. a REST method must be a valid JSON text which
      * must have outer {} or [].
-     * 
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -104,5 +105,14 @@ public class JacksonTest {
         Map<String, Object> map = new ObjectMapper().readValue(prettyJson, new TypeReference<Map<String, Object>>() {
         });
         assertNotNull(map);
+    }
+
+    @Test
+    public void testPhpEscaping() throws Exception {
+        // PHPs json_encode() setzt per default ein Backslash vor das Slash!
+        String json = "{\"op\":\"test\",\"path\":\"\\/customerNo\",\"value\":2100001}";
+
+        JsonNode node = new ObjectMapper().readTree(json);
+        assertEquals("/customerNo", node.get("path").textValue());
     }
 }
