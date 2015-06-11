@@ -33,10 +33,6 @@ public class MyRestConfig extends Application {
         resources.add(de.lathspell.test.webservices.MyRestResource.class);
         resources.add(de.lathspell.test.webservices.exceptions.ApiProblemJsonMessageBodyReader.class);
         resources.add(de.lathspell.test.webservices.exceptions.ApiProblemJsonMessageBodyWriter.class);
-        resources.add(org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider.class);
-        resources.add(org.codehaus.jackson.jaxrs.JacksonJsonProvider.class);
-        resources.add(org.codehaus.jackson.jaxrs.JsonMappingExceptionMapper.class);
-        resources.add(org.codehaus.jackson.jaxrs.JsonParseExceptionMapper.class);
     }
 
 }

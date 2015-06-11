@@ -15,6 +15,31 @@ import static org.junit.Assert.assertTrue;
 
 public class RegExTest {
 
+    /**
+     * Only the last match of the outer group is retained.
+     * 
+     * This is unlike e.g. preg_split() in PHP.
+     * 
+     * See "Groups and capturing" in the Pattern API description:     *
+     * <quote>
+     *  The captured input associated with a group is always the 
+     *  subsequence that the group most recently matched.
+     * </quote>
+     * @see <a ref="Pattern">http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html</a>
+     */
+    @Test
+    public void testMultiGroups() {
+        String s = "XfooY\nXbarY";
+        
+        Pattern p = Pattern.compile("^(X([a-z]+)Y\\s*)+$");
+        Matcher m = p.matcher(s);
+        assertTrue(m.matches());
+        assertEquals(2, m.groupCount());
+        assertEquals(s, m.group(0)); // original
+        assertEquals("XbarY", m.group(1)); // last match of outer group
+        assertEquals("bar", m.group(2)); // last match of inner group
+    }
+    
     @Test
     public void testDotAll() {
         String s = "test 123\n";
