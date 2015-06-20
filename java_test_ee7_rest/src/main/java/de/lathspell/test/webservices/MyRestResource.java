@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
@@ -62,6 +63,17 @@ import de.lathspell.test.webservices.exceptions.ApiProblemException;
 public class MyRestResource {
 
     private static final Logger log = LoggerFactory.getLogger(MyRestResource.class);
+
+    public MyRestResource() {
+        log.info("ctor");
+    }
+
+    @GET
+    @Path("/ping")
+    @Produces(TEXT_PLAIN)
+    public String ping() {
+        return "pong";
+    }
 
     /**
      *

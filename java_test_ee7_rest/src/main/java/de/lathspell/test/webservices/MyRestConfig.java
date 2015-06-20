@@ -9,8 +9,6 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import org.glassfish.jersey.filter.LoggingFilter;
-import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +22,7 @@ public class MyRestConfig extends Application {
         Set<Object> singletons = new HashSet<>();
         log.info("Enabling custom Jackson JSON provider");
         singletons.add(new JacksonJsonProvider() /* .configure(SerializationFeature.INDENT_OUTPUT, true) */);
-        singletons.add(new LoggingFilter(java.util.logging.Logger.getLogger("de.lathspell.myrest.trace"), 10*1024));
+        // Glassfish-only: singletons.add(new LoggingFilter(java.util.logging.Logger.getLogger("de.lathspell.myrest.trace"), 10*1024));
         return singletons;
     }
 
@@ -32,8 +30,7 @@ public class MyRestConfig extends Application {
     public Map<String, Object> getProperties() {
         Map<String, Object> properties = new HashMap<>();
         log.info("Disabling default MOXy JSON provider");
-        // properties.put("jersey.config.disableMoxyJson.server", true);
-        properties.put(ServerProperties.MOXY_JSON_FEATURE_DISABLE, true);
+        properties.put("jersey.config.disableMoxyJson.server", true); // Glassfish-only
         return properties;
     }
 
@@ -61,7 +58,6 @@ public class MyRestConfig extends Application {
         resources.add(de.lathspell.test.webservices.MyRestResource.class);
         resources.add(de.lathspell.test.webservices.exceptions.ApiProblemJsonMessageBodyReader.class);
         resources.add(de.lathspell.test.webservices.exceptions.ApiProblemJsonMessageBodyWriter.class);
-        resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
     }
 
 }
