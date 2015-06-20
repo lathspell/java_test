@@ -1,6 +1,8 @@
 package de.lathspell.test.text;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +16,71 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class RegExTest {
+
+    /**
+     * Only the last match of the outer group is retained.
+     *
+     * This is unlike e.g. preg_split() in PHP.
+     *
+     * See "Groups and capturing" in the Pattern API description:
+     *
+     * <quote>
+     * The captured input associated with a group is always the
+     * subsequence that the group most recently matched.
+     * </quote>
+     *
+     * @see <a ref="Pattern">http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html</a>
+     */
+    @Test
+    public void testMultiGroups() {
+        String s = "XfooY\nXbarY";
+
+        // PHP preg_split() style does not work!
+        Pattern p = Pattern.compile("^(X([a-z]+)Y\\s*)+$");
+        Matcher m = p.matcher(s);
+        assertTrue(m.matches());
+        assertEquals(2, m.groupCount());
+        assertEquals(s, m.group(0)); // original
+        assertEquals("XbarY", m.group(1)); // last match of outer group
+        assertEquals("bar", m.group(2)); // last match of inner group
+
+        // Java style does work!
+        m = Pattern.compile("X(.+)Y\\s*").matcher(s);
+        List<String> matches = new ArrayList<String>();
+        while (m.find()) {
+            matches.add(m.group(1));
+        }
+        assertEquals(2, matches.size());
+        assertEquals("foo", matches.get(0));
+        assertEquals("bar", matches.get(1));
+    }
+
+    @Test
+    public void testMultiWithPositiveLookbehind() {
+        String s = "1 [3 4 5] 6 7 [8 9] 4";
+        // Look for:
+        //   Positive Lookbehind: "["
+        //   At least one char not "]"
+        //      OR
+        //   Digits
+        Pattern p = Pattern.compile("(?<=\\[)[^\\]]+|\\d+");
+        Matcher m = p.matcher(s);
+
+        List<String> matches = new ArrayList<String>();
+        while (m.find()) {
+            matches.add(m.group());
+            // System.out.println("start="+m.start());  =>  0 3 10 12 15 20
+        }
+
+        assertEquals(6, matches.size());
+        assertEquals("1", matches.get(0));
+        assertEquals("3 4 5", matches.get(1));
+        assertEquals("6", matches.get(2));
+        assertEquals("7", matches.get(3));
+        assertEquals("8 9", matches.get(4));
+        assertEquals("4", matches.get(5));
+    }
+
 
     @Test
     public void testDotAll() {
