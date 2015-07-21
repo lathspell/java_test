@@ -32,7 +32,6 @@
                 <version>1.0.3</version>
                 <executions>
                     <execution>
-                        <id>make-jandex-index</id>
                         <goals>
                             <goal>jandex</goal>
                         </goals>
