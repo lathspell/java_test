@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="false" scan="true" scanPeriod="30 seconds">
+
+    <!--
+    The variable {com.sun.aas.instanceRoot:-.} contains the directory of the
+    Glassfish application server domain or when called using junit or probably
+    a different application server, the current working directory.
+    -->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%-5level %-60logger{60} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.axis" level="INFO" />
+    <logger name="org.apache.axis.utils.JavaUtils" level="ERROR" />
+    <logger name="org.apache.commons.discovery" level="INFO" />
+    <logger name="org.eclipse.jetty.util.thread" level="INFO" />
+    <logger name="org.eclipse.jetty.util.component" level="DEBUG" />
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
