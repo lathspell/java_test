@@ -5,10 +5,9 @@ import javax.inject.Named;
 
 @Named
 @ApplicationScoped
-public class MyJsfStatus {
+public class ExampleBacking {
 
     public String getStatus() {
-        java.util.logging.Logger.getLogger(MyJsfStatus.class.getSimpleName()).info("getStatus");
         return "works!";
     }
 }
