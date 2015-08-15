@@ -49,5 +49,6 @@
     <module>java_test_ee7_jsf_standalone</module>
     <module>java_test_apache_tamaya</module>
     <module>java_test_ee7_wildfly_swarm</module>
+    <module>java_test_crypto</module>
   </modules>
 </project>
