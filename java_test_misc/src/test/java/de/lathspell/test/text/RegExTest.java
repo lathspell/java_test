@@ -1,5 +1,6 @@
 package de.lathspell.test.text;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
@@ -16,6 +18,21 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class RegExTest {
+
+    @Test
+    public void testWebCMC() throws Exception {
+        String csv = FileUtils.readFileToString(new File("src/test/java/de/lathspell/test/text/2AlarmsOneEvent.csv"));
+
+        Matcher m = Pattern.compile("(22\\d+--T-NC\\dD.+?FREILAUFENDE MELDUNG = \\d+)\\s*", Pattern.DOTALL).matcher(csv);
+        List<String> matches = new ArrayList<String>();
+        while (m.find()) {
+            matches.add(m.group(1));
+        }
+
+        assertEquals(2, matches.size());
+        assertTrue(matches.get(0).matches("(?s)^221--T-NC5D.*KNADR.*04643$")); // DOTALL!
+        assertTrue(matches.get(1).matches("(?s)^221--T-NC5D.*GESAMMELTE.*04962$")); // DOTALL!
+    }
 
     /**
      * Only the last match of the outer group is retained.
@@ -80,7 +97,6 @@ public class RegExTest {
         assertEquals("8 9", matches.get(4));
         assertEquals("4", matches.get(5));
     }
-
 
     @Test
     public void testDotAll() {
