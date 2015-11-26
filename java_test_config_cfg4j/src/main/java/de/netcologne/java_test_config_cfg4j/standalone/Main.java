@@ -23,6 +23,8 @@ public class Main {
         
         // Example usage
         log.info("Starting version " + prov.getProperty("version", String.class));
+
+        System.exit(0); // To end config file watcher
     }
 
 }

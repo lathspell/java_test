@@ -1,8 +1,9 @@
 package de.netcologne.java_test_config_cfg4j.config;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -46,8 +47,15 @@ public class ConfigurationProviderProvider {
                 new File("moduleFoo.yml").toPath()));
 
         // If existing, this file from /tmp is also parsed
-        ConfigurationSource systemSource = new FilesConfigurationSource(() -> 
-                Arrays.asList(new File("/tmp/moduleFoo.yml")).stream().filter((f) -> f.exists()).map((f) -> f.toPath()).collect(Collectors.toList()));
+        ConfigurationSource systemSource = new FilesConfigurationSource(() -> {
+            try {
+                return Files.list(Paths.get("/tmp/"))
+                        .filter((p) -> p.toString().endsWith(".yml"))
+                        .collect(Collectors.toList());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         ConfigurationSource mergedSource = new MergeConfigurationSource(classpathSource, systemSource);
 
