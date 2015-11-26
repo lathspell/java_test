@@ -51,7 +51,5 @@
     <module>java_test_ee7_wildfly_swarm</module>
     <module>java_test_crypto</module>
     <module>java_test_ee7_jndi</module>
-    <module>java_test_config_cfg4</module>
-    <module>java_test_config_deltaspike</module>
   </modules>
 </project>
