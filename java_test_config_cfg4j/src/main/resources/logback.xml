@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="false" scan="false" scanPeriod="30 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %highlight(%-5level) [%thread] [%mdc{customer}:%mdc{nr}] %-60logger{60} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.commons.discovery" level="INFO" />
+    <logger name="org.hibernate.validator.internal" level="INFO" />
+    <logger name="org.jboss.weld" level="INFO" />
+    <logger name="org.jglue.cdiunit.internal" level="INFO" />
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

@@ -6,6 +6,10 @@
   <version>1</version>
   <packaging>pom</packaging>
   <modules>
+    <module>java_test_config_tamaya</module>
+    <module>java_test_crypto</module>
+    <module>java_test_deb_jdeb</module>
+    <module>java_test_deb_maven_debian_helper</module>
     <module>java_test_eclipselink_cascade_bug</module>
     <module>java_test_ee6_arquillian</module>
     <module>java_test_ee6_cdi</module>
@@ -25,12 +29,17 @@
     <module>java_test_ee6_stack1</module>
     <module>java_test_ee7_gfversion</module>
     <module>java_test_ee7_jpa</module>
+    <module>java_test_ee7_jsf_standalone</module>
     <module>java_test_ee7_rest_jpa</module>
     <module>java_test_ee7_stack1</module>
+    <module>java_test_ee7_standalone</module>
+    <module>java_test_ee7_websockets</module>
+    <module>java_test_ee7_wildfly_swarm</module>
     <module>java_test_idn</module>
     <module>java_test_jdbc_pools</module>
     <module>java_test_jnlp</module>
     <module>java_test_jooq</module>
+    <module>java_test_jopt</module>
     <module>java_test_json</module>
     <module>java_test_jsvc</module>
     <module>java_test_mina</module>
@@ -38,18 +47,9 @@
     <module>java_test_mockito</module>
     <module>java_test_multithread_jacoco</module>
     <module>java_test_se_cdi</module>
+    <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
     <module>java_test_xml</module>
-    <module>java_test_ee7_websockets</module>
-    <module>java_test_ee7_standalone</module>
-    <module>java_test_deb_jdeb</module>
-    <module>java_test_deb_maven_debian_helper</module>
-    <module>java_test_tyrus</module>
-    <module>java_test_jopt</module>
-    <module>java_test_ee7_jsf_standalone</module>
-    <module>java_test_apache_tamaya</module>
-    <module>java_test_ee7_wildfly_swarm</module>
-    <module>java_test_crypto</module>
-    <module>java_test_ee7_jndi</module>
+    <module>java_test_config_cfg4j</module>
   </modules>
 </project>

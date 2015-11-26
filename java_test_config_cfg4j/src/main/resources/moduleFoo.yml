@@ -1,0 +1,4 @@
+# Base config for module Foo
+---
+module.foo.active:true
+---
