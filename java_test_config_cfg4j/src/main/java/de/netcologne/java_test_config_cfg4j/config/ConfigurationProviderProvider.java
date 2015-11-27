@@ -42,11 +42,17 @@ public class ConfigurationProviderProvider {
         // Not so much usable to implement a kind of "cascade" or merged configuration.
         Environment environment = new ImmutableEnvironment("");
 
+        // Step 1 - Shipped default configurations
+        // Nicely grouped in separate files per module and one that contains environment sepecific
+        // presets (nothing to do with Environment.class from cfg4j!)
+        String ewuTree = System.getProperty("EWU_TREE", "devel");
         ConfigurationSource classpathSource = new ClasspathConfigurationSource(() -> Arrays.asList(
                 new File("application.properties").toPath(),
-                new File("moduleFoo.yml").toPath()));
-
-        // If existing, this file from /tmp is also parsed
+                new File("moduleFoo.yml").toPath(),
+                new File("moduleBar.yml").toPath(),
+                new File(ewuTree + ".yml").toPath()));
+        
+        // Step 2 - Overrideable configs by the local admin, those are optional and can have any name that ends on .yml
         ConfigurationSource systemSource = new FilesConfigurationSource(() -> {
             try {
                 return Files.list(Paths.get("/tmp/"))
@@ -67,8 +73,10 @@ public class ConfigurationProviderProvider {
                 .withReloadStrategy(reloadStrategy)
                 .build();
 
-        log.info("Built configuration provider " + prov);
-        log.info("Dumping all loaded properties: " + prov.allConfigurationAsProperties());
+        log.info(
+                "Built configuration provider " + prov);
+        log.info(
+                "Dumping all loaded properties: " + prov.allConfigurationAsProperties());
     }
 
     @Produces
