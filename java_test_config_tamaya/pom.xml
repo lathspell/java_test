@@ -9,7 +9,27 @@
     <name>java_test_config_tamaya</name>
     <artifactId>java_test_config_tamaya</artifactId>
     <packaging>war</packaging>
+    
     <build>
+        
+        <resources>
+            <!-- Activate filtering to get e.g. pom.version in *.properties -->
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -21,27 +41,48 @@
             </plugin>
         </plugins>
     </build>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <tamaya.version>0.2-incubating-SNAPSHOT</tamaya.version>
     </properties>
+    
     <dependencies>
         <dependency>
             <groupId>org.apache.tamaya</groupId>
             <artifactId>tamaya-core</artifactId>
-            <version>0.1-incubating</version>
+            <version>${tamaya.version}</version>
         </dependency>
         <dependency>
+            <!-- for AbstractPathPropertySourceProvider -->
             <groupId>org.apache.tamaya.ext</groupId>
-            <artifactId>tamaya-injection</artifactId>
-            <version>0.1-incubating</version>
+            <artifactId>tamaya-resources</artifactId>
+            <version>${tamaya.version}</version>
         </dependency>
+        <dependency>
+            <!-- for YAML -->
+            <groupId>org.apache.tamaya.ext</groupId>
+            <artifactId>tamaya-formats</artifactId>
+            <version>${tamaya.version}</version>
+            <type>jar</type>
+        </dependency>          
+        <dependency>
+            <!-- for CDI (tamaya-integration does not use CDI!) -->
+            <groupId>org.apache.tamaya.ext</groupId>
+            <artifactId>tamaya-cdi</artifactId>
+            <version>${tamaya.version}</version>
+            <type>jar</type>
+        </dependency>        
+        <!-- Could be used for variable substitution - but for pom.version use Maven resource filtering!
         <dependency>
             <groupId>org.apache.tamaya.ext</groupId>
             <artifactId>tamaya-resolver</artifactId>
-            <version>0.1-incubating</version>
+            <version>${tamaya.version}</version>
+            <type>jar</type>
         </dependency>
+        -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -52,11 +93,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
             <version>1.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tamaya.ext</groupId>
-            <artifactId>tamaya-json</artifactId>
-            <version>0.1-incubating</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

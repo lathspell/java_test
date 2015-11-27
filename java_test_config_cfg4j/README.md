@@ -11,10 +11,12 @@ The Good
 * Supports .properties
 * Supports .yml
 
+The In-Between
+--------------
+* Default values in getProperty() only in 0.2-SNAPSHOT
+* Convenience methods like getString() / getBoolean() via get(key, Integer.value) in 0.2-SNAPSHOT
+* CDI provider only in 0.2-SNAPSHOT
+
 The Bad
 -------
-
-* No CDI provider
-* No Default values in getProperty()
-* No convenience methods like getString() / getBoolean()
-
+* Early release 0.2-SNAPSHOT

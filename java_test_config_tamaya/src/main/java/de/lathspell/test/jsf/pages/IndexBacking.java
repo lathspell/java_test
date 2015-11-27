@@ -1,20 +1,32 @@
 package de.lathspell.test.jsf.pages;
 
-import org.apache.tamaya.inject.ConfigurationInjector;
-import org.apache.tamaya.inject.ConfiguredProperty;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
+import org.apache.tamaya.inject.api.Config;
+import org.apache.tamaya.inject.api.ConfigDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Named
+@RequestScoped
 public class IndexBacking {
 
     private static final Logger log = LoggerFactory.getLogger(IndexBacking.class);
 
-    @ConfiguredProperty(keys = "greeting")
+    @Config("greeting")
     private String greeting;
 
-    @ConfiguredProperty
+    @Config("version")
+    @ConfigDefault("1.0-AnnotatedDefaultValue")
     private String version;
 
+    @PostConstruct
+    public void postConstruct() {
+        log.info("");
+    }
+    
     public String getGreeting() {
         return greeting;
     }
