@@ -1,5 +1,21 @@
-2015-11: Version 0.1 and documentation with errors in all examples I tried. 
-         No real CDI support, only Configuration.inject(myObject) which then can have @ConfiguredProperty annotations.
-         CDI probably coming with tamaya-integration which was only found in the examples as version 0.2-SNAPSHOT.
+http://tamaya.incubator.apache.org
 
-2015-04: early alpha
+The Good
+--------
+
+* Java 8
+* Auto-Reload (TODO: Test!)
+* MergedConfiguration (via Provider)
+* FallbackConfiguration (via Provider)
+* Environments (via Provider)
+* Supports .properties
+* Supports .yml
+* Supports other formats like XML
+* Very modular
+* Default values in getProperty()
+* Convenience methods like getString() / getBoolean() via get(key, Integer.value)
+* CDI provider
+
+The Bad
+-------
+* Early release 0.2-SNAPSHOT
