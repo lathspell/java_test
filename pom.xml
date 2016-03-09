@@ -6,6 +6,8 @@
   <version>1</version>
   <packaging>pom</packaging>
   <modules>
+    <module>java_test_config_cfg4j</module>
+    <module>java_test_config_deltaspike</module>
     <module>java_test_config_tamaya</module>
     <module>java_test_crypto</module>
     <module>java_test_deb_jdeb</module>
@@ -42,15 +44,15 @@
     <module>java_test_jopt</module>
     <module>java_test_json</module>
     <module>java_test_jsvc</module>
+    <module>java_test_lombok</module>
     <module>java_test_mina</module>
     <module>java_test_misc</module>
     <module>java_test_mockito</module>
     <module>java_test_multithread_jacoco</module>
     <module>java_test_se_cdi</module>
+    <module>java_test_springboot_rest</module>
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
     <module>java_test_xml</module>
-    <module>java_test_config_cfg4j</module>
-    <module>java_test_config_deltaspike</module>
   </modules>
 </project>
