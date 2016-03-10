@@ -1,7 +1,7 @@
 Spring Boot demonstration
 =========================
 
-This one shows how to do SQL using JPA.
+This one shows how to do SQL using a JPA mapper.
 
 Start de.lathspell.test.springboot.Application 
 
