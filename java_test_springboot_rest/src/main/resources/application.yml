@@ -28,24 +28,3 @@ server:
         basedir: tomcat
         accesslog:
             enabled: true
-
-#
-# Monitoring using Actuator Endpoints
-# (https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-monitoring.html)
-# (https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html)
-#
-security:
-    user:
-        name: admin
-        password: admin
-management:
-    security:
-        role: SUPERUSER
-    context-path: /mgmt
-
-endpoints:
-    # Show everything if security is used
-    sensitive: true
-    # It's not a DoS, it's a feature :-)
-    shutdown.enabled: true
-    

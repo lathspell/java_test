@@ -1,36 +1,19 @@
 <html>
 
     <h1>REST</h1>
+    <h2>(using "Spring Web MVC")</h2>
     <ul>
-        <li><a href="/rest/">Greeter Home</a></li>
-        <li><a href="/rest/hello/Max">Greeter with name (-> JSON)</a></li>
-        <li><a href="/rest/hello2/Max?salutation=Dr.">Greeter with name and salutation parameter (-> String)</a></li>
+        <li><a href="/rest/mvc/">Greeter Home</a></li>
+        <li><a href="/rest/mvc/hello/Max">Greeter with name (-> JSON)</a></li>
+        <li><a href="/rest/mvc/hello2/Max?salutation=Dr.">Greeter with name and salutation parameter (-> String)</a></li>
     </ul>
-
-    <h1>Actuator</h1>
-    <p>
-        Use admin:admin as credentials!
-    </p>
+    
+    <h2>(using JAX-RS implementation "Jersey")</h2>
     <ul>
-        <li><a href="/mgmt/autoconfig/">autoconfig</a></li>
-        <li><a href="/mgmt/beans/">beans</a></li>
-        <li><a href="/mgmt/configprops/">configprops</a></li>
-        <li><a href="/mgmt/docs/">docs (only if spring-boot-actuator-docs are on the classpath)</a></li>
-        <li><a href="/mgmt/dump/">dump (Thread Dump)</a></li>
-        <li><a href="/mgmt/env/">env</a></li>
-        <li><a href="/mgmt/flyway/">flyway (only if used)</a></li>
-        <li><a href="/mgmt/health/">health</a></li>
-        <li><a href="/mgmt/info/">info (populated via applications.properties)</a></li>
-        <li><a href="/mgmt/liquibase/">liquibase (only if used)</a></li>
-        <li><a href="/mgmt/logfile/">logfile (only if logging.file/path has been set!)</a></li>
-        <li><a href="/mgmt/metrics/">metrics</a></li>
-        <li><a href="/mgmt/mappings/">mappings</a></li>
-        <li><a href="/mgmt/trace/">trace</a></li>
-        <li>
-            <form action="/mgmt/shutdown" method="POST">
-                <input type="submit" value="/shutdown (via POST)" />
-            </form>
-        </li>
+        <li><a href="/rest/jaxrs/application.wadl">WADL</a></li>
+        <li><a href="/rest/jaxrs/greeter/">Greeter Home</a></li>
+        <li><a href="/rest/jaxrs/greeter/hello/Max">Greeter with name (-> JSON)</a></li>
+        <li><a href="/rest/jaxrs/greeter/hello2/Max?salutation=Dr.">Greeter with name and salutation parameter (-> String)</a></li>
     </ul>
 
 </html>
