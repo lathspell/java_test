@@ -1,0 +1,30 @@
+#
+# Spring Boot Application Configuration
+# (https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+#
+
+# Used by the /info Actuator Endpoint
+info:
+    app:
+        name: Spring Boot Test Application
+        description: (This comes from application.yml!)
+
+# Shows what Spring Boot autodetection is actually doing
+debug: false
+
+#
+# Logging
+# (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html)
+#
+logging:
+    file: spring.log
+    level:
+        root: INFO
+        # This is cool to check which method is called for a specific GET request
+        org.springframework.web: INFO
+
+server:
+    tomcat:
+        basedir: tomcat
+        accesslog:
+            enabled: true
