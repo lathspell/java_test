@@ -4,10 +4,10 @@ import de.lathspell.test.springboot.model.Person;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "virtual", types = {Person.class})
-public interface FullnameProjection {
+@Projection(name = "excerpt", types = Person.class)
+public interface PersonExcerptProjection {
 
-    @Value("#{target.firstName} #{target.lastName}")
-    String getFullName();
+    @Value("#{target.lastName}, #{target.firstName}")
+    String getLastFirstName();
 
 }
