@@ -72,11 +72,16 @@
             <!-- Spring Boot: REST for data objects -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
-        </dependency>
+        </dependency> 
         <dependency>
             <!-- Spring Boot: JPA ORM -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <!-- Spring: The HAL-Browser from the Spring Data REST project -->
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-hal-browser</artifactId>
         </dependency>
         <dependency>
             <!-- Database: Simple SQL in-memory database for tests -->

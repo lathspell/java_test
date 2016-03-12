@@ -28,3 +28,11 @@ server:
         basedir: tomcat
         accesslog:
             enabled: true
+
+
+# Spring-Data-Rest base URL
+spring:
+    data:
+        rest:
+            basePath: /rest
+
