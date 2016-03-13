@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property name="LOG_FILE" value="spring.log" />
+
+    <!-- We want to use the Spring Boot formatter in this example,
+         in production it's probably better to load the logging configuration
+         from a filesystem location like /etc/myapp/ via the command line
+         parameter -Dlogback.configurationFile=... -->
+
+    <!-- base.xml sets up a console logger and we won't that! -->
+    <!-- include resource="org/springframework/boot/logging/logback/base.xml" -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
+
+    <!-- No stdout logging! -->
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Levels are configured in application.yml (could be here, too) -->
+</configuration>
+

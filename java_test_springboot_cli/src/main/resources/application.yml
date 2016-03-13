@@ -1,0 +1,18 @@
+#
+# Spring Boot Application Configuration
+# (https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+#
+
+# debug: true
+
+spring:
+    main:
+        # Should not clutter the console output
+        banner-mode: "log"
+
+# logback.xml is used additionally to turn off console logging
+logging:
+    level:
+       root: INFO
+       de.lathspell.test: DEBUG
+
