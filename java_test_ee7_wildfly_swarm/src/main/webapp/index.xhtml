@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" >
 
     <h:head>
 
@@ -9,6 +8,15 @@
 
     <h:body>
         <h:outputText value="Hello world!" />
-        <div id="el">#{ 1 + 1 }</div>
+        <dl>
+            <dt>EL 1+1:</dt>
+            <dd>#{ 1 + 1 }</dd>
+
+            <dt>Date via EL</dt>
+            <dd>#{java.time.LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE)}</dd>
+
+            <dt>Date via Backing Bean</dt>
+            <dd>#{dater.currentDate}</dd>
+        </dl>
     </h:body>
 </html>
