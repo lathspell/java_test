@@ -49,14 +49,17 @@
     <module>java_test_misc</module>
     <module>java_test_mockito</module>
     <module>java_test_multithread_jacoco</module>
+    <module>java_test_pattern</module>
     <module>java_test_se_cdi</module>
-    <module>java_test_springboot</module>
+    <module>java_test_soap</module>
     <module>java_test_springboot_cli</module>
     <module>java_test_springboot_data_rest</module>
-    <module>java_test_springboot_rest</module>
-    <module>java_test_springboot_rest_jaxrs</module>
     <module>java_test_springboot_jdbc</module>
     <module>java_test_springboot_jpa</module>
+    <module>java_test_springboot</module>
+    <module>java_test_springboot_rest_jaxrs</module>
+    <module>java_test_springboot_rest</module>
+    <module>java_test_sql</module>
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
     <module>java_test_xml</module>
