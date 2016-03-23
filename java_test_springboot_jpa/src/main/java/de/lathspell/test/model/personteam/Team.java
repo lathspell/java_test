@@ -29,7 +29,8 @@ public class Team {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "team", cascade = ALL, fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = Person.class)
+    @OneToMany(/* mappedBy = "team", cascade = ALL, fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = Person.class */)
+    @JoinColumn(name = "team_id")
     private List<Person> persons = new ArrayList<>();
 
     public Team(String name) {

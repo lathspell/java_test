@@ -24,6 +24,7 @@ public class Child extends Father {
         Child.staticProducer();
     }
 
+    @Override
     public String instanceProducer() {
         return "Child";
     }
