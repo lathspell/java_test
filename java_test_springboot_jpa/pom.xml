@@ -42,6 +42,15 @@
 
     <dependencies>
         <dependency>
+            <!-- Test: JUnit -->
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
             <!-- Util: Getting rid of all the boilerplate code! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -54,15 +63,37 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
+            <!-- Spring Boot: Junit helper -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>        
+        <dependency>
             <!-- Spring Boot: JPA -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
         <dependency>
             <!-- DB: In memory database for tests. -->
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.191</version>
+        </dependency>
+        <dependency>
+            <!-- DB: PostgreSQL adapter -->
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+                
+        <dependency>
+            <!-- JSR Context and Dependency Injection API -->
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <scope>provided</scope>
+            <type>jar</type>
+        </dependency>
+
     </dependencies>
 </project>

@@ -22,12 +22,30 @@ logging:
         root: INFO
         # This is cool to check which method is called for a specific GET request
         org.springframework.web: DEBUG
-
+ 
+ 
 spring:
-    # database
-    #   driverClassName: org.postgresql.Driver
+    database:
+        # driverClassName: org.postgresql.Driver
+
     datasource:
-        platform: hsqldb
-        # url: jdbc:postgresql://localhost:5433/postgres
+        platform: h2
+        # platform: hsqldb
+        # url: jdbc:postgresql://localhost:5432/postgres
         # username: postgres
         # password: postgres
+        
+    jpa:
+        hibernate:
+            # naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate:
+                globally_quoted_identifiers: false
+                # SQL comments are pretty useless
+                use_sql_comments: false
+                format_sql: true
+            hbm2ddl:
+                auto: create-drop
+
+            
+            
