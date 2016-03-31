@@ -1,0 +1,34 @@
+package de.lathspell.java_test_json.csv;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import static java.text.DateFormat.MEDIUM;
+
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class CsvTest {
+
+    @Test
+    public void test1() throws Exception {
+        // columns are in different order as in POJO but that's fine!
+        String csv = "country;name;Some Date;population;extrastuff\n"
+                + "# no follows the first line (this is only a comment)\n"
+                + "de;cologne;1923-04-08 11:22:33;1.046.680;famous for beer\n";
+        
+        CsvSchema schema = CsvSchema.emptySchema().withHeader().withColumnSeparator(';').withComments();
+        MappingIterator<City> iter = new CsvMapper().readerFor(City.class).with(schema).readValues(csv);
+        City c1 = iter.next();
+        
+        assertEquals(Country.DE, c1.getCountry());
+        assertEquals("08.04.1923 11:22:33", DateFormat.getDateTimeInstance().format(c1.getSomeDate()));
+    }
+
+}
