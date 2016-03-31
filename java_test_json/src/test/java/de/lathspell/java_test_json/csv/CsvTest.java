@@ -1,11 +1,6 @@
 package de.lathspell.java_test_json.csv;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import static java.text.DateFormat.MEDIUM;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
