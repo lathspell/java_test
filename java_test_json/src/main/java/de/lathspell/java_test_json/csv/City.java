@@ -1,8 +1,6 @@
 package de.lathspell.java_test_json.csv;
 
 import java.util.Date;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
-import static com.fasterxml.jackson.annotation.JsonFormat.DEFAULT_TIMEZONE;
 import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 
 @Data
+//@AllArgsConstructor
 @JsonIgnoreProperties({"extrastuff"})
 public class City {
 
@@ -29,7 +27,7 @@ public class City {
 
     /** Example for Date format and names with spaces. */
     @JsonProperty("Some Date")
-    @JsonFormat(shape=STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone = "Europe/Berlin")
+    @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Europe/Berlin")
     private Date someDate;
 
     @JsonIgnore
