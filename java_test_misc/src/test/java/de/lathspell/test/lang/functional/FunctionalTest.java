@@ -1,6 +1,7 @@
 package de.lathspell.test.lang.functional;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,10 +11,23 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class FunctionalTest {
 
+    @Test
+    public void testLambda() {
+        // The anonymous function on the right side is called Lambda Expression
+        Comparator<String> ssUmlautCmp = (a,b) -> a.replace("ß", "ss").compareTo(b.replace("ß", "ss"));
+        
+        List<String> list = Arrays.asList("Fuss", "Fuß", "Fuss2");
+        
+        list.sort(Comparator.naturalOrder());
+        assertEquals(Arrays.asList("Fuss", "Fuss2", "Fuß"), list); // ASCII 'ß' comes after 's'
+        
+        list.sort(ssUmlautCmp);
+        assertEquals(Arrays.asList("Fuss", "Fuß", "Fuss2"), list); // "ss" and "ß" are considered equal
+    }
+    
     @Test
     public void testArrays() {
         List<Integer> oldList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
