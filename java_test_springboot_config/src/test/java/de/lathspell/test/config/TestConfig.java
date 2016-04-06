@@ -1,6 +1,4 @@
-package de.lathspell.test;
-
-import org.junit.Assert;
+package de.lathspell.test.config;
 
 import de.lathspell.test.services.MyCtor;
 
@@ -13,11 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.*;
 
+import de.lathspell.test.Application;
 import de.lathspell.test.config.FooConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
-public class TestSpringConfig {
+public class TestConfig {
 
     @Value("${info.app.name}")
     private String appName;
