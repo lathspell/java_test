@@ -1,0 +1,30 @@
+#
+# Spring Boot Application Configuration
+# (https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+#
+
+# Used by the /info Actuator Endpoint
+info:
+    app:
+        name: Spring Boot Test Application
+        description: (This comes from application.yml!)
+
+# Shows what Spring Boot autodetection is actually doing
+debug: true
+
+#
+# Logging
+# (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html)
+#
+logging:
+    # file: spring.log
+    level:
+        root: INFO
+
+app:
+    my_ctor_param1: foo
+
+# See FooConfig.java
+foo:
+    username: admin
+    remoteAddress: 1.2.3.4
