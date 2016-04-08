@@ -67,6 +67,12 @@
             <artifactId>jackson-dataformat-csv</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+       <dependency>
+            <!-- JSON: LocalDate Adapter -->
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>        
         <dependency>
             <!-- Util: Get rid of boilerplate code! -->
             <groupId>org.projectlombok</groupId>
