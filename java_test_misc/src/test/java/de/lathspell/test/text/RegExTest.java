@@ -195,6 +195,12 @@ public class RegExTest {
     }
 
     @Test
+    public void testBackRef() {
+        assertTrue("12-12".matches("^(\\d\\d)-\\1$"));
+        assertFalse("12-13".matches("^(\\d\\d)-\\1$"));
+    }
+
+    @Test
     public void testCrypt3() {
         Pattern p = Pattern.compile("^(\\$5\\$(rounds=(\\d+)\\$)?)?([\\.\\/a-zA-Z0-9]{1,16}).*");
 
