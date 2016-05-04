@@ -2,7 +2,14 @@ package de.lathspell.test.model;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /** Simple custom class to test JSON encoding and decoding. */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
     public static enum Sex {
@@ -39,66 +46,5 @@ public class Person {
     private String hairColor;
 
     private Integer height;
-
-    public Person() {
-
-    }
-
-    public Person(String firstName, String lastName, Sex sex, Date dayOfBirth, String hairColor, Integer height) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.sex = sex;
-        this.dayOfBirth = dayOfBirth;
-        this.hairColor = hairColor;
-        this.height = height;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public Date getDayOfBirth() {
-        return dayOfBirth;
-    }
-
-    public void setDayOfBirth(Date dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
-    }
-
-    public String getHairColor() {
-        return hairColor;
-    }
-
-    public void setHairColor(String hairColor) {
-        this.hairColor = hairColor;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
 }
