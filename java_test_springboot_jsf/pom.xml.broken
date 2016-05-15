@@ -27,7 +27,7 @@
         <profile>
             <id>jsf-mojarra</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
@@ -41,10 +41,10 @@
                     <groupId>com.sun.faces</groupId>
                     <artifactId>jsf-impl</artifactId>
                     <version>2.2.13</version>
-                </dependency>
+                    <!--   <scope>runtime</scope> -->
+                </dependency>                
             </dependencies>
         </profile>
-
         <profile>
             <id>jsf-myfaces</id>
             <dependencies>
@@ -89,7 +89,7 @@
             <artifactId>lombok</artifactId>
             <version>1.16.6</version>
         </dependency>        
-
+        
         <dependency>
             <!-- SpringBoot: JUnit runner -->
             <groupId>org.springframework.boot</groupId>
@@ -114,6 +114,12 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+        <dependency>
+            <!-- JSF: PrimeFaces add-on library -->
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.3</version>
+        </dependency>
 
         <dependency>
             <!-- JSR 303 Bean Validation: API -->
@@ -127,21 +133,28 @@
             <artifactId>hibernate-validator</artifactId>
             <scope>runtime</scope>
         </dependency>
-
+        
+        <!--
         <dependency>
-            <!-- JSR 245 Jave Server Pages (JSP): Implementation (needed for JSF!) -->
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper</artifactId>
             <version>${tomcat.version}</version>
-            <scope>runtime</scope>
         </dependency>
-
         <dependency>
-            <!-- JSF: PrimeFaces add-on library -->
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>5.3</version>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper-el</artifactId>
+            <version>${tomcat.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        -->
     </dependencies>
 </project>

@@ -5,16 +5,16 @@ import java.io.Serializable;
 import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
-//@Component
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+
 @Named
-@Scope(value = "session")
-public class JsfSpringBean implements Serializable {
+@Scope(value = SCOPE_PROTOTYPE)
+public class HelloSpringBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String welcomeMessage = "Populated by spring created bean";
+    private final String welcomeMessage = "Spring managed bean";
 
     public String getWelcomeMessage() {
         return welcomeMessage;
