@@ -1,34 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- BUG: Bis Mojarra 2.2.6 muss xmlns:f auf java.sun.com zeigen da sonst f:viewAction nicht ausgeführt wird. -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">                                                                                                                                                                                        
 
     <h:head />
     <h:body>
+
+        <ul>
+            <li>JSF Managed Bean: #{helloJsfBean.welcomeMessage}</li>
+            <li>Spring Managed Bean: #{helloSpringBean.welcomeMessage}</li>
+        </ul>
         
-        <h3>#{jsfBean.welcomeMessage}</h3>
-        <h3>#{jsfSpringBean.welcomeMessage}</h3>
-        
-        <h:form prependId="false">
-            This file illustrates PrimeFaces bug 6184 (see https://code.google.com/p/pfaces/issues/detail?id=6184).<br />
-            <br />
-            <p:separator />
-            After clicking the button there should be two error messages behind the input field.<br />
-            <ul>
-                <li>Using the Client Side Validation, both error messages are displayed behind the input field.</li>
-                <li>Using Server Side Validation, only one message is displayed. Unfortunately, the second message is an error message, but it is suppressed.</li>
-            </ul>
-            To activate server side validation, you have to set the parameter in de.beyondjava.main.Initializer (line 15) 
-            and you have to remove the annotations of de.beyondjava.jsf.sample.searchExpressions.SmallNumberBean (lines 29 and 30).
-            <br /><br />
+        <h:form>
             <h:panelGrid columns="3">
-                <p:outputLabel for="@next" value="small number (less than 10)" />
-                <p:inputText value="#{smallNumberBean.smallNumber}" required="true" label="small number" id="smallNumberID"/>
+                <p:outputLabel for="@next" value="Number" />
+                <p:inputText id="adderInput" value="#{adderBean.number}" required="true" label="number" />
                 <p:message for="@previous" />
-                <p:commandButton validateClient="true" value="validate" action="#{smallNumberBean.showErrors}" update="@parent:@parent" />
+                
+                <p:commandButton validateClient="true" value="increment" action="#{adderBean.addOne()}" update="@form" />
             </h:panelGrid>
         </h:form>
     </h:body>

@@ -5,9 +5,9 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-public class JsfBean {
+public class HelloJsfBean {
 
-    private String welcomeMessage = "Populated by JSF created bean";
+    private final String welcomeMessage = "JSF managed bean";
 
     public String getWelcomeMessage() {
         return welcomeMessage;
