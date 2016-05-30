@@ -5,11 +5,8 @@
               version="2.2">
 
     <application>
+        <!-- Special "DelegatingVariableResolver" that asks first Spring then Faces to resolve beans -->
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver> 
     </application>
-
-    <lifecycle>
-        <phase-listener>org.springframework.web.jsf.DelegatingPhaseListenerMulticaster</phase-listener>
-    </lifecycle>
 
 </faces-config>
