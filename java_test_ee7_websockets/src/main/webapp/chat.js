@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var wsocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "chat/room");
+    var wsocket = new WebSocket("ws://" + document.location.host + document.location.pathname.toString().match(/^.*\//) + "chat/room");
 
     wsocket.onmessage = function (evt) {
         var msg = JSON.parse(evt.data);
