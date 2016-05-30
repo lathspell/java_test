@@ -12,6 +12,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +48,7 @@ public class ChatEndpoint {
         String room = (String) session.getUserProperties().get("room");
         for (Session s : session.getOpenSessions()) {
             if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
-                s.getBasicRemote().sendObject(chatMessage);
+                s.getBasicRemote().sendObject(new ObjectMapper().writeValueAsString(chatMessage));
             }
         }
     }
