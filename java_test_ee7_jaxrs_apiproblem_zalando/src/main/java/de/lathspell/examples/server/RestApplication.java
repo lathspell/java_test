@@ -1,4 +1,4 @@
-package de.netcologne.examples.server;
+package de.lathspell.examples.server;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +13,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import lombok.extern.slf4j.Slf4j;
 import org.zalando.problem.ProblemModule;
 
-import de.netcologne.examples.server.logging.Slf4jRestLoggingFilter;
+import de.lathspell.examples.server.logging.Slf4jRestLoggingFilter;
 
 @ApplicationPath("/rest")
 @Slf4j
@@ -53,6 +53,7 @@ public class RestApplication extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(de.lathspell.examples.server.exceptions.RestServerExceptionMapper.class);
         resources.add(de.netcologne.examples.server.resources.CalcResource.class);
     }
 }

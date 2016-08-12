@@ -1,4 +1,4 @@
-package de.netcologne.examples.server.exceptions;
+package de.lathspell.examples.server.exceptions;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

@@ -1,4 +1,4 @@
-package de.netcologne.examples.server.logging;
+package de.lathspell.examples.server.logging;
 
 
 /*

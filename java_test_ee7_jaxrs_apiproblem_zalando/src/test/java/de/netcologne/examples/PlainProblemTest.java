@@ -9,8 +9,6 @@ import org.zalando.problem.Problem;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class PlainProblemTest {
 
