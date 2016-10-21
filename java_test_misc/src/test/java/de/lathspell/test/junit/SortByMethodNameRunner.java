@@ -1,5 +1,6 @@
 package de.lathspell.test.junit;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -23,8 +24,8 @@ public class SortByMethodNameRunner extends BlockJUnit4ClassRunner {
 
     @Override
     protected List<FrameworkMethod> computeTestMethods() {
-        List<FrameworkMethod> list = super.computeTestMethods();
-        // Eine Anonymous Class als Comparator führt zu einer Exception :)
+        // computeTestMethods returns an unmodifyable list
+        List<FrameworkMethod> list = new ArrayList<>(super.computeTestMethods());
         Collections.sort(list, new NameCmp());
         return list;
     }

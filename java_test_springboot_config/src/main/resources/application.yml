@@ -3,29 +3,9 @@
 # (https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 #
 
-# Used by the /info Actuator Endpoint
-info:
-    app:
-        name: Spring Boot Test Application
-        description: (This comes from application.yml!)
-
-# Shows what Spring Boot autodetection is actually doing
-debug: false
-
-#
-# Logging
-# (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html)
-#
-logging:
-    # file: spring.log
-    level:
-        root: WARN
-        org.springframework: INFO
-        org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer: INFO
-        de.lathspell: DEBUG
-
+# For MyCtor.java and TestConfig.java
 app:
-    my_ctor_param1: foo
+    firstName: Tim
 
 # See FooConfig.java
 foo:
