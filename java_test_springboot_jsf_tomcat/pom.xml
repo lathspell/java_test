@@ -90,8 +90,7 @@
             <!-- Utils: Java without the boilerplate code -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-        </dependency>        
+        </dependency>
 
         <dependency>
             <!-- SpringBoot: JUnit runner -->
@@ -106,7 +105,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <!-- SpringBoot: Embedded web server and FacesServlet registration -->
+            <!-- SpringBoot: Embedded web server, REST, Bean Validation (dep.) -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -115,19 +114,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
-    
-        <dependency>
-            <!-- JSR 303 Bean Validation: API -->
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
-        </dependency>
-        <dependency>
-            <!-- JSR 303 Bean Validation: Implementation -->
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
