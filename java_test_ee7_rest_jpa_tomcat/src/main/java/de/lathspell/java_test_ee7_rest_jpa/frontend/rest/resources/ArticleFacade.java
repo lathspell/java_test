@@ -1,8 +1,7 @@
-package de.lathspell.java_test_ee7_rest_jpa.frontend.rest;
+package de.lathspell.java_test_ee7_rest_jpa.frontend.rest.resources;
 
-import de.lathspell.java_test_ee7_rest_jpa.config.PropertyValue;
+import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,18 +11,13 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-
-import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 import lombok.extern.slf4j.Slf4j;
 
 @RequestScoped
-@Path("/rest/article")
+@Path("/article")
 @Slf4j
 public class ArticleFacade {
 
-    @Inject
-    @PropertyValue("greeter.name")
-    private String name;
 
     private EntityManager em;
 
@@ -35,7 +29,6 @@ public class ArticleFacade {
     @Consumes({"application/xml", "application/json"})
     public long create(Article entity) {
         //  log.info("#42# foo="+foo);
-        log.info("#42# prop=" + name);
         log.info("create: " + entity);
 
         em.getTransaction().begin();
