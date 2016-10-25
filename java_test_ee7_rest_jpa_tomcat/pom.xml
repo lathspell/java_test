@@ -73,43 +73,27 @@
         <profile>
             <id>RunAsServlet</id>
             <dependencies>
-                
                 <dependency>
                     <!-- CDI: Implementation -->
                     <groupId>org.apache.openwebbeans</groupId>
                     <artifactId>openwebbeans-impl</artifactId>
-                    <version>1.1.3</version>
+                    <version>1.7.0</version>
                     <scope>runtime</scope>
                 </dependency>
-        
+                <dependency>
+                    <!-- JPA: Implementation -->
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>eclipselink</artifactId>
+                    <version>2.6.4</version>
+                    <scope>runtime</scope>
+                </dependency>
                 <dependency>
                     <!-- JAX-RS: Implementation -->
-                    <groupId>org.glassfish.jersey.core</groupId>
-                    <artifactId>jersey-server</artifactId>
-                    <version>2.22.2</version>
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet</artifactId>
+                    <version>2.23.2</version>
                     <scope>runtime</scope>
-                </dependency>        
-        
-                <dependency>
-                    <!-- JPA: Implementation -->
-                    <groupId>org.eclipse.persistence</groupId>
-                    <artifactId>eclipselink</artifactId>
-                    <version>2.6.4</version>
-                    <scope>runtime</scope>
-                </dependency>
-
-            </dependencies>
-        </profile>
-        <profile>
-            <id>WithPostgres</id>
-            <dependencies>
-                <dependency>
-                    <!-- JPA: Implementation -->
-                    <groupId>org.eclipse.persistence</groupId>
-                    <artifactId>eclipselink</artifactId>
-                    <version>2.6.4</version>
-                    <scope>runtime</scope>
-                </dependency>
+                </dependency>             
             </dependencies>
         </profile>
     </profiles>
@@ -133,8 +117,25 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.1.7</version>
+            <scope>runtime</scope>
         </dependency>
-        
+
+        <dependency>
+            <!-- JAX-RS: Automatic JSON conversion (not JAX-RS standard!) -->
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.23.2</version>
+            <scope>runtime</scope>
+        </dependency>
+            
+        <dependency>
+            <!-- JDBC: PostgreSQL Connector -->
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1211</version>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>

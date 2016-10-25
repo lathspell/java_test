@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -18,6 +19,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,27 +41,31 @@ public class ArticleFacade {
     @PostConstruct
     public void postConstruct() {
         log.info("postConstruct");
+        if (emf == null) {
+            log.info("postConstruct create EMF as @PersistenceUnit did not work!");
+            emf = Persistence.createEntityManagerFactory("myPU");
+        }
         em = emf.createEntityManager();
     }
 
     @POST
-    @Consumes({"application/xml", "application/json"})
-    public long create(Article entity) {
-        log.info("create: " + entity);
+    @Consumes(APPLICATION_JSON)
+    public Article create(Article article) {
+        log.info("create: " + article);
 
         em.getTransaction().begin();
-        em.persist(entity);
+        em.persist(article);
         em.flush();
-        em.refresh(entity);
+        em.refresh(article);
         em.getTransaction().commit();
 
-        log.info("created: " + entity);
-        return entity.getId();
+        log.info("created: " + article);
+        return article;
     }
 
     @PUT
     @Path("/{id}")
-    @Consumes({"application/xml", "application/json"})
+    @Consumes(APPLICATION_JSON)
     public void edit(@PathParam("id") Long id, Article entity) {
         log.info("edit: " + id);
     }
@@ -70,7 +77,7 @@ public class ArticleFacade {
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces(APPLICATION_JSON)
     public List<Article> getAll() {
         log.info("getAll");
         List<Article> articles = em.createQuery("SELECT a FROM Article a", Article.class).getResultList();
@@ -80,7 +87,7 @@ public class ArticleFacade {
 
     @GET
     @Path("/{id: [0-9]+}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({APPLICATION_XML, APPLICATION_JSON})
     public Article get(@PathParam("id") Long id) {
         log.info("get: " + id);
 
@@ -95,13 +102,14 @@ public class ArticleFacade {
 
     @GET
     @Path("/random")
-    public void generateRandom() {
+    @Produces(APPLICATION_JSON)
+    public Article generateRandom() {
         log.info("generateRandom");
 
         Article a = new Article();
         a.setText(UUID.randomUUID().toString());
         a.setTitle(a.getText().substring(0, 5));
 
-        create(a);
+        return create(a);
     }
 }
