@@ -1,16 +1,12 @@
 package de.lathspell.java_test_ee7_rest_jpa.frontend.rest.resources;
 
-import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -23,43 +19,36 @@ import javax.ws.rs.WebApplicationException;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+
 import lombok.extern.slf4j.Slf4j;
+
+import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleDAO;
+import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 
 @ApplicationScoped
 @Path("/article")
 @Slf4j
-public class ArticleFacade implements Serializable {
+public class ArticleResource implements Serializable {
 
-    @PersistenceUnit(unitName = "myPU")
-    private EntityManagerFactory emf;
+    @Inject
+    private ArticleDAO articleDAO;
 
-    private EntityManager em;
-
-    public ArticleFacade() {
+    public ArticleResource() {
         log.info("ctor");
     }
 
+    
     @PostConstruct
     public void postConstruct() {
         log.info("postConstruct");
-        if (emf == null) {
-            log.info("postConstruct create EMF as @PersistenceUnit did not work!");
-            emf = Persistence.createEntityManagerFactory("myPU");
-        }
-        em = emf.createEntityManager();
+        log.info(""+ articleDAO);
     }
-
+    
     @POST
     @Consumes(APPLICATION_JSON)
     public Article create(Article article) {
         log.info("create: " + article);
-
-        em.getTransaction().begin();
-        em.persist(article);
-        em.flush();
-        em.refresh(article);
-        em.getTransaction().commit();
-
+        article = articleDAO.save(article);
         log.info("created: " + article);
         return article;
     }
@@ -81,7 +70,7 @@ public class ArticleFacade implements Serializable {
     @Produces(APPLICATION_JSON)
     public List<Article> getAll() {
         log.info("getAll");
-        List<Article> articles = em.createQuery("SELECT a FROM Article a", Article.class).getResultList();
+        List<Article> articles = articleDAO.getAll();
         log.info("getAll found: " + articles.size());
         return articles;
     }
@@ -92,13 +81,12 @@ public class ArticleFacade implements Serializable {
     public Article get(@PathParam("id") Long id) {
         log.info("get: " + id);
 
-        try {
-            Article a = em.createQuery("SELECT a FROM Article a WHERE a.id = :id", Article.class).setParameter("id", id).getSingleResult();
-            log.info("get found: " + a);
-            return a;
-        } catch (NoResultException e) {
+        Article a = articleDAO.getOneById(id);
+        log.info("get found: " + a);
+        if (a == null) {
             throw new WebApplicationException(NOT_FOUND);
         }
+        return a;
     }
 
     @GET

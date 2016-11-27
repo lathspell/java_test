@@ -103,7 +103,8 @@
                     <artifactId>weld-servlet</artifactId>
                     <version>2.4.1.Final</version>
                     <scope>runtime</scope>                 
-                </dependency>                
+                </dependency>
+       
                 <dependency>
                     <!-- JAX-RS: Implementation -->
                     <groupId>org.glassfish.jersey.containers</groupId>
@@ -112,12 +113,21 @@
                     <scope>runtime</scope>
                 </dependency>
                 <dependency>
+                    <!-- JAX-RS: Force jersey to use CDI and not plain HK2 -->
+                    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+                    <artifactId>jersey-cdi1x</artifactId>
+                    <version>2.24</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
                     <!-- Bean Validation: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-validator</artifactId>
                     <version>5.2.4.Final</version>
                     <scope>runtime</scope>
                 </dependency>
+
                 <dependency>
                     <!-- JPA: Implementation -->
                     <groupId>org.hibernate</groupId>
@@ -134,21 +144,16 @@
                         <scope>runtime</scope>
                     </dependency>
                 -->
+                
                 <!--
-  <dependency>
-      <!- JSF: Implementation ->
-      <groupId>org.apache.myfaces.core</groupId>
-      <artifactId>myfaces-impl</artifactId>
-      <version>2.2.11</version>
-      <scope>runtime</scope>
-  </dependency>
-                -->
                 <dependency>
-                    <!-- JSF: API -->
-                    <groupId>com.sun.faces</groupId>
-                    <artifactId>jsf-api</artifactId>
-                    <version>2.2.14</version>
+                    <!- JSF: Implementation ->
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                    <version>2.2.11</version>
+                    <scope>runtime</scope>
                 </dependency>
+                -->
                 <dependency>
                     <!-- JSF: Implementation -->
                     <groupId>com.sun.faces</groupId>
@@ -158,7 +163,7 @@
                 </dependency>
                  
                 <dependency>
-                    <!-- Java EE: API for all included standards -->
+                    <!-- Java EE: API classes for all included standards -->
                     <groupId>javax</groupId>
                     <artifactId>javaee-api</artifactId>
                     <version>7.0</version>

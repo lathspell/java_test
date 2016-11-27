@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
+
 import lombok.extern.slf4j.Slf4j;
 
 @RequestScoped
@@ -20,7 +21,7 @@ public class Greeter {
     @GET
     @Produces(TEXT_PLAIN)
     public String helloDefault() {
-        log.info("#42#");
+        log.info("helloDefault called");
         return "Hello you!";
     }
 
@@ -28,7 +29,7 @@ public class Greeter {
     @Path("/{name: .*}")
     @Produces(TEXT_PLAIN)
     public String hello(@PathParam("name") String name) {
-        log.info("#42# prop=" + name);
+        log.info("hello called with prop=" + name);
         return "Hello " + name;
     }
 }
