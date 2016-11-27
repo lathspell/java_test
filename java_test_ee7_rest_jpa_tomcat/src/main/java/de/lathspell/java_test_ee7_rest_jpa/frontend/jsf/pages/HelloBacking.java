@@ -21,11 +21,8 @@ public class HelloBacking {
     }
 
     public String getVersion() throws Exception {
-        Package p = FacesContext.class.getPackage();
-        if (p.getSpecificationTitle() == null) {
-            p = Package.getPackage("com.sun.faces");
-        }
-        return String.format("%s %s using Implementation %s %s %s",
+        Package p = FacesContext.getCurrentInstance().getClass().getPackage();
+        return String.format("%s %s using %s %s %s",
                 p.getSpecificationTitle(), p.getSpecificationVersion(),
                 p.getImplementationVendor(), p.getImplementationTitle(), p.getImplementationVersion());
     }
