@@ -1,10 +1,8 @@
 package de.lathspell.java_test_ee7_rest_jpa.frontend.rest;
 
 import java.util.Set;
-
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-
 import lombok.extern.slf4j.Slf4j;
 
 @ApplicationPath("/rest")

@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/java_test_ee7_rest_jpa_tomcat"/>
+<!-- src/main/resources/webapp/META-INF/context.xml -->
+<Context path="/java_test_ee7_rest_jpa_tomcat">
+    <Resource name="BeanManager" 
+              auth="Container"
+              type="javax.enterprise.inject.spi.BeanManager"
+              factory="org.jboss.weld.resources.ManagerObjectFactory" />
+</Context>

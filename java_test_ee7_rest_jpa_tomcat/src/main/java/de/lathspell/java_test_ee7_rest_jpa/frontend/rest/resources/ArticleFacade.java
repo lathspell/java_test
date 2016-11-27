@@ -1,10 +1,11 @@
 package de.lathspell.java_test_ee7_rest_jpa.frontend.rest.resources;
 
 import de.lathspell.java_test_ee7_rest_jpa.model.Article;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -24,10 +25,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestScoped
+@ApplicationScoped
 @Path("/article")
 @Slf4j
-public class ArticleFacade {
+public class ArticleFacade implements Serializable {
 
     @PersistenceUnit(unitName = "myPU")
     private EntityManagerFactory emf;
