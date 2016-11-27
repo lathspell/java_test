@@ -155,6 +155,13 @@
                 </dependency>
                 -->
                 <dependency>
+                    <!-- JSF: API (includes Mojarra specific classes needed at runtime!) -->
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-api</artifactId>
+                    <version>2.2.14</version>
+                    <scope>runtime</scope>
+                </dependency>                
+                <dependency>
                     <!-- JSF: Implementation -->
                     <groupId>com.sun.faces</groupId>
                     <artifactId>jsf-impl</artifactId>
