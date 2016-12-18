@@ -14,7 +14,6 @@
     <packaging>war</packaging>
 
     <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -27,44 +26,8 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -109,14 +72,14 @@
                     <!-- JAX-RS: Implementation -->
                     <groupId>org.glassfish.jersey.containers</groupId>
                     <artifactId>jersey-container-servlet</artifactId>
-                    <version>2.24</version>
+                    <version>2.25</version>
                     <scope>runtime</scope>
                 </dependency>
                 <dependency>
                     <!-- JAX-RS: Force jersey to use CDI and not plain HK2 -->
                     <groupId>org.glassfish.jersey.ext.cdi</groupId>
                     <artifactId>jersey-cdi1x</artifactId>
-                    <version>2.24</version>
+                    <version>2.25</version>
                     <scope>runtime</scope>
                 </dependency>
 
@@ -124,7 +87,7 @@
                     <!-- Bean Validation: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-validator</artifactId>
-                    <version>5.2.4.Final</version>
+                    <version>5.3.4.Final</version>
                     <scope>runtime</scope>
                 </dependency>
 
@@ -132,7 +95,7 @@
                     <!-- JPA: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-core</artifactId>
-                    <version>5.2.4.Final</version>
+                    <version>5.2.5.Final</version>
                     <scope>runtime</scope>
                 </dependency>
                 <!--
@@ -154,13 +117,14 @@
                     <scope>runtime</scope>
                 </dependency>
                 -->
+
                 <dependency>
-                    <!-- JSF: API (includes Mojarra specific classes needed at runtime!) -->
+                    <!-- JSF: API (includes LogStrings.properties needed at runtime by Mojarrra!) -->
                     <groupId>com.sun.faces</groupId>
                     <artifactId>jsf-api</artifactId>
                     <version>2.2.14</version>
                     <scope>runtime</scope>
-                </dependency>                
+                </dependency>
                 <dependency>
                     <!-- JSF: Implementation -->
                     <groupId>com.sun.faces</groupId>
@@ -184,7 +148,7 @@
             <!-- Utils -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
+            <version>1.16.12</version>
         </dependency>
         
         <dependency>
@@ -197,7 +161,7 @@
             <!-- Logging: SFL4J Implemention -->
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.7</version>
+            <version>1.1.8</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -205,7 +169,7 @@
             <!-- JAX-RS: Automatic JSON conversion (not JAX-RS standard!) -->
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.23.2</version>
+            <version>2.25</version>
             <scope>runtime</scope>
         </dependency>
             
@@ -213,7 +177,7 @@
             <!-- JDBC: PostgreSQL Connector -->
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4.1211</version>
+            <version>9.4.1212</version>
             <scope>runtime</scope>
         </dependency>
         
@@ -221,13 +185,13 @@
             <!-- JSON: ObjectMapper -->
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.8.3</version>
+            <version>2.8.5</version>
         </dependency>
         <dependency>
             <!-- JSON: Annotations needed by Jersey REST Implementation -->
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.8.3</version>
+            <version>2.8.5</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
