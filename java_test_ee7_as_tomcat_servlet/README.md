@@ -19,6 +19,9 @@ Tested APIs
 | Logging    | SLF4J Logging        | Logback             | OK     |
 | SQL        | SQL Binding          | Postgres            | OK     |
 
+Limitations:
+* @ViewScoped does not yet work!
+
 Remarks:
 * "Jersey": Needs jersey-cdi1x to use CDI and not only HK2
 * "Mojarra" Needs runtime dependency to jsf-api to get LogStrings.properties 

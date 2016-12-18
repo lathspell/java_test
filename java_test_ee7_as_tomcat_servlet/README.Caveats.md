@@ -1,6 +1,25 @@
 JSF
 ===
 
+Caveat: @ViewScoped does not work
+---------------------------------
+
+Symptom:
+```
+Caused by: javax.el.PropertyNotFoundException: Target Unreachable, identifier 'newArticleBacking' resolved to null
+	at org.apache.el.parser.AstValue.getTarget(AstValue.java:74)
+	at org.apache.el.parser.AstValue.getType(AstValue.java:58)
+	at org.apache.el.ValueExpressionImpl.getType(ValueExpressionImpl.java:168)
+	at org.jboss.weld.el.WeldValueExpression.getType(WeldValueExpression.java:93)
+	at com.sun.faces.facelets.el.TagValueExpression.getType(TagValueExpression.java:98)
+	... 35 more
+```
+
+Cause: Unknown, probably a HK2 / CDI thing?
+
+Solution: *UNKNOWN*
+
+
 Caveat: javaee-api Maven scope
 ------------------------------
 Symptom:
