@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,22 +18,20 @@ import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 @Slf4j
 public class ArticleDAO implements Serializable {
 
-    @PersistenceUnit(unitName = "myPU")
+    // Does not work: @PersistenceUnit(unitName = "myPU")
     private EntityManagerFactory emf;
 
     private EntityManager em;
 
     @PostConstruct
     public void postConstruct() {
-        log.info("postConstruct");
-        if (emf == null) {
-            log.info("postConstruct create EMF as @PersistenceUnit did not work!");
-            emf = Persistence.createEntityManagerFactory("myPU");
-        }
-        em = emf.createEntityManager();
+        log.info("postConstruct: pre emf: " + emf);
+        emf = Persistence.createEntityManagerFactory("myContainerPU");
+        log.info("postConstruct: post emf: " + emf);
     }
 
     public Article save(Article article) {
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(article);
         em.flush();
@@ -44,11 +41,13 @@ public class ArticleDAO implements Serializable {
     }
 
     public List<Article> getAll() {
+        em = emf.createEntityManager();
         return em.createQuery("SELECT a FROM Article a", Article.class).getResultList();
     }
 
     public Article getOneById(Long id) {
         try {
+            em = emf.createEntityManager();
             return em.createQuery("SELECT a FROM Article a WHERE a.id = :id", Article.class).setParameter("id", id).getSingleResult();
         } catch (NoResultException e) {
             return null;

@@ -82,3 +82,20 @@ javax.servlet.ServletException: org.glassfish.jersey.server.ContainerException: 
 	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
 ```
 
+JPA
+===
+
+@PersistenceUnit does not work
+------------------------------
+
+* Symptom: ArticleDAO's EntityManagerFactory emf is NULL
+* Cause: @PersistenceUnit does not work - don't know why
+* Solution: Create emf programmatically in postConstruct()
+
+JTA not available
+-----------------
+
+* Symptom: No @Transactional or transaction-type=JTA in persinstence.xml available
+* Cause: Tomcat only supports transaction-type=RESOURCE_LOCAL as it only provides
+  JDBC DataSources but no JTA implementation.
+* Solution: Don't use JTA or add Atomicos or similar later
