@@ -9,7 +9,7 @@ Tested APIs
 ===========
 
 | API     | Description          | Implementation   | Status |
-|---------|-----------------------------------------|--------|
+| ------- | -------------------- | ---------------- | ------ |
 | CDI     | Dependency Injection | JBoss WELD       | OK     |
 | JAX-RS  | REST                 | Oracle Jersey    | OK     |       
 | JSF     | Java Server Faces    | Oracle Mojarra   | OK     |
