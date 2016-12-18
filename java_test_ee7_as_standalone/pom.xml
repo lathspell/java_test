@@ -6,7 +6,7 @@
         <artifactId>java_test</artifactId>
         <version>1</version>
     </parent>
-    <artifactId>java_test_ee7_standalone</artifactId>
+    <artifactId>java_test_ee7_as_standalone</artifactId>
     <packaging>jar</packaging>
 
     <properties>

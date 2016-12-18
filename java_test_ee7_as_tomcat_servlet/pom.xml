@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>de.lathspell</groupId>
-    <artifactId>java_test_ee7_rest_jpa_tomcat</artifactId>
+    <artifactId>java_test_ee7_as_tomcat_servlet</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
