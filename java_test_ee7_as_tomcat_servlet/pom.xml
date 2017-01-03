@@ -47,27 +47,18 @@
                 </dependency>
             </dependencies>
         </profile>
-    
+
         <profile>
-            <id>RunAsServlet</id>
+            <id>RunAsServlet2</id>
             <dependencies>
-                <!--
-                <dependency>
-                    <!- CDI: Implementation ->
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-impl</artifactId>
-                    <version>1.7.0</version>
-                    <scope>runtime</scope>
-                </dependency>
-                -->
                 <dependency>
                     <!-- CDI: Implementation -->
                     <groupId>org.jboss.weld.servlet</groupId>
                     <artifactId>weld-servlet</artifactId>
                     <version>2.4.1.Final</version>
-                    <scope>runtime</scope>                 
+                    <scope>runtime</scope>
                 </dependency>
-       
+
                 <dependency>
                     <!-- JAX-RS: Implementation -->
                     <groupId>org.glassfish.jersey.containers</groupId>
@@ -105,25 +96,72 @@
                     <version>5.2.5.Final</version>
                     <scope>runtime</scope>
                 </dependency>
-                <!--
-                    <dependency>
-                        <?- JPA: Implementation ->
-                        <groupId>org.eclipse.persistence</groupId>
-                        <artifactId>eclipselink</artifactId>
-                        <version>2.6.4</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                -->
-                
-                <!--
+
                 <dependency>
-                    <!- JSF: Implementation ->
+                    <!-- JSF: Implementation -->
                     <groupId>org.apache.myfaces.core</groupId>
                     <artifactId>myfaces-impl</artifactId>
                     <version>2.2.11</version>
                     <scope>runtime</scope>
                 </dependency>
-                -->
+
+                <dependency>
+                    <!-- Java EE: API classes for all included standards -->
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>RunAsServlet</id>
+            <dependencies>
+                <dependency>
+                    <!-- CDI: Implementation -->
+                    <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet</artifactId>
+                    <version>2.4.1.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JAX-RS: Implementation -->
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Force jersey to use CDI and not plain HK2 -->
+                    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+                    <artifactId>jersey-cdi1x</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Automatic JSON conversion (not JAX-RS standard!) -->
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-jackson</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- Bean Validation: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>5.3.4.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JPA: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                    <version>5.2.5.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
 
                 <dependency>
                     <!-- JSF: API (includes LogStrings.properties needed at runtime by Mojarrra!) -->
