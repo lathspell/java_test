@@ -1,10 +1,10 @@
 JSF
 ===
 
-Caveat: @ViewScoped does not work
----------------------------------
+Caveat: @ViewScoped does not work (unreprodudible, Weld)
+--------------------------------------------------------
 
-Symptom:
+Symptom: The following exception did once occur but not any longer!
 ```
 Caused by: javax.el.PropertyNotFoundException: Target Unreachable, identifier 'newArticleBacking' resolved to null
 	at org.apache.el.parser.AstValue.getTarget(AstValue.java:74)
@@ -17,11 +17,11 @@ Caused by: javax.el.PropertyNotFoundException: Target Unreachable, identifier 'n
 
 Cause: Unknown, probably a HK2 / CDI thing?
 
-Solution: *UNKNOWN*
+Solution: unknown
 
 
-Caveat: javaee-api Maven scope
-------------------------------
+Caveat: javaee-api Maven scope (Mojarra)
+----------------------------------------
 Symptom:
     ```
     Caused by: java.lang.ClassNotFoundException: javax.faces.webapp.FacesServlet
@@ -47,10 +47,11 @@ Solution:
         <scope>compile</scope> <!-- Needed at runtime and not provided by plain Tomcat -->
     </dependency>
     ```
+Solution 2: Use Apache MyFaces or include com.sun.faces:jsf-api which seems to be necessary anyway for Mojarra
 
 
-JSF API is needed at runtime
-----------------------------
+JSF API is needed at runtime (Mojarra)
+--------------------------------------
 Problem:
 ```
     Caused by: java.util.MissingResourceException: Can't find javax.faces.LogStrings bundle
