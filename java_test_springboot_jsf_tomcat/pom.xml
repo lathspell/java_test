@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.1.RELEASE</version>
+        <version>1.4.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -33,13 +33,13 @@
                     <!-- JSF: API -->
                     <groupId>com.sun.faces</groupId>
                     <artifactId>jsf-api</artifactId>
-                    <version>2.2.13</version>
+                    <version>2.2.14</version>
                 </dependency>
                 <dependency>
                     <!-- JSF: Implementation "Mojarra" -->
                     <groupId>com.sun.faces</groupId>
                     <artifactId>jsf-impl</artifactId>
-                    <version>2.2.13</version>
+                    <version>2.2.14</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -77,7 +77,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.0</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
@@ -117,10 +117,18 @@
         </dependency>
 
         <dependency>
+            <!-- ViewScoped annotations for JSF with Spring -->
+            <!-- https://github.com/javaplugs/spring-jsf -->
+            <groupId>com.github.javaplugs</groupId>
+            <artifactId>spring-jsf</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+
+        <dependency>
             <!-- JSF: PrimeFaces add-on library -->
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>5.0</version>
+            <version>6.0</version>
         </dependency>
 
     </dependencies>

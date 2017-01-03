@@ -5,18 +5,34 @@
     <h:head />
     <h:body>
 
+        <h1>Tests</h1>
+
+        <h2>Testing simple bean injection</h2>
         <ul>
-            <li>Spring Managed Bean: #{helloSpringBean.welcomeMessage}</li>
+            <li>Spring Managed Bean (should print a hello message): "#{greeterSpringBean.welcomeMessage()}"</li>
         </ul>
 
+        <h2>Testing scopes</h2>
         <h:form>
-            <h:panelGrid columns="3">
-                <p:outputLabel for="@next" value="Number" />
-                <p:inputText id="adderInput" value="#{adderBean.number}" required="true" label="number" />
-                <p:message for="@previous" />
-
-                <p:commandButton validateClient="true" value="increment" action="#{adderBean.addOne()}" update="@form" />
-            </h:panelGrid>
+            <ul>
+                <li>Counter using Spring WebAppCtx SCOPE_APPLICATION: #{adderWebApplicationScopedBean.inc()}</li>
+                <li>Counter using Spring WebAppCtx SCOPE_SESSION: #{adderWebSessionScopedBean.inc()}</li>
+                <li>Counter using Spring Custom SpringScopeView: #{adderXViewScopedBean.inc()} (will reset at page reload!)</li>
+                <li>Counter using Spring WebAppCtx SCOPE_REQUEST: #{adderWebRequestScopedBean.inc()}</li>
+                <li>Counter using Spring SCOPE_PROTOTYPE: #{adderPrototypeScopedBean.inc()}</li>
+            </ul>
+            <h:commandButton value="click"/>
         </h:form>
+
+        <h2>Testing input validation</h2>
+        <h:form id="nameForm">
+            <h:panelGrid columns="3">
+                <p:outputLabel for="@next" value="Name" />
+                <p:inputText id="nameInput" value="#{nameBean.name}" required="true" />
+                <p:message for="@previous" showSummary="true" showDetail="false" />
+            </h:panelGrid>          
+            <p:commandButton validateClient="true" value="Say Hello" action="#{nameBean.submit()}" update="@form" />
+        </h:form>
+
     </h:body>
 </html>
