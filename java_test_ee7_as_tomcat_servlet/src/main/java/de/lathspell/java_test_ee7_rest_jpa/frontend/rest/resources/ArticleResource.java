@@ -18,8 +18,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleDAO;
@@ -68,11 +72,12 @@ public class ArticleResource implements Serializable {
 
     @GET
     @Produces(APPLICATION_JSON)
-    public List<Article> getAll() {
+    @SneakyThrows
+    public Response getAll() {
         log.info("getAll");
         List<Article> articles = articleDAO.getAll();
         log.info("getAll found: " + articles.size());
-        return articles;
+        return Response.ok(new ObjectMapper().enable(INDENT_OUTPUT).writeValueAsString(articles)).build();
     }
 
     @GET

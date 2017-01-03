@@ -28,7 +28,7 @@ Remarks:
   which is not in javaee-api-7.0, see README.Caveats.md.
 * "Postgres" must be added as runtime dependency if a local Persistence Unit
   is defined in persinstence.xml. Alternatively it can be put into Tomcat's
-  lib/ directory if a Persitence Unit is defined in server.xml/context.xml:
+  lib/ directory if a Persitence Unit is defined in server.xml or context.xml.
 
 Tomcat Configuration
 ====================
