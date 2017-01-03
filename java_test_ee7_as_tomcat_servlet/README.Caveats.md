@@ -101,6 +101,13 @@ javax.servlet.ServletException: org.glassfish.jersey.server.ContainerException: 
 	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
 ```
 
+Resteasy does not find XML MessageBodyWriter
+--------------------------------------------
+
+* Symptom: org.jboss.resteasy.core.NoMessageBodyWriterFoundFailure: Could not find MessageBodyWriter for response object of type: de.lathspell.java_test_ee7_rest_jpa.model.Article of media type: application/xml
+* Cause: The model class "Article" was not annotated as @XmlRootElement
+* Solution: Add @XmlRootElement (Resteasy seems to be stricter than Jersey)
+
 JPA
 ===
 
