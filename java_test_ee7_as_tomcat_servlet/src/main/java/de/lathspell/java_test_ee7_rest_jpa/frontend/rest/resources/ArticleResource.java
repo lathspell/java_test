@@ -26,7 +26,7 @@ import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleDAO;
+import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleLocalDAO;
 import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 
 @ApplicationScoped
@@ -35,7 +35,7 @@ import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 public class ArticleResource implements Serializable {
 
     @Inject
-    private ArticleDAO articleDAO;
+    private ArticleLocalDAO articleDAO;
 
     public ArticleResource() {
         log.info("ctor");

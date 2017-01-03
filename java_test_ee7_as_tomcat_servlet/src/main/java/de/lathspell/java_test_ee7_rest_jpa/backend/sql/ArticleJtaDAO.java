@@ -6,48 +6,45 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 
 import de.lathspell.java_test_ee7_rest_jpa.model.Article;
 
+/**
+ * Container managed JTA version of the ArticleDAO.
+ */
 @ApplicationScoped
 @Slf4j
-public class ArticleDAO implements Serializable {
+public class ArticleJtaDAO implements Serializable {
 
-    // Does not work: @PersistenceUnit(unitName = "myPU")
-    private EntityManagerFactory emf;
-
+    @PersistenceContext(unitName = "booksPU")
     private EntityManager em;
 
     @PostConstruct
     public void postConstruct() {
-        log.info("postConstruct: pre emf: " + emf);
-        emf = Persistence.createEntityManagerFactory("myContainerPU");
-        log.info("postConstruct: post emf: " + emf);
+        if (em == null) {
+            throw new RuntimeException("EntityManager is null - this class needs a container managed JTA resource!");
+        }
     }
 
+    @Transactional
     public Article save(Article article) {
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
         em.persist(article);
         em.flush();
         em.refresh(article);
-        em.getTransaction().commit();
         return article;
     }
 
     public List<Article> getAll() {
-        em = emf.createEntityManager();
         return em.createQuery("SELECT a FROM Article a", Article.class).getResultList();
     }
 
     public Article getOneById(Long id) {
         try {
-            em = emf.createEntityManager();
             return em.createQuery("SELECT a FROM Article a WHERE a.id = :id", Article.class).setParameter("id", id).getSingleResult();
         } catch (NoResultException e) {
             return null;

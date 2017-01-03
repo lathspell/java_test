@@ -12,6 +12,11 @@
     <logger name="org.eclipse.persistence.session.file:/srv/home/james/workspace/java_test_ee6_nbpfcrud/target/test-classes/_java_test_ee6_nbpfcrud_PU.metamodel" level="INFO"/>
     <logger name="org.eclipse.persistence" level="INFO"/>
     <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.jboss.resteasy" level="INFO"/>
+    <logger name="org.jboss.resteasy.cdi" level="INFO"/>
+    <logger name="org.jboss.resteasy.resteasy_jaxrs" level="INFO"/>
+    <logger name="org.jboss.resteasy.plugins.providers.jaxb" level="INFO"/>
+    <logger name="org.jboss.weld" level="INFO"/>
 
     <root level="debug">
         <appender-ref ref="STDOUT" />

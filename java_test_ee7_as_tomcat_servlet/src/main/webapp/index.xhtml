@@ -38,9 +38,10 @@
         </p>
         <h:form>
             <h:outputLabel for="title" value="Title"/>
-            <h:inputText id="title" value="#{newArticleBacking.article.title}"/>
+            <h:inputText id="title" value="#{newArticleLocalBacking.article.title}"/>
             <h:messages for="title" showSummary="true" showDetail="false" />
-            <h:commandButton action="#{newArticleBacking.save()}" value="save"/>
+            <h:commandButton action="#{newArticleLocalBacking.saveLocal()}" value="save using RESOURCE_LOCAL"/>
+            <h:commandButton action="#{newArticleLocalBacking.saveJta()}" value="save using JTA"/>
         </h:form>
     </h:body>
 </html>

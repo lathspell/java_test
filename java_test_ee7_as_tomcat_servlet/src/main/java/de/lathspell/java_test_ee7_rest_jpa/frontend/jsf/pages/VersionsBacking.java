@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 import lombok.extern.slf4j.Slf4j;
 
-import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleDAO;
+import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleLocalDAO;
 
 @Named
 @RequestScoped
@@ -16,7 +16,7 @@ import de.lathspell.java_test_ee7_rest_jpa.backend.sql.ArticleDAO;
 public class VersionsBacking {
 
     @Inject
-    private ArticleDAO articleDAO;
+    private ArticleLocalDAO articleDAO;
     
     public VersionsBacking() {
         log.info("ctor");
