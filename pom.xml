@@ -68,5 +68,6 @@
     <module>java_test_springboot_config</module>
     <module>java_test_ee7_payaramicro</module>
     <module>java_test_ee7_kumuluzee</module>
+    <module>java_test_se8_streams</module>
   </modules>
 </project>
