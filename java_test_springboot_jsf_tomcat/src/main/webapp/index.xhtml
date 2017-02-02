@@ -36,9 +36,14 @@
                 <h:outputText value="#{adderWebSessionScopedBean.inc()}" />
                 <h:outputText value="(will survive even requests from parallel browsers and increase)" />
 
-                <h:outputText value="Spring Custom SpringScopeView" />
+                <h:outputText value="Spring scope SpringScopeView by javaplugs" />
                 <h:outputText value="#{adderXViewScopedBean.hash()}" />
                 <h:outputText value="#{adderXViewScopedBean.inc()}" />
+                <h:outputText value="(will reset at page reload!)" />
+
+                <h:outputText value="Spring scope 'liferayView' by Liferay (Neil Griffin)" />
+                <h:outputText value="#{adderLiferayViewScopedBean.hash()}" />
+                <h:outputText value="#{adderLiferayViewScopedBean.inc()}" />
                 <h:outputText value="(will reset at page reload!)" />
 
                 <h:outputText value="JSF @ManagedBean with JSF @ViewScope" />
