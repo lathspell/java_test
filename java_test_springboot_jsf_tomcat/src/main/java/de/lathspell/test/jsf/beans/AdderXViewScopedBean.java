@@ -7,12 +7,6 @@ import org.springframework.stereotype.Component;
 @SpringScopeView
 @Component
 @Slf4j
-public class AdderXViewScopedBean {
-
-    private int number = 0;
-
-    public int inc() {
-        return number++;
-    }
+public class AdderXViewScopedBean extends AbstractAdder {
 
 }

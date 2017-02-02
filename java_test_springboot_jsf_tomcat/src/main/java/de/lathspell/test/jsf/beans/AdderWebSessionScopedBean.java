@@ -8,12 +8,6 @@ import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSIO
 @Component
 @Scope(SCOPE_SESSION)
 @Slf4j
-public class AdderWebSessionScopedBean {
-
-    private int number = 0;
-
-    public int inc() {
-        return number++;
-    }
+public class AdderWebSessionScopedBean extends AbstractAdder {
 
 }

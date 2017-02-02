@@ -1,8 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">                                                                                                                                                                                        
-    <h:head />
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">                                                                                                                                                                                        
+    <h:head>
+        <style type="text/css">
+            .myHeader { font-weight: bold; }
+        </style>
+    </h:head>
     <h:body>
 
         <h1>Tests</h1>
@@ -14,14 +19,49 @@
 
         <h2>Testing scopes</h2>
         <h:form>
-            <ul>
-                <li>Counter using Spring WebAppCtx SCOPE_APPLICATION: #{adderWebApplicationScopedBean.inc()}</li>
-                <li>Counter using Spring WebAppCtx SCOPE_SESSION: #{adderWebSessionScopedBean.inc()}</li>
-                <li>Counter using Spring Custom SpringScopeView: #{adderXViewScopedBean.inc()} (will reset at page reload!)</li>
-                <li>Counter using Spring WebAppCtx SCOPE_REQUEST: #{adderWebRequestScopedBean.inc()}</li>
-                <li>Counter using Spring SCOPE_PROTOTYPE: #{adderPrototypeScopedBean.inc()}</li>
-            </ul>
-            <h:commandButton value="click"/>
+            <h:panelGrid columns="4" border="1" headerClass="myHeader">
+
+                <h:outputLabel value="Name" class="myHeader"/>
+                <h:outputText value="hashCode" class="myHeader"/>
+                <h:outputText value="Value" class="myHeader"/>
+                <h:outputText value="Remarks" class="myHeader"/>
+
+                <h:outputText value="Spring WebAppCtx SCOPE_APPLICATION" />
+                <h:outputText value="#{adderWebApplicationScopedBean.hash()}" />
+                <h:outputText value="#{adderWebApplicationScopedBean.inc()}" />
+                <h:outputText value="(will survive even requests from parallel browsers and increase)" />
+
+                <h:outputText value="Spring WebAppCtx SCOPE_SESSION" />
+                <h:outputText value="#{adderWebSessionScopedBean.hash()}" />
+                <h:outputText value="#{adderWebSessionScopedBean.inc()}" />
+                <h:outputText value="(will survive even requests from parallel browsers and increase)" />
+
+                <h:outputText value="Spring Custom SpringScopeView" />
+                <h:outputText value="#{adderXViewScopedBean.hash()}" />
+                <h:outputText value="#{adderXViewScopedBean.inc()}" />
+                <h:outputText value="(will reset at page reload!)" />
+
+                <h:outputText value="JSF @ManagedBean with JSF @ViewScope" />
+                <h:outputText value="#{adderJsfViewScopedBean.hash()}" />
+                <h:outputText value="#{adderJsfViewScopedBean.inc()}" />
+                <h:outputText value="(will reset at page reload!)" />
+
+                <h:outputText value="Spring WebAppCtx SCOPE_REQUEST" />
+                <h:outputText value="#{adderWebRequestScopedBean.hash()}" />
+                <h:outputText value="#{adderWebRequestScopedBean.inc()}" />
+                <h:outputText value="(will always be a new instance i.e. 0)" />
+
+                <h:outputText value="Spring SCOPE_PROTOTYPE" />
+                <h:outputText value="#{adderPrototypeScopedBean.hash()}" />
+                <h:outputText value="#{adderPrototypeScopedBean.inc()}" />
+                <h:outputText value="(will always be a new instance i.e. 0)" />
+
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit" value="increase counter" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
         </h:form>
 
         <h2>Testing input validation</h2>

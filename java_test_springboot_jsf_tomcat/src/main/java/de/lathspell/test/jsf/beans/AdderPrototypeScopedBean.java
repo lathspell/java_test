@@ -8,12 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(SCOPE_PROTOTYPE)
 @Slf4j
-public class AdderPrototypeScopedBean {
-
-    private int number = 0;
-
-    public int inc() {
-        return number++;
-    }
+public class AdderPrototypeScopedBean extends AbstractAdder {
 
 }

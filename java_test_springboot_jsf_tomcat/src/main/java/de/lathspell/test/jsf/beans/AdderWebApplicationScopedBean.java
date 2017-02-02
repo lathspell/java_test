@@ -8,12 +8,6 @@ import static org.springframework.web.context.WebApplicationContext.SCOPE_APPLIC
 @Component
 @Scope(SCOPE_APPLICATION)
 @Slf4j
-public class AdderWebApplicationScopedBean {
-
-    private int number = 0;
-
-    public int inc() {
-        return number++;
-    }
+public class AdderWebApplicationScopedBean extends AbstractAdder {
 
 }
