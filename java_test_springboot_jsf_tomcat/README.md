@@ -5,7 +5,7 @@ SpringBoot as Servlet
 ---------------------
 
 SpringBoot can perfectly well run as plain Servlet on an external Servlet
-Container like Tomcat.
+Container like Tomcat and also on a big Jave EE application server.
 It can be started either programmatically using SpringBootServletInitializer or
 explicitly in web.xml which is part of the Servlet spec and therefore of course
 be fully usable.
