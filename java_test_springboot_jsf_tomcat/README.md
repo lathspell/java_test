@@ -38,7 +38,10 @@ Necessary modifications:
 JSF Flow Scope
 ==============
 
-No idea yet.
+Using http://projects.spring.io/spring-webflow/ should work fine as it even
+has a org.springframework.webflow:spring-faces Maven artifact that includes
+some compatibility and glue classes.
+Demos are on https://github.com/spring-projects/spring-webflow-samples
 
 JSF View Scope
 ==============
