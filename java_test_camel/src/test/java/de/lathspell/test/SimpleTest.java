@@ -41,7 +41,7 @@ public class SimpleTest {
                         .routeId("runOnce")
                         .to("direct:findFile");
                  */
-                from("file://src/main/resources/inputs/?include=input.*\\.txt&noop=true")
+                from("file://src/main/resources/inputs/?include=input.*\\.txt&noop=true&idempotent=false&initialDelay=0")
                         .routeId("findFile")
                         .log(INFO, "### Found file: |${in.body}|")
                         .to("log:Received?level=WARN&showAll=true&multiline=true") /* of questionable use */
@@ -51,7 +51,6 @@ public class SimpleTest {
                         .log(INFO, "### Body is now: |${in.body}|")
                         .validate(body().regex("^Hello .*$"))
                         .log(INFO, "### Body is now: |${in.body}|")
-                        .toF("bean:body", "${body}")
                         .convertBodyTo(Person.class)
                         .log(INFO, "### Body is now: |${in.body}|")
                         .marshal().json(JsonLibrary.Jackson)
