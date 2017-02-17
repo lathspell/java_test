@@ -1,5 +1,4 @@
-package de.lathspell.examples.server.logging;
-
+package de.netcologne.utils;
 
 /*
  * ----------------------------------------------------
@@ -83,6 +82,7 @@ import org.slf4j.LoggerFactory;
  * @author Pavel Bucek (pavel.bucek at oracle.com)
  * @author Martin Matula (martin.matula at oracle.com)
  */
+// @Provider - Supposed to be added with logger name as singleton
 @PreMatching
 @Priority(Integer.MIN_VALUE)
 @SuppressWarnings("ClassWithMultipleLoggers")
@@ -182,36 +182,36 @@ public class Slf4jRestLoggingFilter implements ContainerRequestFilter, ClientReq
         }
     }
 
-    private StringBuilder prefixId(final StringBuilder b, final long id) {
-        b.append(Long.toString(id)).append(" ");
+    private StringBuilder prefixId(final StringBuilder b, final long id, final boolean isClient) {
+        b.append((isClient ? "C" : "S") + Long.toString(id)).append(" ");
         return b;
     }
 
-    private void printRequestLine(final StringBuilder b, final String note, final long id, final String method, final URI uri) {
-        prefixId(b, id).append(NOTIFICATION_PREFIX)
+    private void printRequestLine(final StringBuilder b, final String note, final long id, final String method, final URI uri, final boolean isClient) {
+        prefixId(b, id, isClient).append(NOTIFICATION_PREFIX)
                 .append(note)
                 .append(" on thread ").append(Thread.currentThread().getName())
                 .append("\n");
-        prefixId(b, id).append(REQUEST_PREFIX).append(method).append(" ").
+        prefixId(b, id, isClient).append(REQUEST_PREFIX).append(method).append(" ").
                 append(uri.toASCIIString()).append("\n");
     }
 
-    private void printResponseLine(final StringBuilder b, final String note, final long id, final int status) {
-        prefixId(b, id).append(NOTIFICATION_PREFIX)
+    private void printResponseLine(final StringBuilder b, final String note, final long id, final int status, final boolean isClient) {
+        prefixId(b, id, isClient).append(NOTIFICATION_PREFIX)
                 .append(note)
                 .append(" on thread ").append(Thread.currentThread().getName()).append("\n");
-        prefixId(b, id).append(RESPONSE_PREFIX).
+        prefixId(b, id, isClient).append(RESPONSE_PREFIX).
                 append(Integer.toString(status)).
                 append("\n");
     }
 
-    private void printPrefixedHeaders(final StringBuilder b, final long id, final String prefix, final MultivaluedMap<String, String> headers) {
+    private void printPrefixedHeaders(final StringBuilder b, final long id, final String prefix, final MultivaluedMap<String, String> headers, boolean isClient) {
         for (final Map.Entry<String, List<String>> headerEntry : getSortedHeaders(headers.entrySet())) {
             final List<?> val = headerEntry.getValue();
             final String header = headerEntry.getKey();
 
             if (val.size() == 1) {
-                prefixId(b, id).append(prefix).append(header).append(": ").append(val.get(0)).append("\n");
+                prefixId(b, id, isClient).append(prefix).append(header).append(": ").append(val.get(0)).append("\n");
             } else {
                 final StringBuilder sb = new StringBuilder();
                 boolean add = false;
@@ -222,7 +222,7 @@ public class Slf4jRestLoggingFilter implements ContainerRequestFilter, ClientReq
                     add = true;
                     sb.append(s);
                 }
-                prefixId(b, id).append(prefix).append(header).append(": ").append(sb.toString()).append("\n");
+                prefixId(b, id, isClient).append(prefix).append(header).append(": ").append(sb.toString()).append("\n");
             }
         }
     }
@@ -274,8 +274,8 @@ public class Slf4jRestLoggingFilter implements ContainerRequestFilter, ClientReq
         final long id = this._id.incrementAndGet();
         final StringBuilder b = new StringBuilder();
 
-        printRequestLine(b, "Sending client request", id, context.getMethod(), context.getUri());
-        printPrefixedHeaders(b, id, REQUEST_PREFIX, context.getStringHeaders());
+        printRequestLine(b, "Sending client request", id, context.getMethod(), context.getUri(), true);
+        printPrefixedHeaders(b, id, REQUEST_PREFIX, context.getStringHeaders(), true);
 
         if (context.hasEntity() && isRequestPrintable(context)) {
             final OutputStream stream = new LoggingStream(b, context.getEntityStream());
@@ -292,8 +292,8 @@ public class Slf4jRestLoggingFilter implements ContainerRequestFilter, ClientReq
         final long id = this._id.incrementAndGet();
         final StringBuilder b = new StringBuilder();
 
-        printResponseLine(b, "Client response received", id, responseContext.getStatus());
-        printPrefixedHeaders(b, id, RESPONSE_PREFIX, responseContext.getHeaders());
+        printResponseLine(b, "Client response received", id, responseContext.getStatus(), true);
+        printPrefixedHeaders(b, id, RESPONSE_PREFIX, responseContext.getHeaders(), true);
 
         if (responseContext.hasEntity() && isResponsePrintable(responseContext)) {
             responseContext.setEntityStream(logInboundEntity(b, responseContext.getEntityStream()));
@@ -307,8 +307,8 @@ public class Slf4jRestLoggingFilter implements ContainerRequestFilter, ClientReq
         final long id = this._id.incrementAndGet();
         final StringBuilder b = new StringBuilder();
 
-        printRequestLine(b, "Server has received a request", id, context.getMethod(), context.getUriInfo().getRequestUri());
-        printPrefixedHeaders(b, id, REQUEST_PREFIX, context.getHeaders());
+        printRequestLine(b, "Server has received a request", id, context.getMethod(), context.getUriInfo().getRequestUri(), false);
+        printPrefixedHeaders(b, id, REQUEST_PREFIX, context.getHeaders(), false);
 
         if (context.hasEntity() && isRequestPrintable(context)) {
             context.setEntityStream(logInboundEntity(b, context.getEntityStream()));
@@ -322,8 +322,8 @@ public class Slf4jRestLoggingFilter implements ContainerRequestFilter, ClientReq
         final long id = this._id.incrementAndGet();
         final StringBuilder b = new StringBuilder();
 
-        printResponseLine(b, "Server responded with a response", id, responseContext.getStatus());
-        printPrefixedHeaders(b, id, RESPONSE_PREFIX, responseContext.getStringHeaders());
+        printResponseLine(b, "Server responded with a response", id, responseContext.getStatus(), false);
+        printPrefixedHeaders(b, id, RESPONSE_PREFIX, responseContext.getStringHeaders(), false);
 
         if (responseContext.hasEntity() && isResponsePrintable(responseContext)) {
             final OutputStream stream = new LoggingStream(b, responseContext.getEntityStream());
