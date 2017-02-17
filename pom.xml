@@ -70,5 +70,6 @@
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
     <module>java_test_xml</module>
+    <module>java_test_logback</module>
   </modules>
 </project>
