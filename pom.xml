@@ -47,6 +47,7 @@
     <module>java_test_jopt</module>
     <module>java_test_json</module>
     <module>java_test_jsvc</module>
+    <module>java_test_logback</module>
     <module>java_test_lombok</module>
     <module>java_test_mina</module>
     <module>java_test_misc</module>
@@ -66,10 +67,10 @@
     <module>java_test_springboot</module>
     <module>java_test_springboot_rest_jaxrs</module>
     <module>java_test_springboot_rest</module>
+    <module>java_test_spring_config</module>
     <module>java_test_sql</module>
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
     <module>java_test_xml</module>
-    <module>java_test_spring_config</module>
   </modules>
 </project>
