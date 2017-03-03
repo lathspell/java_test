@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+  
+    <util:list id="myList">
+        <bean class="java.lang.String" c:0="red" />
+        <bean class="java.lang.String" c:0="green" />
+    </util:list>
+    
+    <util:list id="mySet">
+        <bean class="java.lang.String" c:0="red" />
+        <bean class="java.lang.String" c:0="green" />
+    </util:list>
+        
+    <util:map id="myMap">
+        <description>Example for a simple map</description>
+        <entry key="red" value="r" />
+        <entry key="green" value="g" />
+    </util:map>
+    
+    <bean id="bagOfHolding" class="de.lathspell.test.model.BagOfHolding" p:myList-ref="myList" p:mySet-ref="mySet" p:myMap-ref="myMap" />
+    
+    <!-- Old fashioned way without util namespace  -->
+    <bean id="mySetOld" class="java.util.HashSet">
+        <constructor-arg>
+            <set>
+                <value type="java.lang.String">red</value>
+                <value type="java.lang.String">green</value>
+            </set>
+        </constructor-arg>
+    </bean>
+
+</beans>
