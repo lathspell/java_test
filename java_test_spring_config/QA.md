@@ -1,3 +1,6 @@
+
+## Spring Bean Lifecycle And Configuration
+
 ### What is SpEL?
 Spring Expression Language, a superset of the Unified Expression Language that is also used by JSP.
 
@@ -20,4 +23,14 @@ A bean can have multiple `name` that act as alias names and may even be equal to
 * Using `@Bean(initMethod="...")` with Java Configuration
 * Implementing InitializatingBean and implement afterPropertiesSet (not recommended due to coupling to Spring)
 
+### What are the Bean scopes?
+* Singleton (default; like @ApplicationScoped) - only one instance
+* Prototype (like @Depends) - a new instance for every injection
+* Request (like @RequestScoped) - one instance per HTTP Request (in SpringMVC)
+* Session (like @SessionScoped) - one instance per HTTP Session (in SpringMVC)
+* global-session - one instance for each global HTTP Session (in SpringMVC)
+* custom - for implementing own scopes
+
+### Can a session scoped bean be injected into a singleton scoped bean?
+Only if the session scoped bean is being proxied by adding `<aop:scoped-proxy>`.
 
