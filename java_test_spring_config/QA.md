@@ -65,3 +65,7 @@ Only if the session scoped bean is being proxied by adding `<aop:scoped-proxy>`.
 * @Import to add a JavaConfig annotated class
 * @ImportResource to add an XML file
 * (@Resource is an annotation used by Common Annotations similar to @Inject/@Autowire)
+
+### What is the default XML filename for @ContextConfiguration?
+The name of the test class including package suffixed with "-context.xml",
+i.e. "target/test-classes/de/lathspell/test/FooTest-context.xml".
