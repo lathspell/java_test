@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.lathspell.test.model.InitializedPerson;
-import de.lathspell.test.model.InititializedPerson2;
+import de.lathspell.test.model.InitializedPerson2;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/init.xml")
@@ -19,7 +19,7 @@ public class InitTest {
     private InitializedPerson bert;
 
     @Autowired
-    private InititializedPerson2 cloe;
+    private InitializedPerson2 cloe;
 
     @Test
     public void testInit() {

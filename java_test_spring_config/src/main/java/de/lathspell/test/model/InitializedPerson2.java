@@ -21,7 +21,7 @@ import org.springframework.beans.factory.InitializingBean;
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
-public class InititializedPerson2 implements InitializingBean, DisposableBean {
+public class InitializedPerson2 implements InitializingBean, DisposableBean {
 
     private String firstName;
     private String lastName;

@@ -12,7 +12,7 @@
 
     <context:annotation-config/>
 
-    <bean id="bert" class="de.lathspell.test.model.InititializedPerson" p:firstName="Bert" p:lastName="Bu" init-method="initMethod"/>
-    <bean id="cloe" class="de.lathspell.test.model.InititializedPerson2" p:firstName="Cloe" p:lastName="Cu" init-method="initMethod" destroy-method="destroyMethod"/>
+    <bean id="bert" class="de.lathspell.test.model.InitializedPerson" p:firstName="Bert" p:lastName="Bu" init-method="initMethod"/>
+    <bean id="cloe" class="de.lathspell.test.model.InitializedPerson2" p:firstName="Cloe" p:lastName="Cu" init-method="initMethod" destroy-method="destroyMethod"/>
 
 </beans>
