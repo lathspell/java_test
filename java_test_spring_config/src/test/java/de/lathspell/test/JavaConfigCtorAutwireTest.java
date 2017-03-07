@@ -8,17 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.lathspell.test.model.InitializedPerson;
+import de.lathspell.test.model.ctorautowire.DbConfiguration;
+import de.lathspell.test.model.ctorautowire.DbDAO;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JavaConfigTestConfiguration.class})
-public class JavaConfigTest {
+@ContextConfiguration(classes = {DbConfiguration.class})
+public class JavaConfigCtorAutwireTest {
 
     @Autowired
-    private InitializedPerson alex;
-    
+    private DbDAO dbDAO;
+
     @Test
-    public void testJavaConfig() {
-        assertThat(alex.getFullName(), is("Alex FOO"));
+    public void test() {
+        assertThat(dbDAO.getProps().getUrl(), is("foo://localhost/customers"));
     }
 }

@@ -33,7 +33,7 @@ public class FancyXmlTest {
     @Autowired
     @Qualifier("MrOld")
     private Person mrOld;
-    
+   
     @Test
     public void testFancy() {
         assertThat(mrTaler.getFullName(), is("Tim Taler"));

@@ -26,8 +26,8 @@
     </root>
     
     <logger name="de.lathspell" level="DEBUG" />
+    <logger name="org.springframework.aop" level="INFO" />
     <logger name="org.springframework.beans" level="INFO"/>
-    <logger name="org.springframework.core.io.support.PathMatchingResourcePatternResolver" level="INFO" />
     <logger name="org.springframework.core" level="INFO"/>
     <logger name="org.springframework.context" level="INFO"/>
     <logger name="org.springframework.context.support" level="WARN"/>
