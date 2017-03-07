@@ -17,7 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import de.lathspell.test.model.Person;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/fancy.xml")
+@ContextConfiguration
+// @ContextConfiguration("/fancy.xml") - uses default of FancyTest-context.xml
 public class FancyXmlTest {
 
     // Inject using Spring annotations; Qualifier as there are two different beans of type "Person" in the XML.
