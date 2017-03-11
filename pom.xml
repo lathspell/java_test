@@ -58,6 +58,7 @@
     <module>java_test_se8_streams</module>
     <module>java_test_se_cdi</module>
     <module>java_test_soap</module>
+    <module>java_test_spring_aop</module>
     <module>java_test_springboot_cdi</module>
     <module>java_test_springboot_cli</module>
     <module>java_test_springboot_config</module>
