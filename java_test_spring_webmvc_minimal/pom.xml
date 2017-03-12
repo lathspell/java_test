@@ -11,7 +11,7 @@
         <version>1</version>
     </parent>
     <groupId>de.lathspell.test</groupId>
-    <artifactId>java_test_spring_webmvc</artifactId>
+    <artifactId>java_test_spring_webmvc_minimal</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -117,4 +117,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>java_test_spring_webmvc_minimal</name>
 </project>
