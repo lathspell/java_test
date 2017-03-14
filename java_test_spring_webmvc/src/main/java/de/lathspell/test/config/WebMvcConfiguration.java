@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan("de.lathspell.test")
 @EnableWebMvc
-public class WebConfiguration extends WebMvcConfigurerAdapter {
+public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
