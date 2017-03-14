@@ -27,3 +27,10 @@
 * `WebMvcConfigurerAdapter` can be extended to configure ViewResolver, ResourceHandlers and other
   Spring MVC related settings.
 
+### How is JSON mapping enabled in RestControllers?
+* The Jackson Databind module is added as dependency in pom.xml
+
+### What's the difference between @Controller and @RestController?
+* The latter adds @ResponseBody which tells Spring that the return value
+  of all @RequestMapping annotated methods should be converted to the
+  HTTP response body.

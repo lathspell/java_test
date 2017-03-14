@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@Slf4j
 @RequestMapping("/hello")
+@Slf4j
 public class HelloController {
 
     @RequestMapping
