@@ -94,6 +94,11 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
+            <!-- Needed by Spring WebMVC for FreeMarker support -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>        
+        <dependency>
             <!-- The Servlet API is needed by Spring Web and provided by Tomcat -->
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -105,6 +110,18 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.8.6</version>
+        </dependency>
+        <dependency>
+            <!-- Template engine used by Spring WebMVC -->
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+        </dependency>
+        <dependency>
+            <!-- Template engine used by Spring WebMVC -->
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>3.0.3.RELEASE</version>
         </dependency>
     </dependencies>
 

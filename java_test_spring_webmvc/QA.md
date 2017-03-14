@@ -34,3 +34,9 @@
 * The latter adds @ResponseBody which tells Spring that the return value
   of all @RequestMapping annotated methods should be converted to the
   HTTP response body.
+
+### Name some template engines!
+* Apache Velocity (deceased)
+* FreeMarker (supported by Spring)
+* JSP (kind of Java standard since ages)
+* Thymeleaf (recommended)
