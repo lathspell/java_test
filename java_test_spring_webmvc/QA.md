@@ -40,3 +40,10 @@
 * FreeMarker (supported by Spring)
 * JSP (kind of Java standard since ages)
 * Thymeleaf (recommended)
+
+### How is the current locale for message bundles determined?
+* Using `LocaleResolver`.
+
+### How is the location of message bundle property files determined?
+* Using some implementation of `MessageSource`, usually the Spring
+  `ReloadableResourceBundleMessageSource`.

@@ -53,9 +53,15 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         composite.setViewResolvers(Arrays.asList(
                 new FreeMarkerViewResolver("/", ".ftl"),
                 thymeleafViewResolver(),
-                new InternalResourceViewResolver("/WEB-INF/views/", ".jsp")
+                jspResolver()
         ));
         return composite;
+    }
+    
+    private ViewResolver jspResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
+        resolver.setRequestContextAttribute("requestContext");
+        return resolver;
     }
 
     @Bean
@@ -101,8 +107,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         return templateEngine;
     }
 
-    @Bean
-    public ThymeleafViewResolver thymeleafViewResolver() {
+    private ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setViewNames(new String[]{"*.html"});

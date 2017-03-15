@@ -123,6 +123,12 @@
             <artifactId>thymeleaf-spring4</artifactId>
             <version>3.0.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <!-- JSP Java Standard Template Library (NOT provided by Tomcat!) -->
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
