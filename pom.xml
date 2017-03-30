@@ -70,6 +70,7 @@
     <module>java_test_springboot_rest</module>
     <module>java_test_spring_config</module>
     <module>java_test_spring_rest</module>
+    <module>java_test_spring_utils</module>
     <module>java_test_spring_webmvc_minimal</module>
     <module>java_test_spring_webmvc</module>
     <module>java_test_spring_webmvc_old</module>
