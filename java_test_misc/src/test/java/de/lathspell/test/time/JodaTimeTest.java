@@ -1,6 +1,7 @@
 package de.lathspell.test.time;
 
 import java.util.Locale;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
@@ -10,15 +11,16 @@ import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 // Deutsche Locales vorausgesetzt!
 public class JodaTimeTest<BasePeriod> {
-    private static DateTimeFormatter isodate = ISODateTimeFormat.date();
+
+    private static final DateTimeFormatter isodate = ISODateTimeFormat.date();
 
     @Test
     public void properties() {
@@ -31,7 +33,7 @@ public class JodaTimeTest<BasePeriod> {
         assertTrue(datetime.isBefore(null));
 
         // Property Objekte
-        assertEquals(datetime.monthOfYear().getAsText(), "January");
+        assertEquals(datetime.monthOfYear().getAsText(), "Januar");
     }
 
     @Test
@@ -43,16 +45,15 @@ public class JodaTimeTest<BasePeriod> {
         assertEquals(dt1.toString(), "2012-02-08T23:01:00.000+01:00");
     }
 
-
     @Test
     public void ausgabe() {
         DateTime dt = new DateTime("2009-01-29T23:14");
         assertEquals("2009-01-29", dt.toString("YYYY-MM-DD"));
         assertEquals("2009-01-29T23:14:00.000+01:00", dt.toString());
-        assertEquals("29. January", dt.toString("d. MMMM"));
+        assertEquals("29. Januar", dt.toString("d. MMMM"));
 
-        assertEquals("Jan 29, 2009", dt.toString(DateTimeFormat.mediumDate()));
-        assertEquals("January 29, 2009", dt.toString(DateTimeFormat.longDate()));
+        assertEquals("29.01.2009", dt.toString(DateTimeFormat.mediumDate()));
+        assertEquals("29. Januar 2009", dt.toString(DateTimeFormat.longDate()));
         assertEquals("29. janvier", dt.toString(DateTimeFormat.forPattern("d. MMMM").withLocale(Locale.FRENCH)));
     }
 
@@ -65,7 +66,7 @@ public class JodaTimeTest<BasePeriod> {
         assertEquals("2009-03-03", dt.plus(p).toString(isodate));
 
         // Millisekunden genaue Zeitspanne
-        Duration d = new Duration(24L*60*60*1000);
+        Duration d = new Duration(24L * 60 * 60 * 1000);
         assertEquals("2009-01-30T23:14:00.000+01:00", dt.plus(d).toString());
 
         // Zwei Intervalle überschneiden sich - oder nicht
@@ -73,9 +74,9 @@ public class JodaTimeTest<BasePeriod> {
         DateTime dt1 = new DateTime("2009-01-29T14");
         DateTime dt2 = new DateTime("2009-01-29T18");
         DateTime dt3 = new DateTime("2009-01-30");
-        Interval i_base    = new Interval(dt0, dt2);
+        Interval i_base = new Interval(dt0, dt2);
         Interval i_overlap = new Interval(dt1, dt3);
-        Interval i_after   = new Interval(dt2, dt3);
+        Interval i_after = new Interval(dt2, dt3);
 
         assertTrue(i_base.overlaps(i_overlap));
         assertFalse(i_base.overlaps(i_after));
