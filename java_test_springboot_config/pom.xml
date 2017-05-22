@@ -25,7 +25,7 @@
                 <!-- mvn compile: Need high version for Lombok -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.1</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
@@ -34,7 +34,7 @@
                 <!-- mvn package: Creates uber-jar with Main class detection -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.3.3.RELEASE</version>
+                <version>1.5.3.RELEASE</version>
             </plugin>
         </plugins>
     </build>
@@ -44,7 +44,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>1.3.3.RELEASE</version>
+                <version>1.5.3.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -56,7 +56,7 @@
             <!-- Util: Getting rid of all the boilerplate code! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.6</version>
+            <version>1.16.12</version> <!-- NetBeans does not like 1.16.14 -->
         </dependency>
 
         <dependency>
@@ -65,16 +65,15 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
+            <!-- Spring Boot: Bean Validation (using Hibernate-Validator) -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>        
+        <dependency>
             <!-- Spring Boot: Junit helper -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <!-- JSR 303 Bean Validation: Reference Implementation -->
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <type>jar</type>
         </dependency>
     </dependencies>
 </project>
