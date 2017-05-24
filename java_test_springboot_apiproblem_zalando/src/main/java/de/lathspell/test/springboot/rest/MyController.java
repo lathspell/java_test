@@ -1,19 +1,24 @@
 package de.lathspell.test.springboot.rest;
 
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.lathspell.test.springboot.exceptions.OutOfTeaException;
+
 @RestController
-@RequestMapping("/greeting")
-public class GreetingController {
+@RequestMapping("/my")
+public class MyController {
 
     @GetMapping("/hello")
-    public String name(@RequestParam(name = "name", required = false) String name) {
-        Assert.notNull(name, "Name may not be NULL!"); // IllegalArgumentException
+    public String name(@RequestParam(name = "name", required = true) String name) {
         return "Hello " + name;
+    }
+
+    @GetMapping("/tea")
+    public void getTea() {
+        throw new OutOfTeaException("No tea left!");
     }
 
     @GetMapping("/crash")

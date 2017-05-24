@@ -1,12 +1,27 @@
 package de.lathspell.test.springboot.rest;
 
+import javax.ws.rs.core.Response;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.zalando.problem.Problem;
 import org.zalando.problem.spring.web.advice.ProblemHandling;
 
+import de.lathspell.test.springboot.exceptions.OutOfTeaException;
+
 /**
- * That's all what's needed to activate the Zalando exception handler that returns application/problem+json.
+ * Enable the Zalando Exception handler that returns application/problem+json for all Exceptions.
+ *
+ * Remember to enable "throw-exception-if-no-handler-found" in application.yml to enable this
+ * handler for invalid URLs as well.
  */
 @ControllerAdvice
 public class MyExceptionHandler implements ProblemHandling {
 
+    @ExceptionHandler
+    public ResponseEntity<Problem> handleOutOfTeaException(OutOfTeaException e, NativeWebRequest req) {
+        return create(Response.Status.SERVICE_UNAVAILABLE, e, req);
+    }
 }

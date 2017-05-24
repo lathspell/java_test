@@ -12,6 +12,13 @@ info:
 # Shows what Spring Boot autodetection is actually doing
 debug: true
 
+# This is necessary to disable the MVC handling of NoHandlerFoundException for wrong URLs
+spring:
+    resources:
+        add-mappings: false
+    mvc:
+        throw-exception-if-no-handler-found: true
+
 #
 # Logging
 # (https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html)
