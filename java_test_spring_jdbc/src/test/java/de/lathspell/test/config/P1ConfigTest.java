@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.config;
 
 import lombok.extern.slf4j.Slf4j;
 import static org.hamcrest.CoreMatchers.is;
@@ -11,13 +11,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import de.lathspell.test.config.AppConfiguration;
-
 @RunWith(SpringRunner.class)
-@ActiveProfiles("p2")
+@ActiveProfiles("p1")
 @ContextConfiguration(classes = AppConfiguration.class)
 @Slf4j
-public class P2ConfigTest {
+public class P1ConfigTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

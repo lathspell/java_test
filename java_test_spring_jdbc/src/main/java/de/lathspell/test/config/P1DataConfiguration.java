@@ -19,6 +19,7 @@ import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
+/** Configuration that uses PropertySource. */
 @Configuration
 @Profile("p1")
 @PropertySource("classpath:db/db.properties")

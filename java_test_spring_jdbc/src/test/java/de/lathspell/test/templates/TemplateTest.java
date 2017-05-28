@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.templates;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import de.lathspell.test.config.AppConfiguration;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("p2")
+@ActiveProfiles("p3")
 @ContextConfiguration(classes = AppConfiguration.class)
 @Slf4j
 public class TemplateTest {

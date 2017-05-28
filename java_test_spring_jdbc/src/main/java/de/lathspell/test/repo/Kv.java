@@ -1,4 +1,4 @@
-package de.lathspell.test.db;
+package de.lathspell.test.repo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
