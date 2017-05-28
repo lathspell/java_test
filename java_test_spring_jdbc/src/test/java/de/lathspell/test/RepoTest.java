@@ -36,4 +36,9 @@ public class RepoTest {
     public void testNotFind() {
         kvRepo.findByKey("Does Not Exist");
     }
+
+    @Test
+    public void testLoggingRowCallback() {
+        kvRepo.loggingFindByKey();
+    }
 }

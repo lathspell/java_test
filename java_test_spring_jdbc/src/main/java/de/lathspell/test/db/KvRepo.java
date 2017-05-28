@@ -4,4 +4,6 @@ public interface KvRepo {
 
     public Kv findByKey(String key);
 
+    public void loggingFindByKey();
+
 }
