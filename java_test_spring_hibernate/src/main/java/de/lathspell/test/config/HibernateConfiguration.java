@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @PropertySource("classpath:/db.properties")
 @EnableTransactionManagement
-public class JpaConfiguration {
+public class HibernateConfiguration {
 
     @Value("${driverClassName}")
     private String driverClassName;
