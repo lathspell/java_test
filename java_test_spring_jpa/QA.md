@@ -12,3 +12,10 @@
 * EclipseLink (used by Oracle Glassfish)
 * Apache OpenJPA (used by Apache TomEE, IBM Weblogic and Websphere)
 * Data Nucleus (used by Google App Engine)
+
+### What happens to an object if only persist() and not persist+flush+refresh is called?
+* Hibernate will only save it in its memory cache until the transaction is finished
+  where it is forced to actually write the cached objects to the database.
+* It will still call "nextval()" on the sequence generator though to fill the "id" column.
+* Any database triggers (of that Hibernate does not know) will not be executed though so
+  e.g. `updated_at` fields might still be empty.
