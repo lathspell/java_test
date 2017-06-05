@@ -111,6 +111,13 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <!-- JDBC: Driver for external PostgreSQL database -->
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.1.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <!-- JDBC Connection Pool -->
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>

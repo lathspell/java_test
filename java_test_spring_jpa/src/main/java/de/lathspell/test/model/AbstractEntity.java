@@ -5,7 +5,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public abstract class AbstractEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = SEQUENCE)
     @Column(updatable = false)
     protected Long id;
 
