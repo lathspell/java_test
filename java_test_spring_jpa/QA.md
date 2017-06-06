@@ -19,3 +19,7 @@
 * It will still call "nextval()" on the sequence generator though to fill the "id" column.
 * Any database triggers (of that Hibernate does not know) will not be executed though so
   e.g. `updated_at` fields might still be empty.
+
+### What's the difference between LocalContainerEntityManagerFactory and LocalEntityManagerFactory?
+* 
+* https://stackoverflow.com/questions/6156832/what-is-the-difference-between-localcontainerentitymanagerfactorybean-and-locale

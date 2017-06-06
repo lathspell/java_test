@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,11 @@ public class UserDAO {
      * INSERT.
      */
     public void save(User user) {
+        EntityTransaction et = em.getTransaction();
         em.persist(user); // add object to Persistence Context (state "new" to "managed")
         em.flush(); // force write to database to activate auto generated sequences and triggers
         em.refresh(user); // re-read object to update auto generated values like "id"
+        et.commit();
     }
 
     /**

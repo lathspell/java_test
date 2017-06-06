@@ -19,7 +19,7 @@ import de.lathspell.test.model.User;
  * the specified entity class ("User") to build methods like findByUsername().
  */
 public interface UserJpaRepo extends JpaRepository<User, Long> {
-
+    
     @Query("SELECT u FROM User u WHERE u.username = ?1")
     public List<User> findAllByUsername(String username);
 
