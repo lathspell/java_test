@@ -18,7 +18,7 @@ public class MyController {
 
     @GetMapping("/tea")
     public void getTea() {
-        throw new OutOfTeaException("No tea left!");
+        throw new OutOfTeaException("No tea left!", "Some ugly details...");
     }
 
     @GetMapping("/crash")
