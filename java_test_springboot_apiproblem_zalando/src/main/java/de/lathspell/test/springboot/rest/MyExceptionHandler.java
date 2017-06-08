@@ -23,11 +23,6 @@ import de.lathspell.test.springboot.exceptions.OutOfTeaException;
 @ControllerAdvice
 public class MyExceptionHandler implements ProblemHandling {
 
-    @Override
-    public boolean isCausalChainsEnabled() {
-        return false;
-    }
-
     @ExceptionHandler
     public ResponseEntity<Problem> handleOutOfTeaException(IllegalArgumentException e, NativeWebRequest req) {
         return create(Response.Status.SERVICE_UNAVAILABLE, e, req);
