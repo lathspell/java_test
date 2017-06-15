@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.plain_jpa;
 
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
@@ -12,6 +12,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import de.lathspell.test.config.AppConfiguration;
 
+/**
+ * Wrong usage.
+ * 
+ * In JPA transaction mode "RESOURCE_LOCAL", an EntityManagerFactory has to
+ * be injected using @PersistenceUnit, not created manually.
+ */
 @RunWith(SpringRunner.class)
 @ActiveProfiles("postgres") // "h2" or "postgres"
 @ContextConfiguration(classes = AppConfiguration.class)
@@ -19,11 +25,7 @@ import de.lathspell.test.config.AppConfiguration;
 public class JpaTransactionsBad2Test {
 
     /**
-     * Wrongly mixing Spring and JPA.
-     *
-     * "No Persistence provider for EntityManager named localUserPU"
-     * 
-     * Probably because it's trying to use JNDI but I don't really know.
+     * "No Persistence provider for EntityManager named localUserPU".
      */
     @Test(expected = PersistenceException.class)
     public void testBad() {

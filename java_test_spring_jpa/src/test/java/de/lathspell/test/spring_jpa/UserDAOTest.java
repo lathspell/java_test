@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.spring_jpa;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.lathspell.test.config.AppConfiguration;
-import de.lathspell.test.jpa.UserDAO;
+import de.lathspell.test.jpa.plain_jpa.UserDAO;
 import de.lathspell.test.model.User;
 import de.lathspell.test.model.UserType;
 

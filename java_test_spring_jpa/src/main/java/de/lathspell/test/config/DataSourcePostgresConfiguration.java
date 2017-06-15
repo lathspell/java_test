@@ -50,7 +50,7 @@ public class DataSourcePostgresConfiguration {
         // JDBC Connection
         Properties props = new Properties();
         props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource");
-        //    props.setProperty("dataSource.hostname", hostname);
+        props.setProperty("dataSource.serverName", hostname);
         props.setProperty("dataSource.user", username);
         props.setProperty("dataSource.password", password);
         props.setProperty("dataSource.databaseName", database);

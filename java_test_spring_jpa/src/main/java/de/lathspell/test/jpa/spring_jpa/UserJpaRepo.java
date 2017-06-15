@@ -1,4 +1,4 @@
-package de.lathspell.test.jpa;
+package de.lathspell.test.jpa.spring_jpa;
 
 import java.util.List;
 
