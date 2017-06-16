@@ -92,5 +92,11 @@ TODO
 TODO
 
 ### What's the difference between LocalContainerEntityManagerFactory and LocalEntityManagerFactory?
-* 
+* TODO
 * https://stackoverflow.com/questions/6156832/what-is-the-difference-between-localcontainerentitymanagerfactorybean-and-locale
+
+### Caveats
+* Spring's @Transactional depends on AOP. Therefore @Transactional must be on a method that itself calls public methods of the DAO or JpaRepository
+  class. If it would call a private method of it's own class, the AOP mechanism could not intercept that call as it only works on public members.
+* JpaRepository methods like delete() should be followed by flush if one expectes them to also delete rows that were already present in the table and
+  not inserted by this very TransactionManager. Else they get "optimized away". TODO: at least it seemed that way
