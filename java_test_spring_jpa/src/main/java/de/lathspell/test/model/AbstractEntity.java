@@ -15,10 +15,12 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Setter
 @Getter
+@ToString
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 

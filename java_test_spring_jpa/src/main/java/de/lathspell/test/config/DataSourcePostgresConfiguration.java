@@ -29,11 +29,11 @@ public class DataSourcePostgresConfiguration {
     @Value("${password}")
     private String password;
 
-    @Bean(name = "hibernateProperties")
-    public Properties hibernateProperties() {
+    @Bean(name = "hibernateJpaProperties")
+    public Properties hibernateJpaProperties() {
         Properties hibernateProps = new Properties();
         hibernateProps.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
+        // hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
         hibernateProps.put("hibernate.format_sql", false);
         hibernateProps.put("hibernate.use_sql_comments", false);
         hibernateProps.put("hibernate.show_sql", false);
