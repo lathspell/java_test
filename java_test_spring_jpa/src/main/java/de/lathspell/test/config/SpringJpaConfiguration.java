@@ -2,7 +2,6 @@ package de.lathspell.test.config;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +13,32 @@ import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-public class JpaConfiguration {
+public class SpringJpaConfiguration {
 
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    @Qualifier("hibernateProperties")
-    private Properties hibernateProperties;
+    @Qualifier("hibernateJpaProperties")
+    private Properties hibernateJpaProperties;
+
 
     /**
-     * Creates a transaction-type="RESOURCE_LOCAL" JPA Entity Manager Factory.
-     *
-     * Could as well read a persistence.xml file.
+     * The name is important as this bean would not be found by its return type as an EntityManagerFactory will be quested.
+     * 
+     * @return An EntityManagerFactory subclass
      */
     @Bean
-    public EntityManagerFactory entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setPersistenceUnitName("localUserPU");
         factory.setPackagesToScan("de.lathspell.test.model");
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factory.setJpaDialect(new HibernateJpaDialect());
-        factory.setJpaProperties(hibernateProperties);
+        factory.setJpaProperties(hibernateJpaProperties);
         factory.afterPropertiesSet();
-        return factory.getNativeEntityManagerFactory();
+        return factory;
     }
 
 }

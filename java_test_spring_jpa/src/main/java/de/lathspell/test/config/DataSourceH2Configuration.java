@@ -29,8 +29,8 @@ public class DataSourceH2Configuration {
     @Value("${password}")
     private String password;
 
-    @Bean(name = "hibernateProperties")
-    public Properties hibernateProperties() {
+    @Bean(name = "hibernateJpaProperties")
+    public Properties hibernateJpaProperties() {
         Properties hibernateProps = new Properties();
         hibernateProps.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!

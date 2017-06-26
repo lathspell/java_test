@@ -29,11 +29,11 @@ public class DataSourcePostgresConfiguration {
     @Value("${password}")
     private String password;
 
-    @Bean(name = "hibernateProperties")
-    public Properties hibernateProperties() {
+    @Bean(name = "hibernateJpaProperties")
+    public Properties hibernateJpaProperties() {
         Properties hibernateProps = new Properties();
         hibernateProps.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
+        // hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
         hibernateProps.put("hibernate.format_sql", false);
         hibernateProps.put("hibernate.use_sql_comments", false);
         hibernateProps.put("hibernate.show_sql", false);
@@ -50,7 +50,7 @@ public class DataSourcePostgresConfiguration {
         // JDBC Connection
         Properties props = new Properties();
         props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource");
-        //    props.setProperty("dataSource.hostname", hostname);
+        props.setProperty("dataSource.serverName", hostname);
         props.setProperty("dataSource.user", username);
         props.setProperty("dataSource.password", password);
         props.setProperty("dataSource.databaseName", database);
