@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.lathspell</groupId>
+        <artifactId>java_test</artifactId>
+        <version>1</version>
+    </parent>
+    <artifactId>java_test_ee7_as_standalone</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <!-- Logging (SLF4J implementation "Logback") -->
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <!-- Logging (SLF4J adapter for java.util.logging) -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.7.6</version>
+        </dependency>
+        <dependency>
+            <!-- CDI (implementation) -->
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se</artifactId>
+            <version>2.0.1.Final</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- HTTP Server ("Grizzly") -->
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http-servlet-server</artifactId>
+            <version>2.3.11</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- SOAP (JAX-WS Handler for "Grizzly") -->
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http-server-jaxws</artifactId>
+            <version>2.3.11</version>
+        </dependency>
+        <dependency>
+            <!-- REST (JSON Mapper "Jackson") -->
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <!-- REST (JAX-RS implementation "Jersey") -->
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <!-- REST (HTTP container for Grizzly) -->
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+            <version>2.7</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- REST (JAX-RS bridge between HK2 and Weld CDI implementations) -->
+            <groupId>org.glassfish.jersey.containers.glassfish</groupId>
+            <artifactId>jersey-gf-cdi</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <!-- CDI (Necessary for jersey-gf-cdi) -->
+            <!-- "WELD-000069 An interceptor must have at least one binding, but org.glassfish.jersey.gf.cdi.internal.CdiComponentProvider$WebApplicationExceptionPreservingInterceptor has none" -->
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="true" scan="true" scanPeriod="5 seconds">
+
+    <!-- 
+    Die Variable LOGDIR wird am besten als System Property übergeben. Bleibt sie leer, ist der Default das aktuelle Verzeichnis.
+    -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %highlight(%-5level) [%thread] [%mdc{customer}:%mdc{nr}] %-60logger{60} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+        
+    <appender name="DEBUG_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGDIR:-.}/app.debug.log</file>
+        <encoder>
+            <pattern>%date %highlight(%-5level) [%thread] [%mdc{customer}:%mdc{nr}] %-60logger{60} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGDIR:-.}/app-debug-log.%d{yyyy-MM-dd'T'HHmm}.gz</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>${LOGDIR:-.}/app.info.log</file>
+        <encoder>
+            <pattern>%date %-5level [%thread] %-50(%logger{40}:%line) [%mdc{customer}:%mdc{nr}] %msg%n%xException{full}</pattern>            
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGDIR:-.}/app-info-log.%d{yyyy-MM-dd'T'HH}.gz</fileNamePattern>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>        
+    </appender>
+
+    <appender name="WARN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <file>${LOGDIR:-.}/app.warn.log</file>
+        <encoder>
+            <pattern>%date %-5level [%thread] [%mdc{customer}:%mdc{nr}] %-40logger{40} - %method: %msg%n%xException{full}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGDIR:-.}/app-warn-log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>        
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="DEBUG_LOG" />
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="WARN_LOG" />
+    </root>
+    
+    <logger name="de.lathspell" level="DEBUG" />
+    
+</configuration>

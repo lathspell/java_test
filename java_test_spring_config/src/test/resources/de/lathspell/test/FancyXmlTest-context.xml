@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+  
+    <!-- Initialize via properties -->
+    <bean id="MrTaler" class="de.lathspell.test.model.Person" p:firstName="Tim" p:lastName="Taler" lazy-init="true" />
+
+    <!-- Initialize via constructer -->
+    <bean id="MrTaler2" class="de.lathspell.test.model.Person" c:firstName="Tim" c:lastName="Taler" c:birthday="#{null}" lazy-init="true" />
+    
+    <!-- Initialize a property using a converter -->
+    <bean id="MrOld" class="de.lathspell.test.model.Person" p:firstName="Old" p:lastName="Man">
+        <property name="birthday">
+            <bean class="java.time.LocalDate" factory-method="parse" c:0="1980-04-10" />
+        </property>
+    </bean>
+</beans>

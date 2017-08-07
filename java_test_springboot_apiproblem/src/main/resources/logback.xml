@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="false" scan="true" scanPeriod="15 seconds">
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+        
+    <appender name="DEBUG_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>${LOGDIR:-.}/app.debug.log</file>
+        <encoder>
+            <pattern>%date %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="DEBUG_LOG" />
+    </root>
+    
+    <logger name="de.lathspell" level="DEBUG" />
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.springframework.aop" level="INFO" />
+    <logger name="org.springframework.beans" level="INFO"/>
+    <logger name="org.springframework.boot.test" level="INFO"/>
+    <logger name="org.springframework.core" level="DEBUG"/>
+    <logger name="org.springframework.core.io" level="INFO"/>
+    <logger name="org.springframework.core.env" level="INFO" /> <!-- PropertySources -->
+    <logger name="org.springframework.context" level="INFO"/> <!-- Bean generation -->
+    <logger name="org.springframework.test" level="INFO"/>
+    <logger name="org.springframework.test.context.support" level="WARN"/>
+    <logger name="org.springframework.jmx" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    
+</configuration>

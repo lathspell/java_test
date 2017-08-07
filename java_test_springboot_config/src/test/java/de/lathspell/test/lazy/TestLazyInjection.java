@@ -1,40 +1,49 @@
 package de.lathspell.test.lazy;
 
+import lombok.extern.slf4j.Slf4j;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
-import de.lathspell.test.Application;
-import de.lathspell.test.lazy.Bean1;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = NONE)
+@Slf4j
 public class TestLazyInjection {
 
-    /** Not eagerly initialized as there is @Lazy at injection point and it's not a scope singleton bean. */
+    /**
+     * Not eagerly initialized as there is @Lazy at injection point and it's not a scope singleton bean.
+     */
     @Lazy
     @Autowired
     private Bean1 bean1;
 
-    /** Eagerly initialized as there is no @Lazy at injection point. */
+    /**
+     * Eagerly initialized as there is no @Lazy at injection point.
+     */
     @Autowired
     private Bean2 bean2;
 
-    /** Eagerly initialized as it has no @Lazy at the injection point (@Lazy at class definitian has no effect for scope prototype beans). */
+    /**
+     * Eagerly initialized as it has no @Lazy at the injection point (@Lazy at class definitian has no effect for scope prototype beans).
+     */
     @Autowired
     private Bean3 bean3;
 
-    /** Not eagerly initialized despite beeing of scope singleton as it has @Lazy here and at class level. */
+    /**
+     * Not eagerly initialized despite beeing of scope singleton as it has @Lazy here and at class level.
+     */
     @Lazy
     @Autowired
     private Bean4 bean4;
 
-    /** Eagerly initialized despite @Lazy as it is of scope singleton. */
+    /**
+     * Eagerly initialized despite @Lazy as it is of scope singleton.
+     */
     @Lazy
     @Autowired
     private Bean5 bean5;

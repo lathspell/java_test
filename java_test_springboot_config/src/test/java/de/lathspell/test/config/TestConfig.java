@@ -1,45 +1,38 @@
 package de.lathspell.test.config;
 
-import de.lathspell.test.services.MyCtor;
-
+import lombok.extern.slf4j.Slf4j;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
+import org.springframework.core.env.Environment;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
-import de.lathspell.test.Application;
-import de.lathspell.test.config.FooConfig;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = NONE)
+@Slf4j
 public class TestConfig {
 
     @Value("${info.app.name}")
     private String appName;
 
     @Autowired
-    private MyCtor myCtor;
+    private Environment env;
 
-    @Autowired
-    private FooConfig fooConfig;
+    @Test
+    public void printEnv() {
+        assertThat(env.getActiveProfiles().length, is(0));
+        assertThat(env.toString(), containsString("classpath:/application.properties"));
+    }
 
     @Test
     public void smokeTest() {
         assertEquals("Spring Boot Test Application", appName);
     }
 
-    @Test
-    public void testBeanWithCtorInjection() {
-        assertEquals("foo", myCtor.getName());
-    }
-
-    @Test
-    public void testConfigurationBean() {
-        assertEquals("admin", fooConfig.getUsername());
-        assertArrayEquals(new byte[]{1, 2, 3, 4}, fooConfig.getRemoteAddress().getAddress());
-    }
 }

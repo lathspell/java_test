@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.lathspell</groupId>
+        <artifactId>java_test</artifactId>
+        <version>1</version>
+    </parent>
+
+    <groupId>de.lathspell</groupId>
+    <artifactId>java_test_ee7_as_tomcat_servlet</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>RunAsJavaEE</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-web-api</artifactId>
+                    <version>7.0</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>RunAsServlet4</id>
+            <dependencies>
+                <dependency>
+                    <!-- CDI: Implementation -->
+                    <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet</artifactId>
+                    <version>2.4.1.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JAX-RS: Servlet Bootstrap -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-servlet-initializer</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Enable CDI -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-cdi</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Enable JSON MessageBody using Jackson2 -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jackson2-provider</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Enable XML MessageBody -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxb-provider</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+
+                <dependency>
+                    <!-- Bean Validation: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>5.3.4.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JPA: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                    <version>5.2.5.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JSF: Implementation -->
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                    <version>2.2.11</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- Java EE: API classes for all included standards -->
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>RunAsServlet3</id>
+            <dependencies>
+                <dependency>
+                    <!-- CDI: Implementation -->
+                    <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet</artifactId>
+                    <version>2.4.1.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JAX-RS: Servlet Bootstrap -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-servlet-initializer</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Enable CDI -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-cdi</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Enable JSON MessageBody using Jackson2 -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jackson2-provider</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Enable XML MessageBody -->
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxb-provider</artifactId>
+                    <version>3.1.0.Final</version>
+                </dependency>
+
+                <dependency>
+                    <!-- Bean Validation: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>5.3.4.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JPA: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                    <version>5.2.5.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JSF: Implementation -->
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                    <version>2.2.11</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- Java EE: API classes for all included standards -->
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>RunAsServlet2</id>
+            <dependencies>
+                <dependency>
+                    <!-- CDI: Implementation -->
+                    <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet</artifactId>
+                    <version>2.4.1.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JAX-RS: Implementation -->
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Force jersey to use CDI and not plain HK2 -->
+                    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+                    <artifactId>jersey-cdi1x</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Automatic JSON conversion (not JAX-RS standard!) -->
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-jackson</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- Bean Validation: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>5.3.4.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JPA: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                    <version>5.2.5.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JSF: Implementation -->
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                    <version>2.2.11</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- Java EE: API classes for all included standards -->
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>RunAsServlet</id>
+            <dependencies>
+                <dependency>
+                    <!-- CDI: Implementation -->
+                    <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet</artifactId>
+                    <version>2.4.1.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JAX-RS: Implementation -->
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Force jersey to use CDI and not plain HK2 -->
+                    <groupId>org.glassfish.jersey.ext.cdi</groupId>
+                    <artifactId>jersey-cdi1x</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JAX-RS: Automatic JSON conversion (not JAX-RS standard!) -->
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-jackson</artifactId>
+                    <version>2.25</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- Bean Validation: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>5.3.4.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JPA: Implementation -->
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                    <version>5.2.5.Final</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <!-- JSF: API (includes LogStrings.properties needed at runtime by Mojarrra!) -->
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-api</artifactId>
+                    <version>2.2.14</version>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <!-- JSF: Implementation -->
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-impl</artifactId>
+                    <version>2.2.14</version>
+                    <scope>runtime</scope>
+                </dependency>
+                 
+                <dependency>
+                    <!-- Java EE: API classes for all included standards -->
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <!-- Utils -->
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.12</version>
+        </dependency>
+        
+        <dependency>
+            <!-- Logging: SLF4J API -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <!-- Logging: SFL4J Implemention -->
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.8</version>
+            <scope>runtime</scope>
+        </dependency>
+            
+        <dependency>
+            <!-- JDBC: PostgreSQL Connector -->
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <!-- JSON: ObjectMapper -->
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+        <dependency>
+            <!-- JSON: Annotations needed by Jersey REST Implementation -->
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.8.5</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">                                                                                                                                                                                        
+    <h:head>
+        <style type="text/css">
+            .myHeader { font-weight: bold; }
+        </style>
+    </h:head>
+    <h:body>
+
+        <h1>Tests</h1>
+
+        <h2>Testing simple bean injection</h2>
+        <ul>
+            <li>Spring Managed Bean (should print a hello message): "#{greeterSpringBean.welcomeMessage()}"</li>
+        </ul>
+
+        <h2>Testing scopes</h2>
+        <h:form>
+            <h:panelGrid columns="4" border="1" headerClass="myHeader">
+
+                <h:outputLabel value="Name" class="myHeader"/>
+                <h:outputText value="hashCode" class="myHeader"/>
+                <h:outputText value="Value" class="myHeader"/>
+                <h:outputText value="Remarks" class="myHeader"/>
+
+                <h:outputText value="Spring WebAppCtx SCOPE_APPLICATION" />
+                <h:outputText value="#{adderWebApplicationScopedBean.hash()}" />
+                <h:outputText value="#{adderWebApplicationScopedBean.inc()}" />
+                <h:outputText value="(will survive even requests from parallel browsers and increase)" />
+
+                <h:outputText value="Spring WebAppCtx SCOPE_SESSION" />
+                <h:outputText value="#{adderWebSessionScopedBean.hash()}" />
+                <h:outputText value="#{adderWebSessionScopedBean.inc()}" />
+                <h:outputText value="(will survive even requests from parallel browsers and increase)" />
+
+                <h:outputText value="Spring scope SpringScopeView by javaplugs" />
+                <h:outputText value="#{adderXViewScopedBean.hash()}" />
+                <h:outputText value="#{adderXViewScopedBean.inc()}" />
+                <h:outputText value="(will reset at page reload!)" />
+
+                <h:outputText value="Spring scope 'liferayView' by Liferay (Neil Griffin)" />
+                <h:outputText value="#{adderLiferayViewScopedBean.hash()}" />
+                <h:outputText value="#{adderLiferayViewScopedBean.inc()}" />
+                <h:outputText value="(will reset at page reload!)" />
+
+                <h:outputText value="JSF @ManagedBean with JSF @ViewScope" />
+                <h:outputText value="#{adderJsfViewScopedBean.hash()}" />
+                <h:outputText value="#{adderJsfViewScopedBean.inc()}" />
+                <h:outputText value="(will reset at page reload!)" />
+
+                <h:outputText value="Spring WebAppCtx SCOPE_REQUEST" />
+                <h:outputText value="#{adderWebRequestScopedBean.hash()}" />
+                <h:outputText value="#{adderWebRequestScopedBean.inc()}" />
+                <h:outputText value="(will always be a new instance i.e. 0)" />
+
+                <h:outputText value="Spring SCOPE_PROTOTYPE" />
+                <h:outputText value="#{adderPrototypeScopedBean.hash()}" />
+                <h:outputText value="#{adderPrototypeScopedBean.inc()}" />
+                <h:outputText value="(will always be a new instance i.e. 0)" />
+
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit" value="increase counter" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+
+        <h2>Testing input validation</h2>
+        <h:form id="nameForm">
+            <h:panelGrid columns="3">
+                <p:outputLabel for="@next" value="Name" />
+                <p:inputText id="nameInput" value="#{nameBean.name}" required="true" />
+                <p:message for="@previous" showSummary="true" showDetail="false" />
+            </h:panelGrid>          
+            <p:commandButton validateClient="true" value="Say Hello" action="#{nameBean.submit()}" update="@form" />
+        </h:form>
+
+    </h:body>
+</html>
