@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-run swarm</actionName>
+            <displayName>run swarm</displayName>
+            <goals>
+                <goal>exec:java</goal>
+            </goals>
+            <properties>
+                <exec.mainClass>org.wildfly.swarm.bootstrap.Main</exec.mainClass>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-wildfly-swarm:run</actionName>
+            <displayName>wildfly-swarm:run</displayName>
+            <goals>
+                <goal>wildfly-swarm:run</goal>
+            </goals>
+            <properties>
+                <swarm.project.stage>devel</swarm.project.stage>
+            </properties>
+        </action>
+    </actions>

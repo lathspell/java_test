@@ -1,0 +1,7 @@
+logger:
+    level: debug
+
+swarm:
+    logging:
+        use-deployment-logging-config: true
+
