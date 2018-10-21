@@ -33,8 +33,8 @@ public class ValueTest {
     @Value("foo")
     private String foo;
 
-    @Value("#{systemProperties}")
-    private Properties systemProperties;
+    @Value("#{systemProperties['user.timezone']}") // systemProperties is pre-defined
+    private String timezone;
 
     /** An instance of type Person is created using the Bean producer method and then referenced to get one of its attributes using SpEL. */
     @Value("#{tom.firstName}")
@@ -43,7 +43,7 @@ public class ValueTest {
     @Test
     public void test() {
         assertThat(foo, is("foo"));
-        assertThat(systemProperties.getProperty("test"), is(getClass().getCanonicalName()));
+        assertThat(timezone, is("Europe/Berlin"));
         assertThat(tomsFirstName, is("Tom"));
     }
 }
