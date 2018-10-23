@@ -69,3 +69,23 @@ Only if the session scoped bean is being proxied by adding `<aop:scoped-proxy>`.
 ### What is the default XML filename for @ContextConfiguration?
 The name of the test class including package suffixed with "-context.xml",
 i.e. "target/test-classes/de/lathspell/test/FooTest-context.xml".
+
+### Which variants exist to create a Spring *Configuration* (not Beans)
+* XML file
+* Annotation based with classes tagged with @Configuration
+* (Groovy file)
+
+### Which variants exist to create a Spring *Bean* (not the wiring Configuration or Context) 
+* XML `<bean>` tag
+* `@Bean` on a method to create and configure an object and return it as Bean
+* `@Component` or similar on a class to mark it as Bean class
+
+### Which variants exist to mix Spring Bean definition and wiring configuration
+* XML configuration 
+    * can contain `<bean>` tags
+    * can use `<context:component-scan base-package="..."/>` to find @Bean definitions
+* Java configuration
+    * uses @Bean inside of @Configuration classes
+    * uses @Component
+    * uses @Import to find XML files with `<bean>` tags
+* (so in effect, several XML files and several @Configuration classes can be present simultaneously)

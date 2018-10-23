@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import de.lathspell.test.helper.NewbornPersonBeanFactoryPostProcessor;
@@ -19,7 +20,7 @@ import de.lathspell.test.model.Person;
 /**
  * Uses a BeanFactoryPostProcessor to modify an object at the time it is instantiated.
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {BeanFactoryPostProcessorTest.class, NewbornPersonBeanFactoryPostProcessor.class})
 @Slf4j
 public class BeanFactoryPostProcessorTest {

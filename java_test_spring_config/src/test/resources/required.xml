@@ -10,7 +10,6 @@
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
   
-    <bean id="alex" name="alias3,alias4;alias5 alias6" class="de.lathspell.test.model.Person" p:firstName="Alex" p:lastName="Foo" />
-    <alias name="alex" alias="alias2" />
+    <bean id="MrFoo" class="de.lathspell.test.RequiredTest.PersonWithRequirements" p:firstName="Alex" p:lastName="Foo" p:isFoo="true"/>
 
 </beans>
