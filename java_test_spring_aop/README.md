@@ -23,4 +23,15 @@ be verified in the test.
 Additonally:
 
 * MyService does not implement an Interface so a CGLIB Proxy has to be used
-* MyOtherService is an Interface that so a JDK-Proxy can be used and is used 
+* MyOtherService is an Interface that so a JDK-Proxy can be used and is used
+
+Package de.lathspell.test3
+---------------------------
+
+Like test2 but with pure XML.
+
+Package de.lathspell.test4
+--------------------------
+  
+ Advice with combined pointcut.
+ 
