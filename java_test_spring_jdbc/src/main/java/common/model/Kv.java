@@ -1,4 +1,4 @@
-package de.lathspell.test.repo;
+package common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Kv {
-
-    private String key;
-    private String value;
+    private String k;
+    private String v;
 }

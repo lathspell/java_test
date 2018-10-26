@@ -3,6 +3,7 @@ package de.lathspell.test.repo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import common.model.Kv;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -55,8 +56,8 @@ public class KvRepoImpl implements KvRepo {
         @Override
         public Kv mapRow(ResultSet rs, int rowNum) throws SQLException {
             Kv kv = new Kv();
-            kv.setKey(rs.getString("k"));
-            kv.setValue(rs.getString("v"));
+            kv.setK(rs.getString("k"));
+            kv.setV(rs.getString("v"));
             return kv;
         }
     }

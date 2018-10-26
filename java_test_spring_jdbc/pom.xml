@@ -22,7 +22,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>5.0.10.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -49,8 +49,14 @@
             <!-- Utils: Get rid of the cruft! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.12</version>
+            <version>1.18.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- Utils: Make collections less cumbersome! -->
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0-jre</version>
         </dependency>
 
         <dependency>

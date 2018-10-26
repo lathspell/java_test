@@ -1,5 +1,6 @@
 package de.lathspell.test.repo;
 
+import common.model.Kv;
 import lombok.extern.slf4j.Slf4j;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
