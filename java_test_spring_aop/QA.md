@@ -25,18 +25,19 @@ of their purpose. Examples are:
 It's an action that takes place before/after a certain piece of code.
 
 ### Name the five advice types
-* Around advice
-* Before advice
-* After returning advice
-* After throwing advice
-* After finally advice
+* @Around
+* @Before
+* @AfterReturning       (like in try with no Exception)
+* @AfterThrowing        (like in try..catch)
+* @After                (like in try..finally)
 
 ### What is a "joint point"?
-The code point where the advice is applied.
+Join Points are all possible places at which an Advice can be applied.
 
 ### What is a "pointcut"?
-A predicate that is used to identify joint points. Can be a complex
-expression to execute the advice at all code occurances that matches it.
+A predicate that is used to identify those joint points where a specific
+Advice should be applied. Can be a complex expression to execute the 
+advice at all code occurances that matches it.
 
 ### What is an "introduction"?
 When new fields or methods are declared using AOP.
@@ -57,7 +58,8 @@ Using @EnableAspectJAutoProxy
 spring-aop
 
 ### How to switch from JDK dynamic proxies to CGLIB subclasses?
-Using @EnableAspectJAutoProxy(proxyTargetClass = true)
+Using @EnableAspectJAutoProxy(proxyTargetClass = true) or whenever the
+targeted class does not implement an Interface so that CGLIB must be used.
 
 ### What annotations are needed to define an aspect?
 * @Aspect for the class, which must be a Spring Bean as well
@@ -81,4 +83,3 @@ Using @EnableAspectJAutoProxy(proxyTargetClass = true)
 * `+` after a class name means that also subclasses are matched
 * `*` for any amount of chars
 * `&&`, `|| as boolean operators
-

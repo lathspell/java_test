@@ -22,7 +22,7 @@ public class FooAspects {
 
     /**
      * Execute this method before all method calls in Fooservice.
-     * 
+     *
      * All public methods, that is. Interception other methods is not supported by Spring.
      */
     @Before("execution(* de.lathspell.test.service.FooService.*(..))")
@@ -32,7 +32,7 @@ public class FooAspects {
 
     /**
      * Execute before calls to FooService.giveMe(String name) and pass the parameter.
-     * 
+     *
      * @param name The argument's name must be the same as written in the Pointcut "args" expression!
      */
     @Before("execution(public * de.lathspell.test.service.FooService.giveMe(..)) && args(name)")
@@ -42,7 +42,7 @@ public class FooAspects {
 
     /**
      * Execute before calls to FooService.hello() and inspect the argument list.
-     * 
+     *
      * @param jp All information about the method call.
      */
     @Before("execution(public String de.lathspell.test.service.FooService.hello(..))")
@@ -50,7 +50,7 @@ public class FooAspects {
         DebugService.lastJointPoint = jp;
         log.info(debug.append("beforeHello(" + Arrays.deepToString(jp.getArgs()) + ")"));
     }
-    
+
     /**
      * Use gimmeFunc as Alias for "method call to public gimme*()" in FooService.
      */
