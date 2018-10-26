@@ -1,4 +1,6 @@
 .svn
+/*/.idea
+/*/*.iml
 */target/
 /target/
 /java_test_misc/nbproject/
