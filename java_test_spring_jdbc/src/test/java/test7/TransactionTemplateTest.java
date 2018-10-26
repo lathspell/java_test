@@ -30,7 +30,7 @@ public class TransactionTemplateTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    public void test1() {
+    public void testGood() {
         TransactionTemplate txTpl = new TransactionTemplate(txManager);
         Kv tim = txTpl.execute(new TransactionCallback<Kv>() {
             @Override
@@ -43,7 +43,7 @@ public class TransactionTemplateTest {
     }
 
     @Test
-    public void testAbort() {
+    public void testBad() {
         Kv tim = null;
 
         try {

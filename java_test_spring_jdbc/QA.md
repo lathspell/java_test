@@ -28,5 +28,6 @@
 * If there is no Service layer then at the Repositories.
 * Avoid using it for both!
 
-### How can Transactions be done programmatically?
-* By using a TransactionTemplate that's created using a provided PlatformTransactionManager.
+### How can Transactions be done programmatically i.e. without @Transactional?
+* By using PlatformTransactionManager with TransactionStatus
+* By using PlatformTransactionManager with a TransactionTemplate

@@ -1,25 +1,24 @@
 package de.lathspell.test.config;
 
-import java.sql.Driver;
-
-import javax.sql.DataSource;
-
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.transaction.PlatformTransactionManager;
 
-/** Configuration that uses PropertySource. */
+import javax.sql.DataSource;
+import java.sql.Driver;
+
+/**
+ * Configuration that uses PropertySource.
+ */
 @Configuration
 @Profile("p1")
 @PropertySource("classpath:db/db.properties")
@@ -52,6 +51,12 @@ public class P1DataConfiguration {
 
     @Lazy
     @Bean
+    public PlatformTransactionManager platformTransactionManager(DataSource ds) {
+        return new DataSourceTransactionManager(ds);
+    }
+
+    @Lazy
+    @Bean
     @SneakyThrows
     public DataSource dataSource() {
         log.debug("creating DataSource");
@@ -67,7 +72,9 @@ public class P1DataConfiguration {
         return dataSource;
     }
 
-    /** DataSource initializer if not DatabasePopulatorUtils is used in dataSource(). */
+    /**
+     * DataSource initializer if not DatabasePopulatorUtils is used in dataSource().
+     */
     @Bean
     public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
         log.debug("creating DataSourceInitializer");
