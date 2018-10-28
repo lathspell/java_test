@@ -10,6 +10,10 @@ Packages
 * test3     - simple, Annotation Configuration (Spring 2.5)
 * test4     - simple, Java Configuration (Spring 3.0)
 * test5     - builtin BeanPropertyRowMapper instead of custom RowMapper 
+
+JDBC Tests with `DataSourceTransactionMangager`,  called "Local JDBC Spring environment" in the book
 * test6     - transactions in programmatic style with PlatformTransactionManager
 * test7     - transactions using TransactionTemplate
-* test8     - transactions with @Transactional
+* test8     - transactions with @Transactional and JavaConfig
+* test9     - transactions with @Transactional and XML-Config
+
