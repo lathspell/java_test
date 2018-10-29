@@ -14,6 +14,6 @@ Packages
 JDBC Tests with `DataSourceTransactionMangager`,  called "Local JDBC Spring environment" in the book
 * test6     - transactions in programmatic style with PlatformTransactionManager
 * test7     - transactions using TransactionTemplate
-* test8     - transactions with @Transactional and JavaConfig
+* test8     - transactions with @Transactional and JavaConfig (*preferred*)
 * test9     - transactions with @Transactional and XML-Config
 

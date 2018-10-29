@@ -30,7 +30,7 @@ public class KvService {
         return jdbcTemplate.queryForObject("SELECT count(*) c FROM kv", Long.class);
     }
 
-    @Transactional
+    @Transactional()
     public void badTransaction() {
         jdbcTemplate.update("INSERT INTO kv VALUES (?, ?)", "a", "b");
         jdbcTemplate.update("INSERT INTO kkv VALUES (?, ?)", "a", "b"); // bad SQL!

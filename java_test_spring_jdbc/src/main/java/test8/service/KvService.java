@@ -24,7 +24,7 @@ public class KvService {
         return jdbcTemplate.queryForObject("SELECT count(*) c FROM kv", Long.class);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public long countBad() {
         return jdbcTemplate.queryForObject("SELECT bad grammer FROM kv", Long.class);
     }

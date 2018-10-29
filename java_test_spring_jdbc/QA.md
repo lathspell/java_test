@@ -53,3 +53,9 @@
 * READ_COMMITTED - Nonrepeatable Reads, Phantom Reads and Serialization Anomaly possible
 * REPEATABLE_READ - Phantom Reads and Serialization Anomaly possible
 * SERIALIZABLE - Serialization Anomaly possible
+
+## Which Transaction Propagation Level is default?
+* "REQUIRED"
+
+## Which Transaction Isolation Level is default?
+* "DEFAULT"
