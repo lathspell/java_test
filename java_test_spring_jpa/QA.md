@@ -1,4 +1,3 @@
-
 ## Spring JPA Programming
 
 ### History of JPA
@@ -20,7 +19,7 @@
 ### Caching Concepts
 
 JPA has its own caching layers. Some queries can be done without actually
-accessing the database. That also means that greate care has to be taken when
+accessing the database. That also means that great care has to be taken when
 data is modified externally as it might become necessary to explicit forced JPA
 to load the current data from database using em.refresh()! This is even true
 for simple things like auto incremented primary keys or timestamp columns that
@@ -34,7 +33,7 @@ are filled by SQL triggers.
   e.g. `updated_at` fields might still be empty.
 
 ### What is JPQL?
-The Java Persistance Query Language (JPQL) is a substandard of JPA and defines
+The Java Persistence Query Language (JPQL) is a substandard of JPA and defines
 a query language that looks very much like SQL but is slightly different as it
 operates on classes and not tables (e.g. "Book b inner join b.authorId a").
 See <https://en.wikipedia.org/wiki/Java_Persistence_Query_Language>
@@ -57,7 +56,8 @@ JTA:
 Spring:
 * All transactions are handled by Spring and can span multiple DataSources
 * Use PlatformTransactionManager
-TODO
+
+    *TODO*
 
 ### Which drawbacks has JTA?
 
@@ -83,20 +83,24 @@ TODO
 * READ_UNCOMMITTED -
 * REPEATABLE_READ - 
 * SERIALIZABLE - 
-TODO
+
+    **see java_test_spring_jdbc/QA.md**
 
 ### Define the propagation levels
 * MANDATORY - 
 * NEVER - 
 * REQUIRED - 
-TODO
+
+    **see java_test_spring_jdbc/QA.md**
 
 ### What's the difference between LocalContainerEntityManagerFactory and LocalEntityManagerFactory?
 * TODO
 * https://stackoverflow.com/questions/6156832/what-is-the-difference-between-localcontainerentitymanagerfactorybean-and-locale
 
 ### Caveats
-* Spring's @Transactional depends on AOP. Therefore @Transactional must be on a method that itself calls public methods of the DAO or JpaRepository
-  class. If it would call a private method of it's own class, the AOP mechanism could not intercept that call as it only works on public members.
-* JpaRepository methods like delete() should be followed by flush if one expectes them to also delete rows that were already present in the table and
-  not inserted by this very TransactionManager. Else they get "optimized away". TODO: at least it seemed that way
+* Spring's @Transactional depends on AOP. Therefore @Transactional must be on a method that itself 
+  calls public methods of the DAO or JpaRepository class. If it would call a private method of it's own
+  class, the AOP mechanism could not intercept that call as it only works on public members.
+* JpaRepository methods like delete() should be followed by flush if one expectes them to also delete 
+  rows that were already present in the table and not inserted by this very TransactionManager.
+  Else they get "optimized away" (*at least it seemed that way*).

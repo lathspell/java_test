@@ -2,3 +2,11 @@
 Spring JPA Programming
 ======================
 
+Packages
+--------
+
+* de.lathspell.test -
+  A couple of tests for different configurations, H2 and PostgreSQL as backend and other things.
+
+* test2 - JPA with Hibernate and pure JavaConfig i.e. not even a persistence.xml
+
