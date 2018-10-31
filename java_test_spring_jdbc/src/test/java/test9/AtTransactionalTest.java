@@ -48,6 +48,5 @@ public class AtTransactionalTest {
             // Bad SQL Grammer will be thrown
         }
         assertEquals(2, kvService.countGood());
-
     }
 }

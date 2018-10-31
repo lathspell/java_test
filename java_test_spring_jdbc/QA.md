@@ -59,3 +59,12 @@
 
 ## Which Transaction Isolation Level is default?
 * "DEFAULT"
+
+## What are Spring JDBC Repositories
+* Just interfaces with database methods. They are implemented by classes which are annotated with
+  `@Repository` and thus count eligible for auto-wiring. Without JPA there are no magic functions
+  provided by Spring.
+  
+## What is SimpleJdbcInsert
+* A helper class that wrapps a SimpleJdbcTemplate and stores a Map<String, Object> into a table.
+ 

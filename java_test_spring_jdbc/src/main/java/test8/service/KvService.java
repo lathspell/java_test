@@ -33,4 +33,20 @@ public class KvService {
     public long countFancy() {
         return jdbcTemplate.queryForObject("SELECT count(*) c FROM kv", Long.class);
     }
+
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED /* actually REQUIRED is the default */)
+    public void badTransaction() {
+        jdbcTemplate.update("INSERT INTO kv VALUES (?, ?)", "a", "b");
+        jdbcTemplate.update("INSERT INTO kkv VALUES (?, ?)", "a", "b"); // bad SQL!
+    }
+
+    @Transactional(readOnly = true)
+    public JdbcTemplate getReadonlyJdbcTemplate() {
+        return jdbcTemplate;
+    }
+
+    @Transactional(readOnly = true)
+    public void writesDuringReadOnly() {
+        jdbcTemplate.update("DELETE FROM kv");
+    }
 }
