@@ -1,4 +1,4 @@
-package test3;
+package test4;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import test3.config.Test3Config;
-import test3.model.Author;
-import test3.model.Book;
-import test3.repo.AuthorRepo;
-import test3.repo.BookRepo;
+import test4.model.Author;
+import test4.model.Book;
+import test4.repo.AuthorRepo;
+import test4.repo.BookRepo;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -24,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Test3Config.class)
+@ContextConfiguration("application-context.xml")
 @Slf4j
 public class RepoTest {
 

@@ -1,9 +1,9 @@
-package test3.repo;
+package test4.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import test3.model.Book;
+import test4.model.Book;
 
 import java.util.List;
 
