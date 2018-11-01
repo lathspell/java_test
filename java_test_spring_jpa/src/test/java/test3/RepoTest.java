@@ -58,6 +58,8 @@ public class RepoTest {
 
         assertEquals(1, bookRepo.findBooksByTitleLenCustom(10).size());
         assertEquals(0, bookRepo.findBooksByTitleLenCustom(11).size());
+
+        assertEquals(1, bookRepo.findBooksByTitleLen2Custom(10).size());
     }
 
     @Test
