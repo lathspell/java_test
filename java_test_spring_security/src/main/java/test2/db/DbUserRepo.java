@@ -12,8 +12,8 @@ public class DbUserRepo {
 
     private final Set<DbUserEntry> users = new HashSet<DbUserEntry>() {
         {
-            add(new DbUserEntry("admin", "secret", "admin@example.com", new TreeSet(Arrays.asList("RW", "STATS"))));
-            add(new DbUserEntry("tim", "t1mmy", "tim@example.com", new TreeSet(Arrays.asList("RO", "STATS"))));
+            add(new DbUserEntry("admin", "{noop}secret", "admin@example.com", new TreeSet(Arrays.asList("RW", "STATS"))));
+            add(new DbUserEntry("tim", "{noop}t1mmy", "tim@example.com", new TreeSet(Arrays.asList("RO", "STATS"))));
         }
     };
 

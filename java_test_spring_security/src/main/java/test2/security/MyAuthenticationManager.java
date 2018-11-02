@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,9 @@ public class MyAuthenticationManager implements AuthenticationManager {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private PasswordEncoder  passwordEncoder;
+    
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
         String username = auth.getName();
@@ -27,7 +31,7 @@ public class MyAuthenticationManager implements AuthenticationManager {
         UserDetails user = userDetailsService.loadUserByUsername(username);
         log.info("Found user: " + user);
         
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("User not existing or bad password!");
         }
         log.info("Authentication successfull");
