@@ -76,6 +76,7 @@
     <module>java_test_spring_webmvc_minimal</module>
     <module>java_test_spring_webmvc</module>
     <module>java_test_spring_webmvc_old</module>
+    <module>java_test_spring_webmvc_security</module>
     <module>java_test_sql</module>
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>

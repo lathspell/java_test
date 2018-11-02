@@ -8,7 +8,7 @@
         <version>1</version>
     </parent>
     <groupId>de.lathspell.test</groupId>
-    <artifactId>java_test_spring_webmvc</artifactId>
+    <artifactId>java_test_spring_webmvc_security</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -91,11 +91,6 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
-            <!-- Needed by Spring WebMVC for FreeMarker support -->
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>        
-        <dependency>
             <!-- The Servlet API is needed by Spring Web and provided by Tomcat -->
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -109,27 +104,9 @@
             <version>2.9.7</version>
         </dependency>
         <dependency>
-            <!-- Template engine used by Spring WebMVC -->
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.28</version>
-        </dependency>
-        <dependency>
-            <!-- Template engine used by Spring WebMVC -->
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring4</artifactId>
-            <version>3.0.10.RELEASE</version>
-        </dependency>
-        <dependency>
-            <!-- JSP Java Standard Template Library (NOT provided by Tomcat!) -->
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.9.7</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.1.0.RELEASE</version>
             <type>jar</type>
         </dependency>
     </dependencies>
@@ -144,7 +121,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version><!-- Old versions want web.xml -->
+                <version>3.2.2</version><!-- Old versions require web.xml -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <forkCount>0</forkCount> <!--strange error messages regarding "VM crash"! -->
+                </configuration>
             </plugin>
         </plugins>
     </build>
