@@ -9,7 +9,7 @@ public class MyUser extends User {
 
     @Getter
     private final String email;
-    
+
     public MyUser(String username, String password, Collection<? extends GrantedAuthority> authorities, String email) {
         super(username, password, authorities);
         this.email = email;

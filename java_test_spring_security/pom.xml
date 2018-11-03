@@ -10,7 +10,7 @@
     <groupId>de.lathspell.test</groupId>
     <artifactId>java_test_spring_security</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,28 +86,14 @@
             <artifactId>spring-test</artifactId>
         </dependency>        
         <dependency>
-            <!-- Spring: Web MVC (depends on spring-web) -->
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <!-- The Servlet API is needed by Spring Web and provided by Tomcat -->
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- JSON Mapping -->
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.7</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.1.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>5.1.0.RELEASE</version>
-            <type>jar</type>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.1.1.RELEASE</version>
         </dependency>
     </dependencies>
 
@@ -133,5 +119,4 @@
             </plugin>
         </plugins>
     </build>
-    <name>java_test_spring_security</name>
 </project>
