@@ -4,6 +4,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -22,14 +23,15 @@ import org.springframework.web.servlet.DispatcherServlet;
  * @see javax.servlet.ServletContainerInitializer
  * @see org.springframework.web.SpringServletContainerInitializer
  */
-public class ServletConfiguration implements WebApplicationInitializer {
+@Order(1)
+public class ServletInit implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         // This creates an ApplicationConfig as replacement for WEB-INF/$name-servlet.xml
         // The contents of the old $name-servlet.xml are now in the class WebConfiguration.
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(WebMvcConfiguration.class);
+        ctx.register(WebMvcConfig.class);
         // optional? ctx.setServletContext(servletContext);
 
         // This replaces the web.xml:
