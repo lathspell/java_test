@@ -47,3 +47,8 @@
 ### How is the location of message bundle property files determined?
 * Using some implementation of `MessageSource`, usually the Spring
   `ReloadableResourceBundleMessageSource`.
+
+## How many ApplicationContexts has a Spring Web MVC application at least?
+* The root context which was created by the `ContextLoaderListener`
+* The web context which was created by the `DispatcherServlet` and is a child of the root context
+  (there could be other Servlets e.g. for static content that also inherit from the root context)

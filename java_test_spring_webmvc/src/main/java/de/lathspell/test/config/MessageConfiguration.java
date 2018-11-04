@@ -17,7 +17,7 @@ public class MessageConfiguration {
 
     @Bean
     public LocaleResolver localeResolver() {
-        log.info("Createing LocaleResolver");
+        log.info("Creating LocaleResolver");
         
         return new LocaleResolver() {
             @Override
