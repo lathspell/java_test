@@ -13,7 +13,7 @@
           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
   
     <jdbc:embedded-database id="ds1" database-name="testdb1">
-        <jdbc:script location="classpath:testdb/schema.sql" />
+        <jdbc:script location="classpath:testdb/schema-myh2.sql" />
     </jdbc:embedded-database>
     
     <!-- Old fashioned way without jdbc namespace -->
@@ -26,7 +26,7 @@
     <bean id="oldPopulator" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
         <property name="scripts">
             <list>
-                <value>classpath:testdb/schema.sql</value>
+                <value>classpath:testdb/schema-myh2.sql</value>
             </list>
         </property>
     </bean>

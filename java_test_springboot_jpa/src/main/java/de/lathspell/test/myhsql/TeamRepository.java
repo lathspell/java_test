@@ -1,11 +1,9 @@
-package de.lathspell.test.dao.personteam;
+package de.lathspell.test.myhsql;
 
-import javax.inject.Named;
-
+import de.lathspell.test.Team;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import de.lathspell.test.model.personteam.Team;
-
-@Named
+@Repository
 public interface TeamRepository extends CrudRepository<Team, Long> {
 }

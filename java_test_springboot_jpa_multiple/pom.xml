@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.lathspell</groupId>
-    <artifactId>java_test_springboot_jpa</artifactId>
+    <artifactId>java_test_springboot_jpa_multiple</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
     </properties>
-    
+
     <parent>
         <!-- Spring Boot: Dependency Management (also pulls SLF4J yay!) -->
         <groupId>org.springframework.boot</groupId>
@@ -20,7 +21,7 @@
         <version>2.0.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -42,15 +43,6 @@
 
     <dependencies>
         <dependency>
-            <!-- Test: JUnit -->
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
             <!-- Util: Getting rid of all the boilerplate code! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -60,13 +52,13 @@
         <dependency>
             <!-- Spring Boot -->
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
         <dependency>
             <!-- Spring Boot: Junit helper -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>        
+        </dependency>
         <dependency>
             <!-- Spring Boot: JPA -->
             <groupId>org.springframework.boot</groupId>
@@ -74,17 +66,19 @@
         </dependency>
 
         <dependency>
-            <!-- DB: In memory database for tests. -->
+            <!-- DB: First in-memory database -->
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
-            <!-- DB: PostgreSQL adapter -->
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <!-- DB: Second in-memory database -->
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
         </dependency>
-
+        <dependency>
+            <!-- DB: Third in-memory database -->
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+        </dependency>
     </dependencies>
 </project>
