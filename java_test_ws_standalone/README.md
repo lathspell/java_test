@@ -1,4 +1,8 @@
+SOAP Webservice with Jersey 1.x and custom Logger via MessageHandler
+====================================================================
+
 Start:
+-----
 
   mvn compile
    
