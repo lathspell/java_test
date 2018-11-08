@@ -31,6 +31,13 @@ A bean can have multiple `name` that act as alias names and may even be equal to
 * global-session - one instance for each global HTTP Session (in SpringMVC)
 * custom - for implementing own scopes
 
+### Are beans lazy or eager initialized?
+* Singletons are eager initialized (to quickly spot configuration failures)
+* Other scopes are lazy initialized
+* Prototype scoped beans that are part of a Singleton are eager initialized
+* @Lazy at the @Bean/@Component can force Lazy Initialization
+* @Lazy at @Autowired creates a lazy-loading proxy bean
+
 ### Can a session scoped bean be injected into a singleton scoped bean?
 Only if the session scoped bean is being proxied by adding `<aop:scoped-proxy>`.
 
@@ -50,6 +57,13 @@ Only if the session scoped bean is being proxied by adding `<aop:scoped-proxy>`.
 * Repository    (specialization of Component, mainly for Data Access Objects and the like)
 * Service       (specialization of Component, mainly for "Business Service Facades" and the like)
 * Indexed       (marker that can be applied to make any Interface eligable for Spring DI?)
+
+### Important implementations of the ApplicationContext interface
+* AnnotationConfigApplicationContext
+* AnnotationConfigWebApplicationContext
+* ClassPathXmlApplicationContext
+* FileSystemXmlApplicationConext
+* XmlWebApplicationContext
 
 ### What are the abbreviations to the XML <property> tag using Namespaces?
 * p:foo="bar" for setFoo("bar");

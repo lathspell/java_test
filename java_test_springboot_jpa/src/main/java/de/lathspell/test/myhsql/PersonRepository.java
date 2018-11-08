@@ -1,6 +1,6 @@
-package de.lathspell.test.dao.personteam;
+package de.lathspell.test.myhsql;
 
-import de.lathspell.test.model.personteam.Person;
+import de.lathspell.test.Person;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

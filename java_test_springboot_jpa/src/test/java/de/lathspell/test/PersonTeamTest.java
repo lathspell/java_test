@@ -1,6 +1,5 @@
-package de.lathspell.test.myh2;
+package de.lathspell.test;
 
-import de.lathspell.test.Application;
 import de.lathspell.test.myhsql.PersonRepository;
 import de.lathspell.test.myhsql.TeamRepository;
 import lombok.extern.slf4j.Slf4j;

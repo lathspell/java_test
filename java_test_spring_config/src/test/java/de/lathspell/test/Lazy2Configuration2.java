@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({Lazy2Singleton.class, Lazy2Prototype.class})
+@Import({Lazy2Prototype.class})
 @Slf4j
-public class Lazy2Configuration {
+public class Lazy2Configuration2 {
 
-    public Lazy2Configuration() {
+    public Lazy2Configuration2() {
         log.info("ctor");
     }
 }

@@ -1,4 +1,4 @@
-package de.lathspell.test.myh2;
+package de.lathspell.test;
 
 import java.io.Serializable;
 
