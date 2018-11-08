@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="false" scan="true" scanPeriod="15 seconds">
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    
+    <logger name="de.lathspell" level="DEBUG" />
+    <logger name="com.sun" level="TRACE"/>
+    
+</configuration>

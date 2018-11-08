@@ -30,6 +30,37 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        
+        <dependency>
+            <!-- Logging: Implementation -->
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <!-- Logging: java.util.logging to SLF4J adapter -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <!-- Logging: Jarkarta Commons Logging to SLF4J adapter -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <!-- Logging: Log4j to SLF4J adapter -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
