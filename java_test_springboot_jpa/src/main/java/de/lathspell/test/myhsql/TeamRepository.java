@@ -1,11 +1,9 @@
 package de.lathspell.test.dao.personteam;
 
-import javax.inject.Named;
-
-import org.springframework.data.repository.CrudRepository;
-
 import de.lathspell.test.model.personteam.Team;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-@Named
+@Repository
 public interface TeamRepository extends CrudRepository<Team, Long> {
 }

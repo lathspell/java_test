@@ -1,8 +1,7 @@
-package de.lathspell.test.model.personteam;
+package de.lathspell.test.myh2;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,6 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Data
