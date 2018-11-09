@@ -1,15 +1,11 @@
 package de.lathspell.test;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@SpringBootApplication(scanBasePackageClasses = Application.class)
-@Import(DataSourceTransactionManagerAutoConfiguration.class)
+@SpringBootApplication(scanBasePackages = "de.lathspell.test")
+@EnableConfigurationProperties
 public class Application {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package de.lathspell.test.myhsql;
+package de.lathspell.test.hsql;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

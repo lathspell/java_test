@@ -1,4 +1,4 @@
-package de.lathspell.test.myderby;
+package de.lathspell.test.derby;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
