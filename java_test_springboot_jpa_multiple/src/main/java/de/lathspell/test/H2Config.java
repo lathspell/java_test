@@ -1,13 +1,11 @@
 package de.lathspell.test;
 
 import com.zaxxer.hikari.HikariDataSource;
-import de.lathspell.test.myderby.Person;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -22,31 +20,30 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactory",
-        transactionManagerRef = "transactionManager",
-        basePackageClasses = Person.class)
-public class MyDerbyConfig {
+@EnableJpaRepositories(entityManagerFactoryRef = "h2EMF", transactionManagerRef = "h2TM", basePackages = "de.lathspell.test.h2")
+@Slf4j
+public class H2Config {
 
-    @Primary
-    @Bean(name = "dataSourceProperties")
-    @ConfigurationProperties(prefix = "myderby.datasource")
+    @Bean(name = "h2DSProps")
+    //    @ConfigurationProperties(prefix = "h2.datasource")
     public DataSourceProperties dataSourceProperties() {
-        return new DataSourceProperties();
+        DataSourceProperties dsp = new DataSourceProperties();
+        dsp.setUsername("sa");
+        dsp.setDriverClassName("org.h2.Driver");
+        dsp.setUrl("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
+        return dsp;
     }
 
-    @Primary
-    @Bean(name = "dataSource")
-    @ConfigurationProperties(prefix = "myderby.datasource")
-    public DataSource dataSource(@Qualifier("dataSourceProperties") DataSourceProperties dataSourceProperties) {
+    @Bean(name = "h2DS")
+    //@ConfigurationProperties(prefix = "h2.datasource")
+    public DataSource dataSource(@Qualifier("h2DSProps") DataSourceProperties dataSourceProperties) {
+        log.info("h2DS uses DSProps with Driver {}, {}, {}", dataSourceProperties.getDriverClassName(), dataSourceProperties.getUrl(), dataSourceProperties.getUsername());
         return dataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
     }
 
-    @Primary
-    @Bean(name = "jpaProperties")
+    @Bean(name = "h2JpaProps")
     public Properties hibernateJpaProperties() {
         Properties hibernateProps = new Properties();
-        //hibernateProps.put("hibernate.dialect", "org.hibernate.dialect.Dialect");
         hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
         hibernateProps.put("hibernate.format_sql", true);
         hibernateProps.put("hibernate.use_sql_comments", true);
@@ -54,15 +51,11 @@ public class MyDerbyConfig {
         return hibernateProps;
     }
 
-    @Primary
-    @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            @Qualifier("dataSource") DataSource dataSource,
-            @Qualifier("jpaProperties") Properties jpaProperties) {
-
+    @Bean(name = "h2EMF")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Qualifier("h2DS") DataSource dataSource, @Qualifier("h2JpaProps") Properties jpaProperties) {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setPersistenceUnitName("myderbyPU");
-        factory.setPackagesToScan("de.lathspell.test.myderby");
+        factory.setPersistenceUnitName("h2PU");
+        factory.setPackagesToScan("de.lathspell.test.h2");
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factory.setJpaDialect(new HibernateJpaDialect());
@@ -71,10 +64,8 @@ public class MyDerbyConfig {
         return factory;
     }
 
-    @Primary
-    @Bean(name = {"transactionManager"})
-    public PlatformTransactionManager transactionManager(
-            @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+    @Bean(name = "h2TM")
+    public PlatformTransactionManager transactionManager(@Qualifier("h2EMF") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 

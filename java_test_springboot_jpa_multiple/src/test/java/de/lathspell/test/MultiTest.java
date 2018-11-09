@@ -1,11 +1,11 @@
 package de.lathspell.test;
 
-import de.lathspell.test.myderby.Person;
-import de.lathspell.test.myderby.PersonRepository;
-import de.lathspell.test.myh2.Team;
-import de.lathspell.test.myh2.TeamRepository;
-import de.lathspell.test.myhsql.Address;
-import de.lathspell.test.myhsql.AddressRepository;
+import de.lathspell.test.derby.Person;
+import de.lathspell.test.derby.PersonRepository;
+import de.lathspell.test.h2.Team;
+import de.lathspell.test.h2.TeamRepository;
+import de.lathspell.test.hsql.Address;
+import de.lathspell.test.hsql.AddressRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,19 +23,19 @@ public class MultiTest {
 
     @Autowired
     private PersonRepository pr;
-/*
+
     @Autowired
     private TeamRepository tr;
 
     @Autowired
     private AddressRepository ar;
-*/
+
     @Before
     public void before() {
         log.info("+++++++++++++++++++++++++++++++++++");
-  //      ar.deleteAll();
-    //    tr.deleteAll();
-        pr.deleteAll();
+        //ar.deleteAll();
+        //tr.deleteAll();
+        //pr.deleteAll();
         log.info("-----------------------------------");
     }
 
@@ -48,9 +48,19 @@ public class MultiTest {
         assertEquals(Long.valueOf(1L), p.getId());
         assertEquals(1, pr.count());
     }
-/*
+
     @Test
-    public void testH2Addres() {
+    public void testH2Team() {
+        log.info("create team");
+        Team t = new Team(null, "Tomatoes");
+        tr.save(t);
+
+        assertEquals(Long.valueOf(1L), t.getId());
+        assertEquals(1, tr.count());
+    }
+
+    @Test
+    public void testHsqlAddres() {
         log.info("create address");
         Address a = new Address(null, "London");
         ar.save(a);
@@ -59,14 +69,4 @@ public class MultiTest {
         assertEquals(1, ar.count());
     }
 
-    @Test
-    public void testHsqlTeam() {
-        log.info("create team");
-        Team t = new Team(null, "Tomatoes");
-        tr.save(t);
-
-        assertEquals(Long.valueOf(1L), t.getId());
-        assertEquals(1, tr.count());
-    }
-*/
 }

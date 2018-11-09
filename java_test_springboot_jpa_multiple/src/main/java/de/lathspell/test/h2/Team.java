@@ -1,13 +1,10 @@
-package de.lathspell.test.myh2;
+package de.lathspell.test.h2;
 
-import de.lathspell.test.myderby.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data

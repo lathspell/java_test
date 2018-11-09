@@ -1,8 +1,8 @@
-package de.lathspell.test.myh2;
+package de.lathspell.test.hsql;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Long> {
+public interface AddressRepository extends JpaRepository<Address, Long> {
 }
