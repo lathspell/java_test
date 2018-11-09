@@ -1,3 +1,4 @@
 tomcat
 spring.log*
 target
+*.log
