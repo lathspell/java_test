@@ -11,4 +11,4 @@ Packages
 * test2 - JPA with Hibernate and pure JavaConfig i.e. not even a persistence.xml
 * test3 - JPA with JavaConfig and JPA-Repositories with NamedQueries *preferred*
 * test4 - JPA with XML-Config and persistence.xml
-
+* test5 - Extending JpaRepository (FIXME: "detached entity passed to persist")
