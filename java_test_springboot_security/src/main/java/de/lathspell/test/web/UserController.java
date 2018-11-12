@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("/test2")
-    @PreAuthorize("hasRole(ADMIN)")
+    @PreAuthorize("hasRole('ADMIN')")
     public String test2() {
         log.info("entering test2()");
         return "/user/test2.html";
