@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>test</title>
+</head>
+<body>
+<h1>SpringBoot Security Demo</h1>
+
+<a th:href="@{/login}">Login</a>
+
+<ul>
+    <li><a href="/admin/test1">/admin space (ADMIN)</a></li>
+    <li><a href="/user/test1">/user/test1 (USER)</a></li>
+    <li><a href="/user/test2">/user/test2 (ADMIN!)</a></li>
+    <li><a href="/rest/calc/add?a=2&b=3">/rest/calc/add 2*3 (MACHINE)</a></li>
+</ul>
+
+<a th:href="@{/logout}">Logout</a>
+
+<p>
+    Credentials:
+<ul>
+    <li>admin:admin (ROLE_USER, ROLE_ADMIN)</li>
+    <li>user:user (ROLE_USER)</li>
+    <li>machine:machine (ROLE_MACHINE)</li>
+</ul>
+</p>
+
+</body>
+</html>
