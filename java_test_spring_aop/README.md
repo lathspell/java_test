@@ -34,4 +34,8 @@ Package de.lathspell.test4
 --------------------------
 
 Advice with combined pointcut.
- 
+
+Package de.lathspell.test5
+--------------------------
+
+@Around throwing and preventing exceptions and fiddling with the result. 
