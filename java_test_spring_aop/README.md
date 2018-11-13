@@ -32,6 +32,6 @@ Like test2 but with pure XML.
 
 Package de.lathspell.test4
 --------------------------
-  
- Advice with combined pointcut.
+
+Advice with combined pointcut.
  
