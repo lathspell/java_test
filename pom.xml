@@ -69,6 +69,7 @@
     <module>java_test_spring_webmvc_security</module>
     <module>java_test_spring_webmvc</module>
     <module>java_test_springboot_apiproblem</module>
+    <module>java_test_springboot_async</module>
     <module>java_test_springboot_cdi</module>
     <module>java_test_springboot_cli</module>
     <module>java_test_springboot_config</module>
@@ -76,9 +77,9 @@
     <module>java_test_springboot_jdbc</module>
     <module>java_test_springboot_jpa</module>
     <module>java_test_springboot_kotlin</module>
+    <module>java_test_springboot</module>
     <module>java_test_springboot_rest_jaxrs</module>
     <module>java_test_springboot_rest</module>
-    <module>java_test_springboot</module>
     <module>java_test_sql</module>
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
