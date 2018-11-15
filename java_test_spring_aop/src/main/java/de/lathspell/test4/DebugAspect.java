@@ -20,7 +20,10 @@ public class DebugAspect {
     public void targetFirstParamIsInt() {
     }
 
-    @Before("targetIsService() && targetFirstParamIsInt()")
+    @Pointcut("@within(de.lathspell.test4)")
+    public void targetInThisPackage() {}
+
+    @Before("targetInThisPackage() && targetIsService() && targetFirstParamIsInt()")
     public void beforeService(JoinPoint jp) {  // JoinPoint is the actual method that was matched
         log.info("Before a method with first parameter Int in an instance of Service: " + jp);
     }
