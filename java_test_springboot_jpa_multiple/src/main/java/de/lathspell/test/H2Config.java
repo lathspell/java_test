@@ -1,5 +1,10 @@
 package de.lathspell.test;
 
+import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,10 +19,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.util.Properties;
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "h2EMF", transactionManagerRef = "h2TM", basePackages = "de.lathspell.test.h2")
@@ -26,7 +27,9 @@ public class H2Config {
 
     @Bean(name = "h2DSProps")
     //    @ConfigurationProperties(prefix = "h2.datasource")
-    public DataSourceProperties dataSourceProperties() {
+    public DataSourceProperties dataSourceProperties() throws ClassNotFoundException {
+        Class.forName(org.h2.Driver.class.getName());
+
         DataSourceProperties dsp = new DataSourceProperties();
         dsp.setUsername("sa");
         dsp.setDriverClassName("org.h2.Driver");

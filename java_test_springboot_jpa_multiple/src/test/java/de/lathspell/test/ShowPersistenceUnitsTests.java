@@ -1,8 +1,10 @@
 package de.lathspell.test;
 
-import com.zaxxer.hikari.HikariPoolMXBean;
-import com.zaxxer.hikari.hibernate.HikariConnectionProvider;
-import com.zaxxer.hikari.pool.HikariPool;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.sql.DataSource;
+
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.internal.SessionImpl;
@@ -11,15 +13,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.jdbc.metadata.HikariDataSourcePoolMetadata;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
 
 import static org.junit.Assert.assertEquals;
 

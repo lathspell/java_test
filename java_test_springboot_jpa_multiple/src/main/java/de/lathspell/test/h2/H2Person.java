@@ -1,16 +1,17 @@
-package de.lathspell.test.derby;
+package de.lathspell.test.h2;
+
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @Entity
+@Table(name = "Person")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person {
+public class H2Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +26,4 @@ public class Person {
     // @ManyToOne(/* fetch=LAZY, cascade = CascadeType.ALL, optional = true, targetEntity = Team.class */)
     // @Column(name = "team_id")
     //private Team team;
-
 }

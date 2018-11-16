@@ -1,11 +1,5 @@
 package de.lathspell.test;
 
-import de.lathspell.test.derby.Person;
-import de.lathspell.test.derby.PersonRepository;
-import de.lathspell.test.h2.Team;
-import de.lathspell.test.h2.TeamRepository;
-import de.lathspell.test.hsql.Address;
-import de.lathspell.test.hsql.AddressRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,57 +10,42 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
+import de.lathspell.test.derby.DerbyPersonRepository;
+import de.lathspell.test.h2.H2PersonRepository;
+import de.lathspell.test.hsql.HsqlPersonRepository;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 public class MultiTest {
 
     @Autowired
-    private PersonRepository pr;
+    private DerbyPersonRepository derbyRepo;
 
     @Autowired
-    private TeamRepository tr;
+    private H2PersonRepository h2Repo;
 
     @Autowired
-    private AddressRepository ar;
+    private HsqlPersonRepository hsqlRepo;
 
     @Before
     public void before() {
         log.info("+++++++++++++++++++++++++++++++++++");
-        //ar.deleteAll();
-        //tr.deleteAll();
-        //pr.deleteAll();
+        derbyRepo.deleteAll();
+        h2Repo.deleteAll();
+        hsqlRepo.deleteAll();
         log.info("-----------------------------------");
     }
 
     @Test
     public void testDerbyPerson() {
         log.info("create person");
-        Person p = new Person(null, "Tim", "Taler");
-        pr.save(p);
+        de.lathspell.test.derby.DerbyPerson p = new de.lathspell.test.derby.DerbyPerson(null, "Tim", "Taler");
+        derbyRepo.save(p);
 
-        assertEquals(Long.valueOf(1L), p.getId());
-        assertEquals(1, pr.count());
-    }
-
-    @Test
-    public void testH2Team() {
-        log.info("create team");
-        Team t = new Team(null, "Tomatoes");
-        tr.save(t);
-
-        assertEquals(Long.valueOf(1L), t.getId());
-        assertEquals(1, tr.count());
-    }
-
-    @Test
-    public void testHsqlAddres() {
-        log.info("create address");
-        Address a = new Address(null, "London");
-        ar.save(a);
-
-        assertEquals(Long.valueOf(1L), a.getId());
-        assertEquals(1, ar.count());
+        assertEquals(1, derbyRepo.count());
+        assertEquals(0, h2Repo.count());
+        assertEquals(0, hsqlRepo.count());
     }
 
 }

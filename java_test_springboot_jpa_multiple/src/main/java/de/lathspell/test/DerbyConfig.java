@@ -1,6 +1,12 @@
 package de.lathspell.test;
 
+import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -15,10 +21,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.util.Properties;
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "derbyEMF", transactionManagerRef = "derbyTM", basePackages = "de.lathspell.test.derby")
@@ -27,8 +29,11 @@ public class DerbyConfig {
 
     @Primary
     @Bean(name = "derbyDSProps")
-  //  @ConfigurationProperties(prefix = "derby.datasource")
+    //  @ConfigurationProperties(prefix = "derby.datasource")
+    @SneakyThrows
     public DataSourceProperties dataSourceProperties() {
+        Class.forName(org.apache.derby.jdbc.EmbeddedDriver.class.getName());
+
         DataSourceProperties dsp = new DataSourceProperties();
         dsp.setUsername("sa");
         dsp.setPassword("sa");
@@ -39,7 +44,7 @@ public class DerbyConfig {
 
     @Primary
     @Bean(name = "derbyDS")
-   // @ConfigurationProperties(prefix = "derby.datasource")
+    // @ConfigurationProperties(prefix = "derby.datasource")
     public DataSource dataSource(@Qualifier("derbyDSProps") DataSourceProperties dataSourceProperties) {
         log.info("derbyDS uses DSProps with Driver {}, {}, {}", dataSourceProperties.getDriverClassName(), dataSourceProperties.getUrl(), dataSourceProperties.getUsername());
         return dataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
