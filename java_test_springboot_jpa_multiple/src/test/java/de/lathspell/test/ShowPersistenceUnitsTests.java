@@ -1,13 +1,9 @@
 package de.lathspell.test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
-
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.internal.SessionImpl;
+import org.hibernate.jpa.HibernateEntityManagerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +12,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.sql.DataSource;
 
 import static org.junit.Assert.assertEquals;
 
@@ -36,6 +37,14 @@ public class ShowPersistenceUnitsTests {
     @Autowired
     @Qualifier("derbyEMF")
     private EntityManagerFactory derbyEmf;
+
+    @Autowired
+    @Qualifier("h2EMF")
+    private EntityManagerFactory h2Emf;
+
+    @Autowired
+    @Qualifier("hsqlEMF")
+    private EntityManagerFactory hsqlEmf;
 
     @Autowired
     @Qualifier("derbyDS")
@@ -77,18 +86,15 @@ public class ShowPersistenceUnitsTests {
 
     @Test
     public void testEMF() throws Exception {
-        log.info("props:" + derbyEmf.getProperties());
-        log.info("meta:" + derbyEmf.getMetamodel());
-        SessionFactory sf = derbyEmf.unwrap(SessionFactory.class);
-        log.info("sf: " + sf);
-        assertEquals("Apache Derby Embedded JDBC Driver", derbyEmf.getProperties());
-
+        assertEquals("org.hibernate.dialect.DerbyTenSevenDialect", derbyEmf.unwrap(SessionFactory.class).unwrap(HibernateEntityManagerFactory.class).getSessionFactory().getDialect().toString());
+        assertEquals("org.hibernate.dialect.H2Dialect", h2Emf.unwrap(SessionFactory.class).unwrap(HibernateEntityManagerFactory.class).getSessionFactory().getDialect().toString());
+        assertEquals("org.hibernate.dialect.HSQLDialect", hsqlEmf.unwrap(SessionFactory.class).unwrap(HibernateEntityManagerFactory.class).getSessionFactory().getDialect().toString());
     }
 
     @Test
     @Transactional(transactionManager = "derbyTM")
     public void testDerby() throws Exception {
-        assertEquals("Derby JDBC Driver", emDerby.unwrap(SessionImpl.class).connection().getMetaData().getDriverName());
+        assertEquals("Apache Derby Embedded JDBC Driver", emDerby.unwrap(SessionImpl.class).connection().getMetaData().getDriverName());
     }
 
     @Test
@@ -100,6 +106,6 @@ public class ShowPersistenceUnitsTests {
     @Test
     @Transactional(transactionManager = "hsqlTM")
     public void testHsql() throws Exception {
-        assertEquals("HSQL JDBC Driver", emHsql.unwrap(SessionImpl.class).connection().getMetaData().getDriverName());
+        assertEquals("HSQL Database Engine Driver", emHsql.unwrap(SessionImpl.class).connection().getMetaData().getDriverName());
     }
 }

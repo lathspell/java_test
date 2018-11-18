@@ -49,8 +49,8 @@ public class H2Config {
         Properties hibernateProps = new Properties();
         hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
         hibernateProps.put("hibernate.format_sql", true);
-        hibernateProps.put("hibernate.use_sql_comments", true);
-        hibernateProps.put("hibernate.show_sql", false);
+        hibernateProps.put("hibernate.use_sql_comments", false);
+        hibernateProps.put("hibernate.show_sql", true);
         return hibernateProps;
     }
 

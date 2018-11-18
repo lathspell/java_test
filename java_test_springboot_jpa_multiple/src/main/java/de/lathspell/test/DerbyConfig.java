@@ -32,13 +32,13 @@ public class DerbyConfig {
     //  @ConfigurationProperties(prefix = "derby.datasource")
     @SneakyThrows
     public DataSourceProperties dataSourceProperties() {
-        Class.forName(org.apache.derby.jdbc.EmbeddedDriver.class.getName());
+        Class.forName(org.apache.derby.jdbc.EmbeddedDriver.class.getName()).newInstance();
 
         DataSourceProperties dsp = new DataSourceProperties();
         dsp.setUsername("sa");
-        dsp.setPassword("sa");
+        dsp.setPassword("");
         dsp.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
-        dsp.setUrl("jdbc:derby:memory:testdb;create=true");
+        dsp.setUrl("jdbc:derby:testdb;create=true");
         return dsp;
     }
 
@@ -57,7 +57,7 @@ public class DerbyConfig {
         hibernateProps.put("hibernate.hbm2ddl.auto", "create-drop"); // careful!
         hibernateProps.put("hibernate.format_sql", true);
         hibernateProps.put("hibernate.use_sql_comments", true);
-        hibernateProps.put("hibernate.show_sql", false);
+        hibernateProps.put("hibernate.show_sql", true);
         return hibernateProps;
     }
 
