@@ -104,3 +104,10 @@ Spring:
 * JpaRepository methods like delete() should be followed by flush if one expectes them to also delete 
   rows that were already present in the table and not inserted by this very TransactionManager.
   Else they get "optimized away" (*at least it seemed that way*).
+
+### Are @Before methods in Tests inside or outside the @Test transaction
+They are inside. @BeforeTransaction can be used to change that.
+
+### Are @Test transactions by default committed or rolled back?
+They are by default rolled back.
+ 

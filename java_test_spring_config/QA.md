@@ -17,6 +17,10 @@ It is or was used for web controllers before Spring 3.1 started allowing `/` in 
 Every bean has exactly one `id` that is either specified or auto-generated.
 A bean can have multiple `name` that act as alias names and may even be equal to the id.
 
+### What is the name/id of a bean if none is explicitly given?
+The auto-generated id of a bean is its fully qualified class name with a number appended.
+It's thus unpredictable.
+
 ### How can a bean be initialized further than by simple dependency injection?
 * Use @PostConstruct from the Common Annotations JSR
 * Using the `init-method` XML attribute

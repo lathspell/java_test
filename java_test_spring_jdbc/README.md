@@ -16,6 +16,7 @@ Packages
 * test9     - transactions with @Transactional and XML-Config
 * test10    - Repositories
 * test11    - SimpleJdbcInsert
+* test12    - ResultSetExtractor
 
 JDBC Tests with "transactions" usually use`DataSourceTransactionMangager`,
 called "Local JDBC Spring environment" in the book
