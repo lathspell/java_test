@@ -1,4 +1,4 @@
-package de.lathspell.test.frontend.rest.frontend.rest;
+package de.lathspell.test.frontend.rest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

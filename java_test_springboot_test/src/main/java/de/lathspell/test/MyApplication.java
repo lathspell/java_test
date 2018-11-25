@@ -1,4 +1,4 @@
-package de.lathspell.test.frontend.rest;
+package de.lathspell.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

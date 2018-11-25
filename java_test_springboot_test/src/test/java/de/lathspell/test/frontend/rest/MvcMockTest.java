@@ -1,6 +1,5 @@
 package de.lathspell.test.frontend.rest;
 
-import de.lathspell.test.frontend.rest.frontend.rest.MyRestController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
