@@ -23,7 +23,7 @@ public class MvcMockTest {
 
     @Test
     public void test1() throws Exception {
-        client.perform(get("/test1"))
+        client.perform(get("/rest/test1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("test1")));
@@ -31,14 +31,14 @@ public class MvcMockTest {
 
     @Test
     public void testBadRequest() throws Exception {
-        client.perform(get("/bad-request"))
+        client.perform(get("/rest/bad-request"))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(containsString("Stupid client!")));
     }
 
     @Test(expected = NestedServletException.class)
     public void testException() throws Exception {
-        client.perform(get("/exception"));
+        client.perform(get("/rest/exception"));
         /* does not work in MockMvc:
                 .andExpect(status().is5xxServerError())
                 .andExpect(content().string(containsString("Bad things")));

@@ -2,6 +2,7 @@ package de.lathspell.test.frontend.rest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
 @RestController
+@RequestMapping("/rest")
 @Slf4j
 public class MyRestController {
 

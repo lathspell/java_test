@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringBoot Test</title>
+</head>
+<body>
+<h1>Login</h1>
+
+<form action="/login" method="post" th:object="${user}">
+    Name: <input type="text" th:field="*{name}"/>
+    Password: <input type="password" th:field="*{password}"/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<div style="color: red" th:text="${msg}"></div>
+
+<div>(Enter any name and "secret" as password!)</div>
+</body>
+</html>

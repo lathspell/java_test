@@ -21,21 +21,21 @@ public class RandomPortTest {
 
     @Test
     public void test1() {
-        ResponseEntity<String> resp = tpl.getForEntity("/test1", String.class);
+        ResponseEntity<String> resp = tpl.getForEntity("/rest/test1", String.class);
         assertTrue(resp.getStatusCode().is2xxSuccessful());
         assertEquals("This is test1!", resp.getBody());
     }
 
     @Test
     public void testBadRequest() {
-        ResponseEntity<String> resp = tpl.getForEntity("/bad-request", String.class);
+        ResponseEntity<String> resp = tpl.getForEntity("/rest/bad-request", String.class);
         assertTrue(resp.getStatusCode().is4xxClientError());
         assertThat(resp.getBody(), containsString("Stupid client!"));
     }
 
     @Test
     public void testException() {
-        ResponseEntity<String> resp = tpl.getForEntity("/exception", String.class);
+        ResponseEntity<String> resp = tpl.getForEntity("/rest/exception", String.class);
         assertTrue(resp.getStatusCode().is5xxServerError());
         assertThat(resp.getBody(), containsString("Bad things"));
     }
