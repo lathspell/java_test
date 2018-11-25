@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.frontend.rest;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;

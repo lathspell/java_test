@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.frontend.rest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
