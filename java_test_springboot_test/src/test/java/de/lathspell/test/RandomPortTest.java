@@ -1,39 +1,42 @@
 package de.lathspell.test;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.RestTemplate;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RandomPortTest {
 
     @Autowired
-    private WebTestClient client;
+    private TestRestTemplate tpl;
 
     @Test
     public void test1() {
-        client.get().uri("/test1").exchange()
-                .expectStatus().isOk()
-                .expectBody(String.class).value(Matchers.containsString("test1"));
+        ResponseEntity<String> resp = tpl.getForEntity("/test1", String.class);
+        assertTrue(resp.getStatusCode().is2xxSuccessful());
+        assertEquals("This is test1!", resp.getBody());
     }
 
     @Test
     public void testBadRequest() {
-        client.get().uri("/bad-request").exchange()
-                .expectStatus().isBadRequest()
-                .expectBody(String.class).value(Matchers.containsString("Stupid client!"));
+        ResponseEntity<String> resp = tpl.getForEntity("/bad-request", String.class);
+        assertTrue(resp.getStatusCode().is4xxClientError());
+        assertThat(resp.getBody(), containsString("Stupid client!"));
     }
 
     @Test
     public void testException() {
-        client.get().uri("/exception").exchange()
-                .expectStatus().is5xxServerError()
-                .expectBody(String.class).value(Matchers.containsString("Bad things"));
+        ResponseEntity<String> resp = tpl.getForEntity("/exception", String.class);
+        assertTrue(resp.getStatusCode().is5xxServerError());
+        assertThat(resp.getBody(), containsString("Bad things"));
     }
 }
