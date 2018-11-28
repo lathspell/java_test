@@ -1,26 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SpringBoot Test</title>
-</head>
-<body>
-<h1>Hello world!</h1>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>SpringBoot Test</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
+    </head>
+    <body>
+        <h1>Blog</h1>
 
-<div>Login as: <span th:text="${myUser.name}"/></div>
+        <h2>API</h2>
+        <ul>
+            <li><a href="/rest/test1">GET test1</a></li>
+            <li><a href="/rest/bad-request">GET bad-request</a></li>
+            <li><a href="/rest/exception">GET exception</a></li>
+            <li><a href="/rest/admin-info">GET admin-info (only ADMIN)</a></li>
+        </ul>
 
-<h2>REST</h2>
-<ul>
-    <li><a href="/test1">GET test1</a></li>
-    <li><a href="/bad-request">GET bad-request</a></li>
-    <li><a href="/exception">GET exception</a></li>
-</ul>
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/admin/">Admin Area</a></li>
+            <li><a href="/admin/tell-secret">Tells big secret</a></li>
+        </ul>
+        
+        <h2>Blog</h2>
+        <ul>
+            <li><a href="/blog/">Blog Articles</a></li>
+        </ul>
+        
+        <h2>Edit</h2>
+        <ul>
+            <li><a href="/edit/">New Blog Article</a></li>
+        </ul>
 
-<h2>Web</h2>
-<ul>
-    <li><a href="/">This homepage</a></li>
-    <li><a href="/login">Login</a></li>
-</ul>
+        <h2>Infrastructure</h2>
+        <ul>
+            <li><a href="/actuator/health">/health - Spring Actuator</a></li>
+        </ul>
+        
+        <h2>Footer</h2>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <ul>
+            <li>admin:admin (ROLE_USER, ROLE_ADMIN)</li>
+            <li>user:user (ROLE_USER)</li>
+            <li>machine:machine (ROLE_MACHINE)</li>
+        </ul>
 
-</body>
+    </body>
 </html>

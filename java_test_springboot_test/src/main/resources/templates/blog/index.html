@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>SpringBoot Test</title>
+    </head>
+    <body>
+
+        <h1>Artikel</h1>
+
+        <table id="articles" border="1">
+            <tr th:each="article : ${articles}">
+                <td><span th:text="${article.title}">Title</span></td>
+                <td><span th:text="${article.body}">Body</span></td>
+            </tr>
+        </table>
+
+    </body>
+</html>

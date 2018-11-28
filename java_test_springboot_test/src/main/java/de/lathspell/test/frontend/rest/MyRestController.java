@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
+import org.springframework.security.access.annotation.Secured;
+
 @RestController
 @RequestMapping("/rest")
 @Slf4j
@@ -28,5 +30,11 @@ public class MyRestController {
     @GetMapping("/exception")
     public String exception() {
         throw new RuntimeException("Bad things happen.");
+    }
+
+    @GetMapping("/admin-info")
+    @Secured("ROLE_ADMIN") // @Secured needs the "ROLE_" prefix that @PreAuthorize's hasRole does not!
+    public String adminInfo() {
+        return "Hello Admin!";
     }
 }

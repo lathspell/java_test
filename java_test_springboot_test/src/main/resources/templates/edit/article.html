@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>SpringBoot Test</title>
+    </head>
+    <body>
+
+        <h1>Edit Artikel</h1>
+
+        <form action="/edit/submit" method="post" th:object="${article}">
+            Title: <input type="text" th:field="*{title}"/> <br/>
+            Body: <input type="text" th:field="*{body}"/> <br/>
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <div style="color: red" th:text="${msg}"></div>
+
+    </body>
+</html>
