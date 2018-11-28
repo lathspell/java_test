@@ -23,3 +23,8 @@ Replacing Tomcat with Undertow or Jetty
 
 Can be done in pom.xml. Remember to adjust server specific settings in application.yml!
 See https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-servlet-containers.html#howto-use-undertow-instead-of-tomcat
+
+Security
+--------
+
+HTTP Basic Auth Users and ACLs declared in the WebSecurityConfig class.
