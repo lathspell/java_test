@@ -17,7 +17,7 @@
         <!-- Spring Boot: Dependency Management (also pulls SLF4J yay!) -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.6.RELEASE</version>
+        <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     
@@ -45,7 +45,7 @@
             <!-- Util: Getting rid of all the boilerplate code! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
+            <version>1.18.4</version>
         </dependency>
 
         <dependency>

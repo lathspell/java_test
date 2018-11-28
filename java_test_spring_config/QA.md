@@ -107,3 +107,15 @@ i.e. "target/test-classes/de/lathspell/test/FooTest-context.xml".
     * uses @Component
     * uses @Import to find XML files with `<bean>` tags
 * (so in effect, several XML files and several @Configuration classes can be present simultaneously)
+
+### Can afterPropertiesSet/destroy methods be private?
+yes
+
+### Will @Configuration/@Component classes be found in sub-packages without @ComponentScan?
+no, per default they have to be in the same package as the main configuration class
+
+### Will @ComponentScan without a basepackage find components in sub-packages
+yes, per default the current and all sub-packages of the class that has @ComponentScan are scanned
+
+### How can additional XML configuration snippets be loaded by a @Configuration class?
+Using @ImportResource (@Import is for further @Configuration classes)
