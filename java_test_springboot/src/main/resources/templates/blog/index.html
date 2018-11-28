@@ -6,12 +6,14 @@
     </head>
     <body>
 
-        <h1>Artikel</h1>
+        <h1>Articles</h1>
 
         <table id="articles" border="1">
             <tr th:each="article : ${articles}">
+                <td><span th:text="${article.id}"/></td>
                 <td><span th:text="${article.title}">Title</span></td>
                 <td><span th:text="${article.body}">Body</span></td>
+                <td><span th:text="${article.createdAt}" /></td>
             </tr>
         </table>
 

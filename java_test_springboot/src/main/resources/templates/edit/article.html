@@ -8,7 +8,7 @@
 
         <h1>Edit Artikel</h1>
 
-        <form action="/edit/submit" method="post" th:object="${article}">
+        <form action="#" th:action="@{/edit/submit}" method="post" th:object="${article}">
             Title: <input type="text" th:field="*{title}"/> <br/>
             Body: <input type="text" th:field="*{body}"/> <br/>
             <input type="submit" value="Submit"/>
@@ -16,5 +16,6 @@
 
         <div style="color: red" th:text="${msg}"></div>
 
+        <a href="/">back</a>
     </body>
 </html>
