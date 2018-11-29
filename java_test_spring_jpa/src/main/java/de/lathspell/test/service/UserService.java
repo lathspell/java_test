@@ -1,7 +1,8 @@
 package de.lathspell.test.service;
 
+import de.lathspell.test.jpa.spring_jpa.UserJpaRepo;
+import de.lathspell.test.model.User;
 import java.util.Date;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,6 @@ import static org.springframework.transaction.TransactionDefinition.PROPAGATION_
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
-
-import de.lathspell.test.jpa.spring_jpa.UserJpaRepo;
-import de.lathspell.test.model.User;
 
 @Service
 @Slf4j
