@@ -9,9 +9,9 @@ CREATE TABLE team (
 );
 
 CREATE TABLE person (
- id            int not null primary key,
+  id            int not null primary key,
   --
- first_name    varchar(150),
+  first_name    varchar(150),
   last_name     varchar(150),
   year_of_birth int,
   place         varchar(100),

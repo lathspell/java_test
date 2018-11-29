@@ -1,7 +1,5 @@
 package de.lathspell.test;
 
-import de.lathspell.test.hsql.PersonRepository;
-import de.lathspell.test.hsql.TeamRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,22 +10,27 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
+import de.lathspell.test.db.PersonRepository;
+import de.lathspell.test.db.TeamRepository;
+import de.lathspell.test.model.Person;
+import de.lathspell.test.model.Team;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = Application.class)
 @Slf4j
 public class PersonTeamTest {
 
     @Autowired
-    private PersonRepository pr;
+    private PersonRepository personRepo;
 
     @Autowired
-    private TeamRepository tr;
+    private TeamRepository teamRepo;
 
     @Before
     public void before() {
         log.info("+++++++++++++++++++++++++++++++++++");
-        tr.deleteAll();
-        pr.deleteAll();
+        teamRepo.deleteAll();
+        personRepo.deleteAll();
         log.info("-----------------------------------");
     }
 
@@ -38,15 +41,18 @@ public class PersonTeamTest {
         assertEquals(0L, p1.getId());
 
         log.info("save person");
-        Person p1b = pr.save(p1);
+        Person p1b = personRepo.save(p1);
         log.info("get id from saved person");
         long p1bId = p1b.getId();
 
+        log.info("count persons");
+        assertEquals(1, personRepo.count());
+
         log.info("delete person");
-        pr.deleteById(p1bId);
+        personRepo.deleteById(p1bId);
 
         log.info("count persons");
-        assertEquals(0, pr.count());
+        assertEquals(0, personRepo.count());
     }
 
     @Test
@@ -54,8 +60,8 @@ public class PersonTeamTest {
         log.info("create person objects");
         Person p1 = new Person("Max", "Mustermann", 1967);
         Person p2 = new Person("Erika", "Musterfrau", 1953);
-        pr.save(p1);
-        pr.save(p2);
+        personRepo.save(p1);
+        personRepo.save(p2);
 
         log.info("create team object");
         Team t1 = new Team("Team One");
@@ -64,26 +70,24 @@ public class PersonTeamTest {
         t1.getPersons().add(p1);
         t1.getPersons().add(p2);
 
-        log.info("Persisting Team One (also persists p1 and p2)");
-        Team t1b = tr.save(t1);
+        log.info("Persisting Team One (also updates team_id on p1 and p2)");
+        Team t1saved = teamRepo.saveAndFlush(t1);
 
         log.info("After saving: t1: " + t1);
         log.info("After saving: p1: " + p1);
         log.info("After saving: p2: " + p2);
 
-        log.info("Verify Ids of all objects");
-        assertNotEquals(0L, t1.getId());
-        assertNotEquals(0L, p1.getId());
-        assertNotEquals(0L, p2.getId());
-        assertNotEquals(p1.getId(), p2.getId());
-
-        log.info("Team One is ok");
-        assertEquals(p1.getId(), t1b.getPersons().get(0).getId());
-        assertEquals("Erika", t1b.getPersons().get(1).getFirstName());
-
-        log.info("FIXME: The persons are not saved!");
-        assertNull(t1b.getPersons().get(0).getTeam());
+        log.info("Verify that p1.team is still NULL");
+        assertEquals(2, t1saved.getPersons().size());
         assertNull(p1.getTeam());
         assertNull(p2.getTeam());
+
+        log.info("Verifying that reloading loads Person.team_id");
+        Person p1Reloaded = personRepo.findOneByFirstName("Max");
+        Person p2Reloaded = personRepo.findOneByFirstName("Erika");
+        log.info("After reloading: p1: " + p1Reloaded);
+        log.info("After reloading: p2: " + p2Reloaded);
+        assertNotNull("FIXME", p1Reloaded.getTeam());
+        assertNotNull("FIXME", p2Reloaded.getTeam());
     }
 }

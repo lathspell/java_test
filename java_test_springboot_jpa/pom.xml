@@ -17,7 +17,7 @@
         <!-- Spring Boot: Dependency Management (also pulls SLF4J yay!) -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.6.RELEASE</version>
+        <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     
@@ -26,10 +26,19 @@
             <plugin>
                 <!-- mvn compile: Need high version for Lombok -->
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <forkCount>0</forkCount>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- mvn compile: Need high version for Lombok -->
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <showDeprecation>true</showDeprecation>
+                    <showDeprecation>false</showDeprecation>
                 </configuration>
             </plugin>
             <plugin>
@@ -42,26 +51,12 @@
 
     <dependencies>
         <dependency>
-            <!-- Test: JUnit -->
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
             <!-- Util: Getting rid of all the boilerplate code! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
+            <version>1.18.4</version>
         </dependency>
 
-        <dependency>
-            <!-- Spring Boot -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
         <dependency>
             <!-- Spring Boot: Junit helper -->
             <groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-package de.lathspell.test;
+package de.lathspell.test.model;
 
 import java.io.Serializable;
 

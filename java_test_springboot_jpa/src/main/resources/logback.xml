@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    debug="false" scan="true" scanPeriod="15 seconds">
+
+    <!-- 
+    Die Variable LOGDIR wird am besten als System Property übergeben. Bleibt sie leer, ist der Default das aktuelle Verzeichnis.
+    -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    
+    <logger name="de.lathspell" level="DEBUG" />
+    <logger name="com.zaxxer.hikari" level="INFO" />
+    <logger name="org.hibernate" level="INFO" />
+    <logger name="org.hibernate.SQL" level="DEBUG" /> <!-- prepared statements -->
+    <logger name="org.hibernate.type" level="TRACE" /> <!-- variable bindings for prepared statements -->
+    
+</configuration>
