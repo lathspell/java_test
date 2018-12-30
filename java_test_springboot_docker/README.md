@@ -14,6 +14,15 @@ Further Reading
 See `docker_test` project.
 
 
+Noteworthy Docker images
+========================
+
+* alpine                        - Official Alpine Linux; minimalistic distro with only 5MB or so
+* maven:3-jdk-8-alpine          - Official Maven 3.x with JDK8 and Alpine Linux
+* openjdk:8-jdk-stretch         - Official OpenJDK for JDK8 and Debian "stretch" Linux
+* openjdk:8-jdk-slim-stretch    - Official OpenJDK for JDK8 and stripped down Debian "stretch" Linux
+* openjdk:8-jdk-alpine          - Official OpenJDK for JDK8 and Alpine Linux
+
 Maven Plugins
 =============
 
