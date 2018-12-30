@@ -39,20 +39,20 @@
 * Enterprise JTA Spring environment - `JtaTransactionManager` and JNDI provided datasource from an AppServer
 
 ## What are the Transaction Propagation levels?
-* REQUIRED - An existing transaction will be used or a new one created
-* REQUIRES_NEW - A new transaction will be started and any existing suspended.
-* NESTED - A transaction inside another transaction will be used
-* MANDATORY - An existing transaction must be used or Exception
-* NEVER - No transaction may be used or Exception
-* NOT_SUPPORTED - No transaction will be used, existing suspended
-* SUPPORTS - A transaction might be used, if none exists the method does not used one
+* `REQUIRED` - An existing transaction will be used or a new one created
+* `REQUIRES_NEW` - A new transaction will be started and any existing suspended.
+* `NESTED` - A transaction inside another transaction will be used
+* `MANDATORY` - An existing transaction must be used or Exception
+* `NEVER` - No transaction may be used or Exception
+* `NOT_SUPPORTED` - No transaction will be used, existing suspended
+* `SUPPORTS` - A transaction might be used, if none exists the method does not used one
 
 ## What are the Transaction Isolation Levels?
-* DEFAULT - Uses the DBMS default (READ_COMMITTED for PostgreSQL and Oracle, REPEATABLE_READ for MariaDB)
-* READ_UNCOMMITTED - Dirty Reads, Nonrepeatable Reads, Phantom Reads and Serialization Anomaly possible
-* READ_COMMITTED - Nonrepeatable Reads, Phantom Reads and Serialization Anomaly possible
-* REPEATABLE_READ - Phantom Reads and Serialization Anomaly possible
-* SERIALIZABLE - Serialization Anomaly possible
+* `DEFAULT` - Uses the DBMS default (`READ_COMMITTED` for PostgreSQL and Oracle, `REPEATABLE_READ` for MariaDB)
+* `READ_UNCOMMITTED` - Dirty Reads, Nonrepeatable Reads, Phantom Reads and Serialization Anomaly possible
+* `READ_COMMITTED` - Nonrepeatable Reads, Phantom Reads and Serialization Anomaly possible
+* `REPEATABLE_READ` - Phantom Reads and Serialization Anomaly possible
+* `SERIALIZABLE` - Serialization Anomaly possible
 
 ## Which Transaction Propagation Level is default?
 * "REQUIRED"
