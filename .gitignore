@@ -1,9 +1,5 @@
-.svn
-/*/.idea
-/*/*.iml
-*/target/
-/target/
-/java_test_misc/nbproject/
-/java_test_crypto/nbproject/
-/java_test_se8_streams/nbproject/
-/java_test_spring_config/nbproject/
+**/.svn
+**/.idea
+**/*.iml
+**/target/
+**/nbproject/
