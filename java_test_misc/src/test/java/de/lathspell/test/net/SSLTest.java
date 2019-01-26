@@ -94,6 +94,7 @@ public class SSLTest {
     /**
      * Testen mit gültigem Zertifikat.
      */
+    @Ignore("FIXME")
     @Test
     public void testValid() throws Exception {
         String firstLine = getFirstLine("https://accounts.google.com/ServiceLogin");
