@@ -1,7 +1,5 @@
 package de.lathspell.java_test_xml;
 
-import static org.junit.Assert.*;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -81,7 +80,7 @@ public class DomTest {
         Assert.assertTrue(sw.toString().length() > 100);
 
         // Check
-        InputStream is = ClassLoader.getSystemResourceAsStream("de/lathspell/java_test_xml/bookstore.expected.xml");
+        InputStream is = getClass().getClassLoader().getResourceAsStream("de/lathspell/java_test_xml/bookstore.expected.xml");
         assertNotNull(is);
         BufferedReader bis = new BufferedReader(new InputStreamReader(is));
         StringBuilder expectedXml = new StringBuilder();

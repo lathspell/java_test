@@ -1,20 +1,19 @@
 package de.lathspell.java_test_xml;
 
 import java.io.File;
-import java.io.StringWriter;
+
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import static org.junit.Assert.*;
 
+import de.lathspell.java_test_xml.helper.JobHelper;
 import de.lathspell.java_test_xml.model.Address;
 import de.lathspell.java_test_xml.model.Book;
 import de.lathspell.java_test_xml.model.Company;
 import de.lathspell.java_test_xml.model.Job;
-import de.lathspell.java_test_xml.helper.JobHelper;
 import de.lathspell.java_test_xml.model.Parts;
 
 public class DTDTest {

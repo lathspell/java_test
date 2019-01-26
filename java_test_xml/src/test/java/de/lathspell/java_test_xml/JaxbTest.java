@@ -1,6 +1,5 @@
 package de.lathspell.java_test_xml;
 
-import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -11,20 +10,18 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.junit.Assert;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
 import de.lathspell.java_test_xml.generated.BookType;
-import de.lathspell.java_test_xml.generated.Collection;
-import de.lathspell.java_test_xml.generated.ObjectFactory;
 import de.lathspell.java_test_xml.generated.BookType.Promotion;
+import de.lathspell.java_test_xml.generated.Collection;
 import de.lathspell.java_test_xml.generated.Collection.Books;
-
-import static org.junit.Assert.assertNotNull;
+import de.lathspell.java_test_xml.generated.ObjectFactory;
 
 /**
  * JAXB Tests.
@@ -67,7 +64,7 @@ public class JaxbTest {
         Assert.assertTrue(sw.toString().length() > 100);
 
         // Check
-        InputStream is = ClassLoader.getSystemResourceAsStream("de/lathspell/java_test_xml/bookstore.expected.xml");
+        InputStream is = getClass().getClassLoader().getResourceAsStream("de/lathspell/java_test_xml/bookstore.expected.xml");
         assertNotNull(is);
         BufferedReader bis = new BufferedReader(new InputStreamReader(is));
         StringBuilder expectedXml = new StringBuilder();

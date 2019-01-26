@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.apache.commons.dbutils.*;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.KeyedHandler;
@@ -13,8 +14,6 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class CommonsDbUtilsTest {
 
@@ -60,7 +59,7 @@ public class CommonsDbUtilsTest {
      */
     @Test
     public void testKeyedHandler() throws SQLException {
-        Map found = run.query("SELECT i, s FROM junit", new KeyedHandler("i"));
+        Map found = (Map) run.query("SELECT i, s FROM junit", new KeyedHandler("i"));
         Map row10 = (Map) found.get(10);
         assertEquals("aa", row10.get("s"));
     }

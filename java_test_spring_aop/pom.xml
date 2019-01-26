@@ -42,7 +42,7 @@
             <!-- Utils: Get rid of the cruft! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
+            <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
 
@@ -50,20 +50,20 @@
             <!-- Logging: API -->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.24</version>
+            <version>1.7.25</version>
         </dependency>
         <dependency>
             <!-- Logging: Bridge for Jacarta/Apache Commons Logging -->
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.24</version>
+            <version>1.7.25</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <!-- Logging: Implementation -->
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.3</version>
             <scope>runtime</scope>
         </dependency>
 

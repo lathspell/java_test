@@ -1,9 +1,7 @@
 package de.lathspell.test4;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +18,7 @@ public class DebugAspect {
     public void targetFirstParamIsInt() {
     }
 
+/*
     @Pointcut("@within(de.lathspell.test4)")
     public void targetInThisPackage() {}
 
@@ -27,5 +26,5 @@ public class DebugAspect {
     public void beforeService(JoinPoint jp) {  // JoinPoint is the actual method that was matched
         log.info("Before a method with first parameter Int in an instance of Service: " + jp);
     }
-
+*/
 }
