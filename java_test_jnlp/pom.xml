@@ -22,6 +22,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <skipTests>true</skipTests>
     </properties>
 
     <build>
@@ -63,15 +64,6 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <url>http://download.java.net/maven/2/</url>
-            <id>beans-binding</id>
-            <layout>default</layout>
-            <name>Repository for library Library[beans-binding]</name>
-        </repository>
-    </repositories>
-
     <!-- Plugins with scope "provided" an "test" are excluded from the jnlp directory. -->
     <dependencies>
         <dependency>
@@ -80,13 +72,15 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- we need this:
         <dependency>
             <groupId>javax.jnlp</groupId>
             <artifactId>jnlp</artifactId>
             <version>1.7</version>
             <scope>system</scope>
-            <systemPath>${java.home}/lib/javaws.jar</systemPath>
+            <systemPath>${basedir}/lib/javaws.jar</systemPath>
         </dependency>
+        -->
         <dependency>
             <!-- LGPL, http://java.net/projects/beansbinding/sources/svn/content/trunk/beansbinding/license.txt?rev=631 -->
             <groupId>org.jdesktop</groupId>
