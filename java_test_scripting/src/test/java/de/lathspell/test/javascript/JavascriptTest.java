@@ -4,11 +4,10 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * Executing Javascript from Java.
@@ -36,7 +35,7 @@ public class JavascriptTest {
         js.put("a", 2);
         js.put("b", 3);
         js.eval("x = Math.pow(a, b)");
-        assertEquals(8.0, (double) js.get("x"), 0);
+        assertEquals(8, (int) js.get("x"), 0);
     }
 
     @Test
@@ -44,8 +43,8 @@ public class JavascriptTest {
         js.eval("function my_pow(x, y) { return Math.pow(x, y); }");
 
         Invocable invocable = (Invocable) js;
-        double actual = (double) invocable.invokeFunction("my_pow", 2, 3);
-        assertEquals(8.0, actual, 0);
+        int actual = (int) invocable.invokeFunction("my_pow", 2, 3);
+        assertEquals(8, actual, 0);
     }
 
 }

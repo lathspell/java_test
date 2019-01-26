@@ -47,7 +47,7 @@ public class GroupByTest {
     @Test
     public void testGroupBy() {
         Map<Color, List<Child>> childrenByColor = children.stream().collect(groupingBy(Child::getFavColor));
-        assertEquals("{BLUE=[Bob, Berta], RED=[Rosaly], GREEN=[Graham, Grag, Gail]}", childrenByColor.toString());
+        assertEquals("{RED=[Rosaly], GREEN=[Graham, Grag, Gail], BLUE=[Bob, Berta]}", childrenByColor.toString());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class GroupByTest {
                         averagingInt(c -> c.getName().length())
                 )
         );
-        assertEquals("{BLUE=4.0, RED=6.0, GREEN=4.666666666666667}", namelenByColor.toString());
+        assertEquals("{RED=6.0, GREEN=4.666666666666667, BLUE=4.0}", namelenByColor.toString());
     }
 
 }
