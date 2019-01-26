@@ -76,7 +76,6 @@
     <module>java_test_springboot_data_rest</module>
     <module>java_test_springboot_jdbc</module>
     <module>java_test_springboot_jpa</module>
-    <module>java_test_springboot_kotlin</module>
     <module>java_test_springboot_app1</module>
     <module>java_test_springboot</module>
     <module>java_test_springboot_rest_jaxrs</module>
