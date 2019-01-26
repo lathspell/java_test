@@ -1,12 +1,12 @@
 image: maven:3-jdk-8
 
 variables:
-  MAVEN_CLI_OPTS: "--batch-mode -s .m2/settings.xml"
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode --settings=/gitlab-runner-m2/settings.xml"
+  MAVEN_OPTS: "-Dmaven.repo.local=/gitlab-runner-m2/repository"
 
 cache:
   paths:
-    - .m2/repository
+    - /gitlab-runner-m2/
     - target/
 
 build:
