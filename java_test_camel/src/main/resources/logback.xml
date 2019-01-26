@@ -13,6 +13,6 @@
     <logger name="org.apache.camel" level="INFO"/>
 
     <root level="debug">
-        <appender-ref ref="STDOUT" />
+<!--        <appender-ref ref="STDOUT" /> -->
     </root>
 </configuration>

@@ -23,7 +23,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
@@ -33,9 +33,14 @@
         </plugins>
     </build>
     
-    <modules>
-        <module>java_test_ee6_ejb-ejb</module>
-        <module>java_test_ee6_ejb-appclient</module>
-        <module>java_test_ee6_ejb-ear</module>
-    </modules>
+    <profiles>
+        <profile>
+            <id>non-ci</id>
+            <modules>
+                <module>java_test_ee6_ejb-ejb</module>
+                <module>java_test_ee6_ejb-appclient</module>
+                <module>java_test_ee6_ejb-ear</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

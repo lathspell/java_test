@@ -18,86 +18,97 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <skipTests>true</skipTests>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>non-ci</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Specify the maven code generator plugin -->
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq-codegen-maven</artifactId>
+                        <version>3.11.9</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!--
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>jdbc:postgresql:java_test_jooq</url>
+                                <user>postgres</user>
+                                <password></password>
+                            </jdbc>
+                            -->
+                            <jdbc>
+                                <driver>com.mysql.jdbc.Driver</driver>
+                                <url>jdbc:mysql://localhost:3306/java_test_jooq</url>
+                                <user>root</user>
+                                <password></password>
+                            </jdbc>
+                            <generator>
+                                <name>org.jooq.util.DefaultGenerator</name>
+                                <database>
+                                    <!-- <name>org.jooq.util.postgres.PostgresDatabase</name> -->
+                                    <name>org.jooq.util.mysql.MySQLDatabase</name>
+                                    <includes>.*</includes>
+                                    <excludes></excludes>
+                                    <inputSchema>java_test_jooq</inputSchema>
+                                    <unsignedTypes>false</unsignedTypes>
+                                    <dateAsTimestamp>false</dateAsTimestamp>
+                                </database>
+                                <generate>
+                                    <relations>true</relations>
+                                    <pojos>true</pojos>
+                                    <daos>true</daos>
+                                    <deprecated>false</deprecated>
+                                    <jpaAnnotations>true</jpaAnnotations>
+                                    <validationAnnotations>true</validationAnnotations>
+                                </generate>
+                                <target>
+                                    <packageName>de.lathspell.java_test_jooq.generated</packageName>
+                                    <directory>target/generated-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.postgresql</groupId>
+                                <artifactId>postgresql</artifactId>
+                                <version>9.2-1003-jdbc4</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>5.1.26</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.0</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <!-- Specify the maven code generator plugin -->
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!--
-                    <jdbc>
-                        <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql:java_test_jooq</url>
-                        <user>postgres</user>
-                        <password></password>
-                    </jdbc>
-                    -->
-                    <jdbc>
-                        <driver>com.mysql.jdbc.Driver</driver>
-                        <url>jdbc:mysql://localhost:3306/java_test_jooq</url>
-                        <user>root</user>
-                        <password></password>
-                    </jdbc>
-                    <generator>
-                        <name>org.jooq.util.DefaultGenerator</name>
-                        <database>
-                            <!-- <name>org.jooq.util.postgres.PostgresDatabase</name> -->
-                            <name>org.jooq.util.mysql.MySQLDatabase</name>
-                            <includes>.*</includes>
-                            <excludes></excludes>
-                            <inputSchema>java_test_jooq</inputSchema>
-                            <unsignedTypes>false</unsignedTypes>
-                            <dateAsTimestamp>false</dateAsTimestamp>
-                        </database>
-                        <generate>
-                            <relations>true</relations>
-                            <pojos>true</pojos>
-                            <daos>true</daos>
-                            <deprecated>false</deprecated>
-                            <jpaAnnotations>true</jpaAnnotations>
-                            <validationAnnotations>true</validationAnnotations>
-                        </generate>
-                        <target>
-                            <packageName>de.lathspell.java_test_jooq.generated</packageName>
-                            <directory>target/generated-sources/jooq</directory>
-                        </target>
-                    </generator>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>9.2-1003-jdbc4</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.26</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
+            
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>

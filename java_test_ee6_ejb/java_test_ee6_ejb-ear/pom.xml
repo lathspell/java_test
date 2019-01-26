@@ -20,6 +20,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+        <skipTests>true</skipTests>        
     </properties>
 
     <dependencies>
@@ -27,13 +28,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>java_test_ee6_ejb-appclient</artifactId>
             <version>${project.version}</version>
-            <type>app-client</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>java_test_ee6_ejb-ejb</artifactId>
             <version>${project.version}</version>
-            <type>ejb</type>
         </dependency>
     </dependencies>
 

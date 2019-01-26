@@ -12,21 +12,17 @@
     <version>1</version>
     <packaging>war</packaging>
 
-    <scm>
-        <connection>scm:svn:http://svn.code.sf.net/p/lathspellsphp/code/java_test/java_test_ee7_gfversion</connection>
-        <developerConnection>scm:svn:https://svn.code.sf.net/p/lathspellsphp/code/java_test/java_test_ee7_gfversion</developerConnection>
-        <url>svn+ssh://lathspell@svn.code.sf.net/p/lathspellsphp/code/java_test/java_test_ee7_gfversion</url>
-    </scm>
-
     <name>java_test_ee7_gfversion</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <skipTests>true</skipTests>        
     </properties>
 
     <build>
         <plugins>
+            <!-- worked only with svn or needs new provider for git
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
@@ -44,6 +40,7 @@
                     <doUpdate>true</doUpdate>
                 </configuration>
             </plugin>
+            -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

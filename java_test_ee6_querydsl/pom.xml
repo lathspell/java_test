@@ -19,6 +19,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <querydsl.version>3.2.2</querydsl.version>
+        <skipTests>true</skipTests>        
     </properties>
 
     <build>

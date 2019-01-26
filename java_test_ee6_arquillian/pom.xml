@@ -20,6 +20,7 @@
         <arquillian.version>1.0.2.Final</arquillian.version>
         <arquillan.glassfish.embedded.version>1.0.0.CR3</arquillan.glassfish.embedded.version>
         <glassfish.embedded.all.version>3.1.2.2</glassfish.embedded.all.version>
+        <skipTests>true</skipTests>        
     </properties>
 
     <profiles>
