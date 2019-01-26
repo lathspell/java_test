@@ -1,13 +1,15 @@
 package de.lathspell.java_test_json.csv;
 
 import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Date;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class CsvTest {
 
@@ -32,7 +34,7 @@ public class CsvTest {
         c1.setName("cologne");
         c1.setCountry("de");
         c1.setPopulation(1046680);
-        c1.setSomeDate(DateFormat.getDateTimeInstance().parse("08.04.1923 11:22:33"));
+        c1.setSomeDate(Date.from(LocalDateTime.parse("1923-04-08T11:22:33.00").toInstant(ZoneOffset.of("+01:00"))));
         c1.setIgnoreMe("ignore me");
 
         CsvSchema schema2 = new CsvMapper().schemaFor(City.class).withHeader().withColumnSeparator(';');

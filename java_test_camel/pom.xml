@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <camel.version>2.22.1</camel.version>
+        <camel.version>2.23.1</camel.version>
     </properties>
     
     <dependencies>
@@ -30,13 +30,13 @@
             <!-- Logging -->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.22</version>
+            <version>1.7.25</version>
         </dependency>        
         <dependency>
             <!-- Logging -->
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.9</version>
+            <version>1.2.3</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -44,7 +44,7 @@
             <!-- Fighting the Java syntax cruft -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.12</version>
+            <version>1.18.4</version>
         </dependency>
 
         <dependency>
@@ -63,6 +63,16 @@
             <version>${camel.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.7</version>
+        </dependency>
     </dependencies>
     
 </project>
