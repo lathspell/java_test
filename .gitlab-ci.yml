@@ -6,7 +6,6 @@ variables:
 
 cache:
   paths:
-    - /gitlab-runner-m2/
     - target/
 
 build:
