@@ -35,7 +35,12 @@ public class JavascriptTest {
         js.put("a", 2);
         js.put("b", 3);
         js.eval("x = Math.pow(a, b)");
-        assertEquals(8, (int) js.get("x"), 0);
+        Object actual = js.get("x");
+        if (actual instanceof Double) {
+            assertEquals(8.0, (Double) actual, 0.1);
+        } else {
+            assertEquals(8, (int) actual);
+        }
     }
 
     @Test
@@ -43,8 +48,13 @@ public class JavascriptTest {
         js.eval("function my_pow(x, y) { return Math.pow(x, y); }");
 
         Invocable invocable = (Invocable) js;
-        int actual = (int) invocable.invokeFunction("my_pow", 2, 3);
-        assertEquals(8, actual, 0);
+        Object actual = invocable.invokeFunction("my_pow", 2, 3);
+
+        if (actual instanceof Double) {
+            assertEquals(8.0, (Double) actual, 0.1);
+        } else {
+            assertEquals(8, (int) actual);
+        }
     }
 
 }
