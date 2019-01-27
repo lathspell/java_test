@@ -1,4 +1,4 @@
-image: maven:3-jdk-11
+image: maven:3.6-ibmjava-8
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --settings=/gitlab-runner-m2/settings.xml"
