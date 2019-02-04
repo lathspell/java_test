@@ -6,6 +6,7 @@
   <version>1</version>
   <packaging>pom</packaging>
   <modules>
+    <module>java_test_audio</module>
     <module>java_test_camel</module>
     <module>java_test_config_cfg4j</module>
     <module>java_test_config_deltaspike</module>
@@ -21,15 +22,15 @@
     <module>java_test_ee6_ejb</module>
     <module>java_test_ee6_jpa</module>
     <module>java_test_ee6_jsf_cdiunit</module>
-    <module>java_test_ee6_jsf_selenium</module>
     <module>java_test_ee6_jsf</module>
+    <module>java_test_ee6_jsf_selenium</module>
     <module>java_test_ee6_logging</module>
+    <module>java_test_ee6</module>
     <module>java_test_ee6_nbpfcrud</module>
     <module>java_test_ee6_querydsl</module>
     <module>java_test_ee6_rest</module>
     <module>java_test_ee6_security</module>
     <module>java_test_ee6_stack1</module>
-    <module>java_test_ee6</module>
     <module>java_test_ee7_gfversion</module>
     <module>java_test_ee7_jpa</module>
     <module>java_test_ee7_jsf_standalone</module>
@@ -40,6 +41,7 @@
     <module>java_test_ee7_websockets</module>
     <module>java_test_ee7_wildfly_swarm</module>
     <module>java_test_idn</module>
+    <module>java_test_jacoco</module>
     <module>java_test_jdbc_pools</module>
     <module>java_test_jnlp</module>
     <module>java_test_jooq</module>
@@ -54,21 +56,12 @@
     <module>java_test_multithread_jacoco</module>
     <module>java_test_pattern</module>
     <module>java_test_scripting</module>
-    <module>java_test_se_cdi</module>
     <module>java_test_se8_streams</module>
+    <module>java_test_se_cdi</module>
     <module>java_test_soap</module>
     <module>java_test_spring_aop</module>
-    <module>java_test_spring_config</module>
-    <module>java_test_spring_hibernate</module>
-    <module>java_test_spring_jdbc</module>
-    <module>java_test_spring_rest</module>
-    <module>java_test_spring_security</module>
-    <module>java_test_spring_utils</module>
-    <module>java_test_spring_webmvc_minimal</module>
-    <module>java_test_spring_webmvc_old</module>
-    <module>java_test_spring_webmvc_security</module>
-    <module>java_test_spring_webmvc</module>
     <module>java_test_springboot_apiproblem</module>
+    <module>java_test_springboot_app1</module>
     <module>java_test_springboot_async</module>
     <module>java_test_springboot_cdi</module>
     <module>java_test_springboot_cli</module>
@@ -76,14 +69,22 @@
     <module>java_test_springboot_data_rest</module>
     <module>java_test_springboot_jdbc</module>
     <module>java_test_springboot_jpa</module>
-    <module>java_test_springboot_app1</module>
     <module>java_test_springboot</module>
     <module>java_test_springboot_rest_jaxrs</module>
     <module>java_test_springboot_rest</module>
+    <module>java_test_spring_config</module>
+    <module>java_test_spring_hibernate</module>
+    <module>java_test_spring_jdbc</module>
+    <module>java_test_spring_rest</module>
+    <module>java_test_spring_security</module>
+    <module>java_test_spring_utils</module>
+    <module>java_test_spring_webmvc_minimal</module>
+    <module>java_test_spring_webmvc</module>
+    <module>java_test_spring_webmvc_old</module>
+    <module>java_test_spring_webmvc_security</module>
     <module>java_test_sql</module>
     <module>java_test_tyrus</module>
     <module>java_test_ws_standalone</module>
     <module>java_test_xml</module>
-    <module>java_test_audio</module>
   </modules>
 </project>
