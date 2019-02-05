@@ -14,10 +14,12 @@ import de.lathspell.test.db.PersonRepository;
 import de.lathspell.test.db.TeamRepository;
 import de.lathspell.test.model.Person;
 import de.lathspell.test.model.Team;
+import javax.transaction.Transactional;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = Application.class)
 @Slf4j
+@Transactional
 public class PersonTeamTest {
 
     @Autowired
