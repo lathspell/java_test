@@ -1,9 +1,8 @@
 package de.lathspell.test.springboot.web.rest;
 
-import de.lathspell.test.springboot.model.Greeting;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import de.lathspell.test.springboot.model.Greeting;
 
 /** This is a Spring MVC controller. */
 @RestController
@@ -18,6 +17,11 @@ public class GreetingController {
     @RequestMapping("/hello/{name}")
     public Greeting name(@PathVariable("name") String name) {
         return new Greeting(null, name);
+    }
+
+    @GetMapping(value = "/sqr/{i}")
+    public int sqr(@PathVariable("i") int i) {
+        return i * i;
     }
 
     @RequestMapping(value = "/hello2/{name}")

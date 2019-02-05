@@ -28,3 +28,10 @@ server:
         basedir: tomcat
         accesslog:
             enabled: true
+
+# Damit JAX-RS (Jersey) und Spring WebMVC gemeinsam benutzt werden können.
+# Sonst: "The bean 'requestContextFilter' ... has already been defined"
+# Siehe https://stackoverflow.com/questions/53091306/spring-boot-2-1-0-with-jersey
+spring:
+    main:
+        allow-bean-definition-overriding: true

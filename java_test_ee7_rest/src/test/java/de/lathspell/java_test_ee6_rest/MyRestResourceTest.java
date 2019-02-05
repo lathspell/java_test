@@ -1,17 +1,21 @@
 package de.lathspell.java_test_ee6_rest;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
+
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_HTML;
-import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.Family.SUCCESSFUL;
 import static javax.ws.rs.core.Response.Status.OK;
 
@@ -19,12 +23,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import org.junit.Test;
 
 import de.lathspell.test.webservices.MyRestConfig;
 import de.lathspell.test.webservices.MyRestResource.FullName;
@@ -94,6 +99,10 @@ public class MyRestResourceTest extends JerseyTest {
     public void testListsAndArrays() throws Exception {
         assertEquals("[\"a\",\"b\",\"c\"]", target("/myrest/getArray").request().get(String.class));
         assertEquals("[\"a\",\"b\",\"c\"]", target("/myrest/getList").request().get(String.class));
+        List<String> expected = Arrays.asList("a", "b", "c");
+        List<String> actual = target("/myrest/getList").request().get(new GenericType<List<String>>() {
+        });
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -164,7 +173,7 @@ public class MyRestResourceTest extends JerseyTest {
     @Test(expected = Exception.class)
     public void testCheckNameException() {
         assertEquals("true", target("/myrest/checkName").request().post(Entity.json("name=John"), String.class));
-        
+
         fail("Huh?");
     }
 }

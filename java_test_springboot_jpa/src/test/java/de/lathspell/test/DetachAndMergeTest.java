@@ -168,4 +168,33 @@ public class DetachAndMergeTest {
         assertEquals(1, annRepo.count());
         assertEquals("111000", annRepo.findAll().get(0).getWav());
     }
+
+    /** Merging an object that was never detached. */
+    @Test
+    public void test3() {
+        // Prepare data
+        annRepo.deleteAll();
+        Announcement origAnn = new Announcement(null, "First", "10100101");
+        annRepo.save(origAnn);
+
+        // Load object
+        EntityManager em = emf.createEntityManager();
+        Announcement ann = em.createQuery("SELECT a FROM Announcement a WHERE a.title = :title", Announcement.class)
+                .setParameter("title", "First")
+                .getSingleResult();
+        assertNotNull(ann.getId());
+        assertEquals("First", ann.getTitle());
+        assertEquals("10100101", ann.getWav());
+
+        // Modify objet
+        ann.setWav("000111");
+
+        // Persist it using merge(!)
+        ann = em.merge(ann);
+        em.flush();
+        em.refresh(ann);
+
+        // Check
+        assertEquals("000111", annRepo.findById(origAnn.getId()));
+    }
 }
