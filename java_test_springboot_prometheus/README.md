@@ -17,11 +17,16 @@ configuration.
 Springboot Prometheus endpoint
 ------------------------------
 
+SpringBoot2 uses MicroMeter as facade to various metric exporter format.
+It's supposed to be something like SLF4J for logging implementations like Logback or log4j.
+
 Enable `management.endpoints.web.exposure.include: prometheus` in application.yml.
 
 Then add the following Maven depenedencies:
     org.springframework.boot:spring-boot-starter-actuator
     io.micrometer:micrometer-registry-prometheus
+    
+Add a new Gauge, Counter etc. to the MeterRegistry as it's done in the constructor of Thermometer.
 
 View
 ----
@@ -29,6 +34,9 @@ View
 Finally start de.lathspell.test.springboot.Main and go to 
 * `http://localhost:8080/`                      - Static index.html with links
 * `http://localhost:8080/actuator/prometheus`   - Prometheus compatible metrics export
+* `http://localhost:9090`                         Prometheus web interface
+* `http://localhost:9090/graph?g0.range_input=1m&g0.expr=Temperature_C&g0.tab=0` - Prometheus graph for "Temperature"
+* `http://localhost:3000/d/2cyXtdumk/weather-control?panelId=2&fullscreen&edit&orgId=1&tab=metrics` final result 
 
 Caveats:
 ========
