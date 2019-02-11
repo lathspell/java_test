@@ -12,6 +12,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
+        <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <parent>
@@ -46,28 +47,32 @@
             <!-- Util: Getting rid of all the boilerplate code! -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.4</version>
         </dependency>
-
+        
         <dependency>
             <!-- Spring Boot: Automatic reload after changes in the IDE -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
         <dependency>
+            <!-- Spring Boot: JUnit integration -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>        
+        <dependency>
             <!-- Spring Boot: Embedded Tomcat and REST servlet -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
         <dependency>
-            <!-- Spring Boot: Actuator for metrics -->
+            <!-- Metrics: Spring Boot Actuator using MicroMeter -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <!-- Metrics -->
+            <!-- Metrics: MicroMeter adapter for Prometheus -->
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>

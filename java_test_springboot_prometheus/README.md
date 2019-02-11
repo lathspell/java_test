@@ -44,6 +44,8 @@ Caveats:
 * The Grafana datasource URL must be `http://prometheus:9090` not
   `http://localhost:9090` or else `docker-proxy` won't find it.
 
+* In Java don't mix up `Counter` from the `io.micrometer` and `io.prometheus` packages.
+
 Links
 =====
 
