@@ -2,14 +2,43 @@ version: '3.1'
 
 services:
 
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - frontend
+
+  loki:
+    container_name: loki
+    image: grafana/loki:master
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - backend
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:master
+    volumes:
+      - ./spring.log:/var/log/spring.log:ro
+    command: -config.file=/etc/promtail/docker-config.yaml
+    networks:
+      - backend
+
   grafana:
     container_name: grafana
-    image: grafana/grafana:latest
+    image: grafana/grafana:master
     depends_on:
       - prometheus
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana-prov/:/etc/grafana/provisioning/
+      - grafana_data:/var/lib/grafana/
+      - grafana_config:/etc/grafana/
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_USERS_ALLOW_SIGN_UP=false
@@ -56,6 +85,8 @@ services:
 volumes:
   prometheus_data:
   grafana_data:
+  grafana_config:
+  portainer_data:
 
 networks:
   frontend:
