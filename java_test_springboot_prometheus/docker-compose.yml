@@ -3,6 +3,7 @@ version: '3.1'
 services:
 
   grafana:
+    container_name: grafana
     image: grafana/grafana:latest
     depends_on:
       - prometheus
@@ -19,6 +20,7 @@ services:
       - 3000:3000
 
   prometheus:
+    container_name: prometheus
     image: prom/prometheus:latest
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -35,6 +37,7 @@ services:
       - 9090:9090
 
   node-exporter:
+    container_name: node-exporter
     image: prom/node-exporter:latest
     volumes:
       - /proc:/host/proc:ro
