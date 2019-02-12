@@ -17,15 +17,16 @@ public class Weather {
     @Autowired
     private Thermometer thermometer;
 
-    @Scheduled(fixedRate = 100 /* [ms] */)
+    @Scheduled(fixedRate = 500 /* [ms] */)
     public void changeWeather() {
         int temp = new Random().nextInt(40);
-        log.debug("WeatherMaker ist adjusting temperature to " + temp);
+        log.debug("WeatherMaker is adjusting temperature to " + temp);
         thermometer.setGardenTemp(temp); // will be read by Gauge
 
         thermometer.getWeatherChanges().increment();
 
         if ((temp % 3) == 0) {
+            log.debug("WeatherMaker thunders");
             thermometer.getThunders().increment();
         }
     }
