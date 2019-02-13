@@ -1,6 +1,7 @@
 #!/bin/sh
 
+set -x
 mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list
 
-mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list-phases
+mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list-phase
 
