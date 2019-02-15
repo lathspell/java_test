@@ -33,7 +33,7 @@
             
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M3</version>
                 <configuration>
                     <forkCount>0</forkCount>
                 </configuration>

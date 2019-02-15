@@ -1,0 +1,15 @@
+#!/bin/bash -ue
+
+if [ "$#" -eq 1 ]; then
+  groupId="org.apache.maven.plugins"
+  artifactId=$1
+elif [ "$#" -eq 2 ]; then
+  groupId=$1
+  artifactId=$2
+else
+  echo "Usage: $0 [<groupId>] <artefactId>"
+  exit 1
+fi
+
+set -x
+mvn help:describe -Dplugin=$groupId:$artifactId -Ddetail=true
