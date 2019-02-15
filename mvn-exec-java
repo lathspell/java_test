@@ -1,0 +1,8 @@
+#!/bin/bash
+
+class="$1"
+shift 1
+args="$*"
+
+set -x
+mvn exec:java -Dexec.mainClass="$class" -Dexec.args="$args"
