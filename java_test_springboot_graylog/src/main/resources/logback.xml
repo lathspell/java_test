@@ -4,25 +4,19 @@
     xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
     debug="false" scan="true" scanPeriod="15 seconds">
 
-    <appender name="GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
         <graylogHost>localhost</graylogHost>
         <graylogPort>12201</graylogPort>
-
-        <connectTimeout>15000</connectTimeout>
-        <reconnectInterval>300</reconnectInterval>
-        <maxRetries>2</maxRetries>
-        <retryDelay>3000</retryDelay>
-        <poolSize>2</poolSize>
-        <poolMaxWaitTime>5000</poolMaxWaitTime>
-
+        <useCompression>true</useCompression>
+    
         <encoder class="de.siegmar.logbackgelf.GelfEncoder">
             <originHost>localhost</originHost>
             <includeRawMessage>false</includeRawMessage>
             <includeMarker>true</includeMarker>
             <includeMdcData>true</includeMdcData>
-            <includeCallerData>false</includeCallerData>
+            <includeCallerData>true</includeCallerData>
             <includeRootCauseData>false</includeRootCauseData>
-            <includeLevelName>false</includeLevelName>
+            <includeLevelName>true</includeLevelName>
             <shortPatternLayout class="ch.qos.logback.classic.PatternLayout">
                 <pattern>%m%nopex</pattern>
             </shortPatternLayout>
@@ -38,7 +32,7 @@
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) [%-20thread] %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
         </encoder>
     </appender>
 

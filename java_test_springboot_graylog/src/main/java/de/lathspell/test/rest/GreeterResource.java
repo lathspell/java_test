@@ -10,6 +10,7 @@ public class GreeterResource {
 
     @GetMapping("/hello")
     public String getHello() {
+        log.info("getHello() called");
         return "Hello World!";
     }
     
