@@ -2,17 +2,6 @@ version: '3.1'
 
 services:
 
-  portainer:
-    container_name: portainer
-    image: portainer/portainer
-    ports:
-      - "9000:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    networks:
-      - frontend
-
   loki:
     container_name: loki
     image: grafana/loki:master
@@ -86,7 +75,6 @@ volumes:
   prometheus_data:
   grafana_data:
   grafana_config:
-  portainer_data:
 
 networks:
   frontend:
