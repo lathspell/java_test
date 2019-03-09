@@ -30,7 +30,7 @@ services:
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     container_name: graylog
-    image: graylog/graylog:3.0.0-1
+    image: graylog/graylog:3.0
     environment:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
@@ -54,12 +54,23 @@ services:
       # GELF UDP
       - 12201:12201/udp
 
+  foo:
+    container_name: foo
+    image: foo:latest
+    depends_on:
+      - graylog
+    volumes:
+      # Just if plain old log files are wanted
+      - ./logs:/srv/foo/logs
+    ports:
+      - 127.0.0.1:8080:8080
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://localhost:12201
+
 volumes:
   mongo_data:
-    driver: local
   es_data:
-    driver: local
   graylog_config:
-    driver: local
   graylog_journal:
-    driver: local

@@ -65,7 +65,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        
+
+        <dependency>
+            <!-- Logging: JSON encoder -->
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
+        </dependency>
+
         <dependency>
             <!-- Logging: Graylog appender -->
             <groupId>de.siegmar</groupId>

@@ -1,3 +1,5 @@
-tomcat
-spring.log*
+# Maven
 target
+
+# Would be bind-mounted in Docker
+logs/

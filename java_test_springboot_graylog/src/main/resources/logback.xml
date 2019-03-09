@@ -4,7 +4,22 @@
     xsi:noNamespaceSchemaLocation="https://raw.github.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
     debug="false" scan="true" scanPeriod="15 seconds">
 
-    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
+    <appender name="STDOUT_LOGSTASH" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- <customFields>{"application":"java_test_springboot_graylog"}</customFields> -->
+        </encoder>
+    </appender>
+    
+    <appender name="STDOUT_STRING" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) [%-20thread] %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Probably the fastest one but in container world it's considered better
+    practise to just output structured logging to stdout and let the container
+    decide where to store it. -->
+    <appender name="GELF_UDP" class="de.siegmar.logbackgelf.GelfUdpAppender">
         <graylogHost>localhost</graylogHost>
         <graylogPort>12201</graylogPort>
         <useCompression>true</useCompression>
@@ -30,15 +45,27 @@
         </encoder>
     </appender>
 
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/debug.log</file>
         <encoder>
-            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) [%-20thread] %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+            <pattern>%date %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_FILE" class="ch.qos.logback.core.FileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>logs/info.log</file>
+        <encoder>
+            <pattern>%yellow(%14date{HH:mm:ss.SSS}) %highlight(%-5level) %-70logger{70} - %cyan(%method): %highlight(%msg) [%white(%file:%line)]%n%xException{full}</pattern>
         </encoder>
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="GELF" />
+        <appender-ref ref="STDOUT_LOGSTASH" />
+        <appender-ref ref="DEBUG_FILE" />
+        <appender-ref ref="INFO_FILE" />
     </root>
     
     <!-- Levels are configured in application.yml or here -->
