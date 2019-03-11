@@ -1,7 +1,16 @@
 Spring Boot with Graylog
 ========================
 
-This demo shows a REST server that exports Logfiles to Graylog.
+This demo shows a REST server that
+- provides Swagger/OpenAPI docs
+- provides Swagger/OpenAPI browser
+- Builds a Docker image
+- Uses this image for integration tests
+- writes structured, JSON encoded, logs to stdout
+- has Docker ship them, GELF encoded, to Graylog
+  (temporary does it himself via logback, see https://stackoverflow.com/questions/55079751/)
+- provides Metrics that are read by Prometheus
+- has a SSL/auth frontend proxy
 
 Setup
 =====
@@ -20,20 +29,23 @@ Start with "mvn spring-boot:run" and go to
 * `http://localhost:8080/hello`         - REST Resource that also emits logging
 * `http://localhost:9000`               - Graylog (admin/admin)
 
-Caveats:
---------
+Graylog
+=======
+
+Caveats
+-------
 
 * Graylog GELF TCP does not support compression. Use GELF UDP!
 
-Usage:
-======
+Usage
+-----
 
 * Graylog "Extractors" can be used to e.g. extract the temperature as numeric
   value from all Strings matching /^Temperature: (\d+)$/ and store them as
   distinct values.
 
 CLI Viewer
-==========
+----------
 
 There is one Python script that attempts to provide some "tail -f" style logging.
 It is a bit unfinished/buggy though:
@@ -61,4 +73,4 @@ Download at https://github.com/globocom/glog-cli
 Links
 =====
 
-
+* TODO: https://github.com/fabric8io/docker-maven-plugin/issues/717

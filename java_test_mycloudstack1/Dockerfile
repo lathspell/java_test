@@ -1,5 +1,8 @@
 FROM openjdk:8-jre-alpine
 
-COPY target/java_test_springboot_graylog-1.0-SNAPSHOT.jar    /srv/foo/foo.jar
+ARG JAR_FILE
+COPY target/${JAR_FILE}   /srv/foo/foo.jar
+COPY target/dependency    /srv/foo/lib
 
-CMD ["java", "-jar", "/srv/foo/foo.jar"]
+CMD ["/usr/bin/java", "-cp", "/srv/foo/lib/*:/srv/foo/foo.jar", "de.lathspell.test.Application"]
+EXPOSE 8080

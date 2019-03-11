@@ -62,6 +62,8 @@ services:
     volumes:
       # Just if plain old log files are wanted
       - ./logs:/srv/foo/logs
+    environment:
+      GRAYLOG_HOST: "graylog"
     ports:
       - 127.0.0.1:8080:8080
     logging:
