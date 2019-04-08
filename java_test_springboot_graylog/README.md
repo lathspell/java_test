@@ -6,11 +6,9 @@ This demo shows a REST server that exports Logfiles to Graylog.
 Setup
 =====
 
-Docker Compose
---------------
-
-Run `docker-compose up`. The necessary config is in `docker-compose.yml`.
-Some daemon configuration is in this directory as well.
+ mvn clean package                  # build target/*.jar from `pom.xml`
+ docker build . -t foo:latest       # build container from base image and our *.jar from `Dockerfile`
+ docker-compose up                  # start environment and our image from `docker-compose.yml`
 
 View
 ----
@@ -57,8 +55,3 @@ Configuration format:
     format={timestamp} {level} {app_name}@{source} [{window:>10}] {logger_name}: {message}
 
 Download at https://github.com/globocom/glog-cli
-
-Links
-=====
-
-

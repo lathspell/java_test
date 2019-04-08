@@ -12,7 +12,7 @@ services:
   # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/5.6/docker.html
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.4
+    image: elasticsearch:6.7.0
     environment:
       - http.host=0.0.0.0
       - transport.host=localhost
@@ -30,13 +30,20 @@ services:
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     container_name: graylog
-    image: graylog/graylog:3.0
+    image: graylog/graylog:3.0.1-1
     environment:
-      # CHANGE ME (must be at least 16 characters)!
-      - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
-      # Password: admin
+      # See https://github.com/Graylog2/graylog2-server/blob/3.0/misc/graylog.conf
+      # Secret that is used for internal password encryption (must be at least 16 characters)!
+      - GRAYLOG_PASSWORD_SECRET=EXvQtJrP4bRugtaCZ37XVkSyYUCf2zJrks4OG3LNHg77cSdo0DjYJ2IThsG9Hf0ASx16UOpFfFC1l1zzMp3HvYeOPLpEFM3E
+      # Password for initial login via sha256sum: "admin"
       - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-      - GRAYLOG_WEB_ENDPOINT_URI=http://127.0.0.1:9000/api
+      # The HTTP_BIND_ADDRESS defaults to 127.0.0.1:9000 and changing it does not make much sense as there are
+      # no other IPs in our container anyway. When accessing the GUI from other hosts, the HTML frontend has to
+      # know the external name of the host where docker is running to create proper HTML links.
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+      # GRAYLOG_HTTP_ENABLE_TLS=true
+      # GRAYLOG_HTTP_TLS_CERT_FILE=...
+      # GRAYLOG_HTTP_TLS_KEY_FILE=...
       # For debugging
       - GRAYLOG_WEB_ENABLE_GZIP=false
     depends_on:
@@ -44,15 +51,14 @@ services:
       - elasticsearch
     volumes:
       # Mount local configuration directory into Docker container
-      - graylog_config:/usr/share/graylog/data/config
-      - graylog_journal:/usr/share/graylog/data/journal
+      - graylog_data:/usr/share/graylog/data
     ports:
       # Graylog web interface and REST API
-      - 9000:9000
+      - 127.0.0.1:9000:9000
       # Syslog UDP
-      - 514:514/udp
+      - 127.0.0.1:514:514/udp
       # GELF UDP
-      - 12201:12201/udp
+      - 127.0.0.1:12201:12201/udp
 
   foo:
     container_name: foo
@@ -72,5 +78,4 @@ services:
 volumes:
   mongo_data:
   es_data:
-  graylog_config:
-  graylog_journal:
+  graylog_data:
