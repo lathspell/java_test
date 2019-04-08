@@ -57,8 +57,8 @@ services:
       - 127.0.0.1:9000:9000
       # Syslog UDP
       - 127.0.0.1:514:514/udp
-      # GELF UDP
-      - 127.0.0.1:12201:12201/udp
+      # GELF UDP (carefull as 127.0.0.1:12201:12201 does not accept IPv6 packets to ::1)
+      - 12201:12201/udp
 
   foo:
     container_name: foo
@@ -73,7 +73,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: udp://localhost:12201
+        gelf-address: udp://127.0.0.1:12201
 
 volumes:
   mongo_data:

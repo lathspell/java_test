@@ -20,9 +20,9 @@
     practise to just output structured logging to stdout and let the container
     decide where to store it. -->
     <appender name="GELF_UDP" class="de.siegmar.logbackgelf.GelfUdpAppender">
-        <graylogHost>localhost</graylogHost>
+        <graylogHost>127.0.0.1</graylogHost>
         <graylogPort>12201</graylogPort>
-        <useCompression>true</useCompression>
+        <useCompression>false</useCompression>
     
         <encoder class="de.siegmar.logbackgelf.GelfEncoder">
             <originHost>localhost</originHost>
