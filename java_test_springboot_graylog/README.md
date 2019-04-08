@@ -6,6 +6,15 @@ This demo shows a REST server that exports Logfiles to Graylog.
 Setup
 =====
 
+Gradle
+------
+
+ ./gradlew clean dockerBuildImage   # Build jar and create Docker image from it
+ docker-compose up                  # start environment and our image from `docker-compose.yml`
+
+Maven
+-----
+
  mvn clean package                  # build target/*.jar from `pom.xml`
  docker build . -t foo:latest       # build container from base image and our *.jar from `Dockerfile`
  docker-compose up                  # start environment and our image from `docker-compose.yml`
@@ -18,17 +27,18 @@ Start with "mvn spring-boot:run" and go to
 * `http://localhost:8080/hello`         - REST Resource that also emits logging
 * `http://localhost:9000`               - Graylog (admin/admin)
 
-Caveats:
---------
-
-* Graylog GELF TCP does not support compression. Use GELF UDP!
-
 Usage:
 ======
 
 * Graylog "Extractors" can be used to e.g. extract the temperature as numeric
   value from all Strings matching /^Temperature: (\d+)$/ and store them as
   distinct values.
+
+Caveats:
+--------
+
+* Graylog GELF TCP does not support compression. Use GELF UDP!
+
 
 CLI Viewer
 ==========

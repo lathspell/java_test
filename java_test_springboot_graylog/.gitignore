@@ -1,5 +1,5 @@
-# Maven
-target
+# Ignore Gradle project-specific cache directory
+.gradle
 
-# Would be bind-mounted in Docker
-logs/
+# Ignore Gradle build output directory
+build
