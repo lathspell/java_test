@@ -1,6 +1,7 @@
 package app1.frontend.web;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import app1.db.BlogRepo;
@@ -23,7 +24,7 @@ public class BlogController {
         log.info("/blog/ -> index()");
         List<BlogEntry> entries = blogRepo.findAll();
 
-        model.addAttribute("date", LocalDate.now());
+        model.addAttribute("date", LocalDateTime.now());
         model.addAttribute("entries", entries);
         log.info("model: " + model);
         return "blog/index";
