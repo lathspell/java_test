@@ -1,6 +1,7 @@
 package app1;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
@@ -22,10 +23,10 @@ public class DbLoad {
 
     @PostConstruct
     public void postConstruct() {
-        BlogTag tag = new BlogTag(null, "news");
-        blogTagRepo.save(tag);
+        BlogTag newsTag = new BlogTag(null, "news");
+        blogTagRepo.save(newsTag);
 
-        BlogEntry entry = new BlogEntry(null, "First Entry", "Hello World", "news", LocalDateTime.now());
+        BlogEntry entry = new BlogEntry(null, "First Entry", "Hello World", Arrays.asList(newsTag), LocalDateTime.now());
         blogRepo.save(entry);
     }
 }

@@ -2,12 +2,9 @@ package app1.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -35,9 +32,12 @@ public class BlogEntry implements Serializable {
     @NotNull
     private String content;
 
-    @OneToMany(targetEntity = BlogTag.class)
+    @ManyToMany(cascade = {})
+    @JoinTable(name = "entry_to_tag",
+            joinColumns = @JoinColumn(name = "entry_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @NotNull
-    private String tag;
+    private List<BlogTag> tags;
 
     @NotNull
     private LocalDateTime created;

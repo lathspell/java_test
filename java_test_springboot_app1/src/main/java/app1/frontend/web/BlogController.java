@@ -20,6 +20,7 @@ public class BlogController {
 
     @RequestMapping("/blog/")
     public String index(Model model) {
+        log.info("/blog/ -> index()");
         List<BlogEntry> entries = blogRepo.findAll();
 
         model.addAttribute("date", LocalDate.now());
