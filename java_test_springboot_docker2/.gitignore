@@ -1,0 +1,13 @@
+# Spring
+tomcat
+spring.log*
+
+# Maven
+target
+
+# Gradle
+/build
+/.gradle
+
+# IntelliJ
+*.iml

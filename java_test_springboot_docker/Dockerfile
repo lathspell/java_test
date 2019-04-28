@@ -1,4 +1,4 @@
-FROM alpine-java:base
+FROM openjdk:8-jdk-alpine
 MAINTAINER cb@lathspell.de
 COPY target/java_test_springboot_docker-1.0-SNAPSHOT.jar    /srv/foo/
 VOLUME /var/log/foo/

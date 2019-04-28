@@ -1,15 +1,11 @@
-Spring Boot demonstration
-=========================
+SpringBoot with TestContainer and Docker demonstration
+======================================================
 
 This demo shows a REST server that runs in a Docker container.
 
-The docker image is build using "docker build", not by a Maven plugin.
-See `java_test_springboot_docker2` for a different approach.
-
-The application is called "foo", runs from a jar file and
-is configured to write a logfile to /var/log/foo/.
-It listens on port 8080 for HTTP requests.
-
+It features an integration test that uses the "Testcontainer" framework
+to start a docker container with the image that was created by Gradle.
+This temporary container is then queried using a Spring TestRestTemplate.
 
 Further Reading
 ===============
@@ -37,6 +33,11 @@ inside a Docker container. That way build slaves could be kept stupid Docker hos
 and would not need to have the right JDK or Maven version!
 See https://codefresh.io/howtos/using-docker-maven-maven-docker/
 
+Gradle Plugins
+==============
+
+* https://bmuschko.github.io/gradle-docker-plugin for ":dockerBuildImage"
+    id("com.bmuschko.docker-spring-boot-application") version "4.8.0"
 
 Build and Run
 =============
@@ -71,8 +72,8 @@ with "-v" at "docker run".
 
 Also read https://docs.docker.com/config/containers/logging/
 
-Docker image for the application
---------------------------------
+Docker image for the application with Maven
+-------------------------------------------
 
 Build the jar file. The springboot-maven-plugin creates a fat jar with
 all dependencies.
@@ -83,6 +84,12 @@ Build the Docker image from the previously created image that combined Alpine
 Linux and Java and the just created jar file.
 
     docker build --tag=foo:latest --rm=true .
+
+Docker image for the application with Gradle
+--------------------------------------------
+
+    ./gradlew dockerBuildImage
+    ./gradlew test
 
 Run
 ---
@@ -104,5 +111,4 @@ while still keeping it running (same as with later "docker attach foo").
 Test
 ----
 
-    curl http://localhost:8320/rest/mvc/
-
+    curl http://localhost:8080/rest/greeting
