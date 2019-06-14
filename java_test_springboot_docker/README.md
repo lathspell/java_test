@@ -3,6 +3,9 @@ Spring Boot demonstration
 
 This demo shows a REST server that runs in a Docker container.
 
+The docker image is build using "docker build", not by a Maven plugin.
+See `java_test_springboot_docker2` for a different approach.
+
 The application is called "foo", runs from a jar file and
 is configured to write a logfile to /var/log/foo/.
 It listens on port 8080 for HTTP requests.
@@ -38,8 +41,10 @@ See https://codefresh.io/howtos/using-docker-maven-maven-docker/
 Build and Run
 =============
 
-Initial base image
-------------------
+Initial base image (optional)
+-----------------------------
+
+Usually the openjdk:8-jdk-alpine image is just fine but we can build our own:
 
 Create docker image with Linux and Java runtime. This has to be done only
 once or whenever an update of Alpine linux or the JRE is necessary.
@@ -49,11 +54,11 @@ Dockerfile and as base path for COPY.
 
 The `--rm=true` just removes intermediate images.
 
-    docker build -f Dockerfile.alpine-java --tag=alpine-java:base --rm=true .
+    docker build -f Dockerfile.alpine-java --tag=lathspell/alpine-java:latest --rm=true .
 
 
-Docker volume for logging
--------------------------
+Docker volume for log files
+---------------------------
 
 One way to make logfiles available outside the Docker image is to create
 so called "volumes" which are just directories that are mapped (bind mounted)
@@ -66,8 +71,8 @@ with "-v" at "docker run".
 
 Also read https://docs.docker.com/config/containers/logging/
 
-Application docker image
-------------------------
+Docker image for the application
+--------------------------------
 
 Build the jar file. The springboot-maven-plugin creates a fat jar with
 all dependencies.
