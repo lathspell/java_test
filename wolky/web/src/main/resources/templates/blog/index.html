@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Wolky Blog</title>
+    </head>
+    <body>
+        <h1>Wolky Blog</h1>
+
+        <table id="entries">
+            <tr th:each="entry : ${entries}">
+                <td th:text="${entry.title}"></td>
+                <td th:text="${entry.created}"></td>
+                <td th:text="${entry.content}"></td>
+            </tr>
+        </table>
+
+        <div id="footer">
+            <ul>
+                <li>Time: <span th:text="${date}"/></li>
+            </ul>
+        </div>
+    </body>
+</html>
