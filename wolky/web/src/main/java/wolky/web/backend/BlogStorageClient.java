@@ -1,6 +1,5 @@
 package wolky.web.backend;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,19 +16,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @Slf4j
 public class BlogStorageClient {
 
-    @Value("${storage.baseUrl}")
-    private String storageBaseUrl;
+    private final WebClient webClient;
 
-    private WebClient webClient;
-
-    @PostConstruct
-    public void postConstruct() {
+    public BlogStorageClient(@Value("${storage.baseUrl}") String storageBaseUrl) {
         webClient = WebClient.create(storageBaseUrl);
         log.info("Created WebClient for {}", storageBaseUrl);
     }
 
     public List<BlogEntry> findAll() {
-        return webClient.get().uri(uriBuilder -> uriBuilder.path("/entries/").build()).accept(APPLICATION_JSON)
-                .retrieve().bodyToMono(new ParameterizedTypeReference<List<BlogEntry>>() {}).block();
+        log.info("Fetching all entries...");
+        List<BlogEntry> list = webClient.get().uri(uriBuilder -> uriBuilder.path("/blog/entries/").build()).accept(APPLICATION_JSON)
+                .retrieve().bodyToMono(new ParameterizedTypeReference<List<BlogEntry>>() {
+                }).block();
+        log.info("Found {} entries", list.size());
+        return list;
     }
 }

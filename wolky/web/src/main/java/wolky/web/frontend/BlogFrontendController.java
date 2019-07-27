@@ -1,4 +1,4 @@
-package wolky.storage.web.frontend;
+package wolky.web.frontend;
 
 import java.time.LocalDateTime;
 import java.util.List;

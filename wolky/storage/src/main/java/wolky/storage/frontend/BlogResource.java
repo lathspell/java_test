@@ -17,6 +17,11 @@ public class BlogResource {
     @Autowired
     private BlogRepo repo;
 
+    @GetMapping(path = "/rest/ping", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String ping() {
+        return "pong";
+    }
+
     @GetMapping(path = "/rest/blog/entries", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BlogEntry> getAllEntries() {
         return repo.findAll();

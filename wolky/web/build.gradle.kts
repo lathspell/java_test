@@ -3,9 +3,8 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     java
 
-    id("org.springframework.boot") version "2.1.4.RELEASE"              // https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
-    id("com.gorylenko.gradle-git-properties") version "2.0.0"           // https://github.com/n0mer/gradle-git-properties
-    id("com.bmuschko.docker-spring-boot-application") version "4.8.0"   // https://bmuschko.github.io/gradle-docker-plugin for ":dockerBuildImage"
+    id("org.springframework.boot") version "2.1.6.RELEASE"              // https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
+    id("com.bmuschko.docker-spring-boot-application") version "4.10.0"   // https://bmuschko.github.io/gradle-docker-plugin for ":dockerBuildImage"
 
     id("com.github.ben-manes.versions") version "0.21.0"                // https://github.com/ben-manes/gradle-versions-plugin for ":dependencyUpdates"
 }
@@ -30,12 +29,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     compileOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-    // Database
-    implementation("com.h2database:h2:1.4.199")
-
-    // Tracing
-    implementation("io.opentracing.contrib:opentracing-spring-jaeger-web-starter:1.0.3")
 }
 
 java {
@@ -51,7 +44,7 @@ tasks.test {
 
 docker {
     springBootApplication {
-        baseImage.set("openjdk:11-jdk-alpine")
-        tag.set("de.lathspell.test/web:latest")
+        baseImage.set("adoptopenjdk/openjdk11-openj9:alpine")
+        tag.set("de.lathspell.wolky/web:latest")
     }
 }
