@@ -1,0 +1,47 @@
+= AsciiDoc example =
+
+:author: Christian Brunotte
+:description: AsciiDoc example document
+:keywords: AsciiDoc
+:sourcedir: ../java
+
+:toc:
+
+== PlantUML support ==
+
+[plantuml,auth-protocol]
+....
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+....
+
+== Enumeration ==
+
+* first
+* second
+* third
+
+== Formatting ==
+
+This is *bold*, _cursive_ and `mono`.
+
+== Inline Code ==
+
+[source, c]
+--------------------------------------
+#include <stdio.h>
+
+int main() {
+   printf("Hello World!\n");
+   exit(0);
+}
+--------------------------------------
+
+== Included Java Code ==
+
+[source, java]
+include::{sourcedir}/Main.java[]
+
