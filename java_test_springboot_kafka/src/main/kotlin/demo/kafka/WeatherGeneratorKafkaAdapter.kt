@@ -18,7 +18,7 @@ class WeatherGeneratorKafkaAdapter(private val kafkaTemplate: KafkaTemplate<Stri
 
     fun updateCity(city: String, temp: Int) {
         log.info("updateCity($city, $temp)")
-        kafkaTemplate.send(topic, city, temp.toString()).get(3, SECONDS)
+        kafkaTemplate.send(topic, city, temp.toString())
     }
 
 }

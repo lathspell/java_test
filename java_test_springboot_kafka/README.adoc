@@ -2,21 +2,7 @@
 
 == Setup ==
 
-    docker-compose up
-
-Folgende URLs sind nun verfügbar:
-
-* http://localhost:2181/ - *Zookeeper*
-* http://localhost:3888/ - Zookeeper
-
-* http://localhost:8001/ - *Kafka Schema Registry*
-* http://localhost:8002/ - *Kafka Topics UI*
-* http://localhost:8003/ - *Kafka Schema Registry UI*
-
-* http://localhost:8081/ - Kafka Schema Registry
-* http://localhost:8082/ - Kafka REST Proxy
-
-* http://localhost:9092/ - *Kafka Server*
+See project `kafka_test`
 
 == Tests starten ==
 

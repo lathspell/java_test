@@ -21,15 +21,15 @@ class WeatherIntegrationTests {
 
     @Test
     fun `update weather for city`() {
+        val expected = mapOf("cologne" to "27", "berlin" to "34")
 
         mockMvc.perform(put("/api/city/cologne/temp/43")).andExpect(status().isOk)
         mockMvc.perform(put("/api/city/berlin/temp/34")).andExpect(status().isOk)
         mockMvc.perform(put("/api/city/cologne/temp/27")).andExpect(status().isOk)
 
-        val resultJson = mockMvc.perform(get("/api/cities")).andExpect(status().isOk).andReturn().response.contentAsString
-        val actual: Map<String, String> = ObjectMapper().readValue(resultJson)
+        val mvcResult = mockMvc.perform(get("/api/cities")).andExpect(status().isOk).andReturn()
+        val actual: Map<String, String> = ObjectMapper().readValue(mvcResult.response.contentAsString)
 
-        val expected = mapOf("cologne" to "27", "berlin" to "34")
         assertEquals(expected, actual)
     }
 
