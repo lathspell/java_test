@@ -1,0 +1,12 @@
+# SpringBoot 2
+
+* benutzt im RestTemplate java.net, nicht mehr Apache HTTP Client!
+
+# SpringBoot 1
+
+* benutzt im RestTemplate noch Apache HTTP Client!
+
+# java.net HTTP Client
+
+    -Djavax.net.debug=ssl,handshake
+
