@@ -15,7 +15,7 @@ class KafkaConfig {
     fun weatherTopic(): NewTopic
     {
         log.info("Creating new topic 'weather'")
-        return NewTopic("weather", 1, 1)
+        return NewTopic("weather", 3, 1)
     }
 
 }

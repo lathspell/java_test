@@ -11,7 +11,7 @@ class WeatherReportKafkaAdapter(private val weatherService: WeatherService) {
 
     private val log = LoggerFactory.getLogger(WeatherReportKafkaAdapter::class.java)
 
-    @KafkaListener(topics = ["weather"])
+    @KafkaListener(topics = ["weather"], groupId = "java_test_springboot_kafka")
     fun processMessage(record: ConsumerRecord<String, String>) {
         log.info("Got $record")
 
