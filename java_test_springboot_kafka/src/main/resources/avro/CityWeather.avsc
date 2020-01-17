@@ -1,0 +1,16 @@
+{
+  "namespace": "de.lathspell.java_test_springboot_kafka",
+  "type": "record",
+  "name": "CityWeather",
+  "fields": [
+    {
+      "name": "city",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "temperature",
+      "type": "int"
+    }
+  ]
+}
