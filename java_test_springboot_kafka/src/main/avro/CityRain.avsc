@@ -1,0 +1,9 @@
+{
+  "namespace": "demo.kafka.generated",
+  "type": "record",
+  "name": "CityRain",
+  "fields": [
+    { "name": "city", "type": "string" },
+    { "name": "rain", "type": "int" }
+  ]
+}

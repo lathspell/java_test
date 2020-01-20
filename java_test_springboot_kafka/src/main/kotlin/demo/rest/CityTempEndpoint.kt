@@ -1,7 +1,6 @@
 package demo.rest
 
-import demo.kafka.WeatherGeneratorKafkaAdapter
-import demo.service.WeatherService
+import demo.service.CityTempService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -9,19 +8,17 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class WeatherEndpoint(private val kafkaAdapter: WeatherGeneratorKafkaAdapter, private val weatherService: WeatherService) {
+class CityTempEndpoint(private val cityTempService: CityTempService) {
 
-    private val log = LoggerFactory.getLogger(WeatherEndpoint::class.java)
+    private val log = LoggerFactory.getLogger(CityTempEndpoint::class.java)
 
     @PutMapping("/api/city/{city}/temp/{temp}")
     fun updateCity(@PathVariable("city") city: String, @PathVariable("temp") temp: Int) {
-        log.info("updateCity($city, $temp)")
-        kafkaAdapter.updateCity(city, temp)
+        cityTempService.update(city, temp)
     }
 
-    @GetMapping("/api/cities")
+    @GetMapping("/api/cities/temp")
     fun getAllCities(): Map<String, Int> {
-        log.info("Getting weather reports for all cities")
-        return weatherService.cities
+        return cityTempService.cities
     }
 }

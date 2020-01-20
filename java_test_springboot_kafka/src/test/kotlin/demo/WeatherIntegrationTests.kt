@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
+/** All tests use different Kafka data types to store basically String,Int tuples. */
 @SpringBootTest
 @AutoConfigureMockMvc
 class WeatherIntegrationTests {
@@ -19,20 +20,37 @@ class WeatherIntegrationTests {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
+    /** The Kafka `city_temp` topic uses String,String as data types. */
     @Test
-    fun `update weather for city`() {
+    fun `city temperatures`() {
         val expected = mapOf("cologne" to "27", "berlin" to "34")
-
-        Thread.sleep(3 * 1000) // Wait some time for the Consumer to register with the Kafka server
 
         mockMvc.perform(put("/api/city/cologne/temp/43")).andExpect(status().isOk)
         mockMvc.perform(put("/api/city/berlin/temp/34")).andExpect(status().isOk)
         mockMvc.perform(put("/api/city/cologne/temp/27")).andExpect(status().isOk)
 
-        val mvcResult = mockMvc.perform(get("/api/cities")).andExpect(status().isOk).andReturn()
+        Thread.sleep(3 * 1000)
+
+        val mvcResult = mockMvc.perform(get("/api/cities/temp")).andExpect(status().isOk).andReturn()
         val actual: Map<String, String> = ObjectMapper().readValue(mvcResult.response.contentAsString)
 
         assertEquals(expected, actual)
     }
 
+    /** The Kafka `city_temp` topic uses String,CityRain as data types and classes generated from src/main/avro definitions. */
+    @Test
+    fun `city rain`() {
+        val expected = mapOf("cologne" to "27", "berlin" to "34")
+
+        mockMvc.perform(put("/api/city/cologne/rain/43")).andExpect(status().isOk)
+        mockMvc.perform(put("/api/city/berlin/rain/34")).andExpect(status().isOk)
+        mockMvc.perform(put("/api/city/cologne/rain/27")).andExpect(status().isOk)
+
+        Thread.sleep(3 * 1000)
+
+        val mvcResult = mockMvc.perform(get("/api/cities/rain")).andExpect(status().isOk).andReturn()
+        val actual: Map<String, String> = ObjectMapper().readValue(mvcResult.response.contentAsString)
+
+        assertEquals(expected, actual)
+    }
 }
