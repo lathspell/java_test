@@ -13,3 +13,10 @@ The "logical types" from https://avro.apache.org/docs/1.8.0/spec.html#Logical+Ty
 hints on files with standard types like "int" or "string".
 As of 1.9.2 the Avro library does not generate Java code with actual UUID, LocalDate or BigDecimal
 types although a feature request suggested that this feature might come with version 1.10.
+
+== Links ==
+
+* https://avro.apache.org/docs/1.8.0/spec.html - Avro Spec
+* https://avro.apache.org/docs/1.8.0/gettingstartedjava.html - Java Reference
+
+
