@@ -1,3 +1,5 @@
+import org.apache.avro.compiler.specific.SpecificCompiler.DateTimeLogicalTypeImplementation.JSR310
+import org.apache.avro.compiler.specific.SpecificCompiler.FieldVisibility.PRIVATE
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -14,9 +16,8 @@ plugins {
 }
 
 group = "de.lathspell"
-java.sourceCompatibility = JavaVersion.VERSION_11
 
-val developmentOnly by configurations.creating
+val developmentOnly: Configuration by configurations.creating
 configurations {
 	runtimeClasspath {
 		extendsFrom(developmentOnly)
@@ -35,8 +36,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
 	// SpringBoot
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	implementation("org.springframework.boot:spring-boot-starter")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
@@ -44,18 +44,16 @@ dependencies {
 	// JSON
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-	// Kafka
-	implementation("org.springframework.kafka:spring-kafka")
-	testImplementation("org.springframework.kafka:spring-kafka-test")
-
 	// Avro (De-/Serialization specification in JSON)
-	implementation("org.apache.avro:avro:1.8.2")
-	implementation("io.confluent:kafka-avro-serializer:5.2.1")
-	// implementation("io.confluent:kafka-streams-serde:5.3.0")
+	implementation("org.apache.avro:avro:1.9.2")
 }
 
 avro {
 	// see https://github.com/davidmc24/gradle-avro-plugin
+	setFieldVisibility(PRIVATE) // getter/setters or public attributes?
+	setCreateOptionalGetters(true) // additional `fun getOptionalFoo(): Optional<String>` methods
+	setDateTimeLogicalType(JSR310) // default
+	setEnableDecimalLogicalType(true) // default
 }
 
 tasks.withType<Test> {

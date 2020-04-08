@@ -7,10 +7,6 @@ plugins {
 	kotlin("plugin.spring") version "1.3.71"
 	id("org.springframework.boot") version "2.2.6.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
-	// Avro
-	// See settings.gradle.kts for plugin repos.
-	// See https://github.com/davidmc24/gradle-avro-plugin for compatibility matrix with Avro library dependency!
-	id("com.commercehub.gradle.plugin.avro") // version "0.19.1" <- see top-level build.gradle.kts for version!
 }
 
 group = "de.lathspell"
@@ -47,15 +43,6 @@ dependencies {
 	// Kafka
 	implementation("org.springframework.kafka:spring-kafka")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
-
-	// Avro (De-/Serialization specification in JSON)
-	implementation("org.apache.avro:avro:1.8.2")
-	implementation("io.confluent:kafka-avro-serializer:5.2.1")
-	// implementation("io.confluent:kafka-streams-serde:5.3.0")
-}
-
-avro {
-	// see https://github.com/davidmc24/gradle-avro-plugin
 }
 
 tasks.withType<Test> {

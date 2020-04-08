@@ -1,9 +1,16 @@
-= SpringBoot mit Kafka Demo =
+= SpringBoot with Kafka Demo =
+
+== Modules ==
+
+avro_only::
+Demo how to use Avro as pure binary serializer/deserializer with Gradle plugin but no Kafka.
+
+kafka_only::
+SpringBoot with Kafka Consumer/Producer but no Avro.
+
+kafka_avro::
+SpringBoot with Kafka Consumer/Producer and Avro Schema.
 
 == Setup ==
 
 See project `kafka_test`
-
-== Tests starten ==
-
-    ./gradlew test

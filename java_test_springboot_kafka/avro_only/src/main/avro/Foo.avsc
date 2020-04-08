@@ -1,0 +1,21 @@
+{
+  "namespace": "demo.kafka.generated",
+  "type": "record",
+  "name": "Foo",
+  "fields": [
+    { "name": "city",       "type": "string" },
+    { "name": "smallNum",   "type": "int" },
+    { "name": "bigNum",     "type": "long" },
+    { "name": "desired",    "type": [ "boolean", "null" ] },
+    { "name": "color",      "type": {
+                                    "name": "Color",
+                                    "type": "enum",
+                                    "symbols": [ "RED", "GREEN", "BLUE" ]
+                                    }
+    },
+    { "name": "price",      "type": "bytes", "logicalType": "decimal", "precision": 4, "scale": 2 },
+    { "name": "uuid",       "type": "string", "logicalType": "UUID" },
+    { "name": "createdAtDate",   "type": "int", "logicalType": "Date" },
+    { "name": "createdAtTimeUs", "type": "long", "logicalType": "timestamp-micros" }
+  ]
+}

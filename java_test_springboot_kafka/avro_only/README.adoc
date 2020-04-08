@@ -1,0 +1,15 @@
+== Apache Avro ==
+
+This module contains a simple demo for Apache Avro as serialization library.
+There is no Kafka involved here.
+
+We use the `org.apache.avro:avro` library and the `com.commercehub.gradle.plugin.avro`
+Gradle plugin to create Java files from the `src/main/avro/*.avsc` files during the
+`generateAvroJava` task.
+
+== Caveats ==
+
+The "logical types" from https://avro.apache.org/docs/1.8.0/spec.html#Logical+Types are only
+hints on files with standard types like "int" or "string".
+As of 1.9.2 the Avro library does not generate Java code with actual UUID, LocalDate or BigDecimal
+types although a feature request suggested that this feature might come with version 1.10.
