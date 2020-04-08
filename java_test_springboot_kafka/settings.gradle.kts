@@ -6,3 +6,7 @@ pluginManagement {
         maven("https://dl.bintray.com/gradle/gradle-plugins") // für Avro
     }
 }
+
+include("kafka_only")
+include("avro_only")
+include("kafka_avro")
