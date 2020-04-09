@@ -4,8 +4,8 @@
   "name": "Foo",
   "fields": [
     { "name": "city",       "type": "string" },
-    { "name": "smallNum",   "type": "int" },
-    { "name": "bigNum",     "type": "long" },
+    { "name": "smallNum",   "type": "int",      "doc":"Some 32bit number" },
+    { "name": "bigNum",     "type": "long",     "doc":"Some 64bit number" },
     { "name": "desired",    "type": [ "boolean", "null" ] },
     { "name": "color",      "type": {
                                     "name": "Color",
