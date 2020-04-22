@@ -1,12 +1,21 @@
-# SpringBoot 2
+= Frameworks und Libraries
+
+== SpringBoot 2
 
 * benutzt im RestTemplate java.net, nicht mehr Apache HTTP Client!
 
-# SpringBoot 1
+== SpringBoot 1
 
 * benutzt im RestTemplate noch Apache HTTP Client!
 
-# java.net HTTP Client
+== java.net HTTP Client
 
     -Djavax.net.debug=ssl,handshake
+
+
+= Keytool
+
+== PEM zu JKS Truststore
+
+    keytool -import -v -trustcacerts -file input.pem -keystore output.jks -alias my-root-ca 
 
