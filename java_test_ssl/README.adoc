@@ -10,7 +10,15 @@
 
 == java.net HTTP Client
 
-    -Djavax.net.debug=ssl,handshake
+; Java 8
+
+    java -Djavax.net.debug=ssl,handshake
+
+; Java 14
+    
+    https://docs.oracle.com/en/java/javase/14/security/troubleshooting-security.html
+    java -Djava.security.debug=all
+    
 
 
 = Keytool
@@ -18,4 +26,17 @@
 == PEM zu JKS Truststore
 
     keytool -import -v -trustcacerts -file input.pem -keystore output.jks -alias my-root-ca 
+
+== PKCS12 zu JKS
+
+    keytool -importkeystore \
+        -srckeystore input.p12   -srcstoretype pkcs12 -srcalias foo \
+        -destkeystore output.jks -deststoretype jks -destalias foo -deststorepass changeit
+
+== PEM zu PKCS12 Keystore
+
+
+== Keystore Passwort ändern
+
+    keytool -storepasswd -keystore server.keystore -storepass OLD_SECRET -new NEW_SECRET
 
