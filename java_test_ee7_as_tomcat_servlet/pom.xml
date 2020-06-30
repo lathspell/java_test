@@ -357,7 +357,7 @@
             <!-- JSON: ObjectMapper -->
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.10.3</version>
+            <version>2.9.10.5</version>
         </dependency>
         <dependency>
             <!-- JSON: Annotations needed by Jersey REST Implementation -->
