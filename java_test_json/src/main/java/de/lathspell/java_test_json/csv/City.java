@@ -2,10 +2,7 @@ package de.lathspell.java_test_json.csv;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
@@ -15,6 +12,8 @@ import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 //@AllArgsConstructor
 @JsonIgnoreProperties({"extrastuff"})
 public class City {
+
+    private String camelCase;
 
     private String name;
 

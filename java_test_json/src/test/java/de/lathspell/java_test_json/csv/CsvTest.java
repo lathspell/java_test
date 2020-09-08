@@ -33,17 +33,18 @@ public class CsvTest {
     @Test
     public void pojo2csv() throws Exception {
         City c1 = new City();
+        c1.setCamelCase("foo");
         c1.setName("cologne");
         c1.setCountry("de");
         c1.setPopulation(1046680);
         c1.setSomeDate(Date.from(LocalDateTime.parse("1923-04-08T11:22:33.00").toInstant(ZoneOffset.of("+01:00"))));
         c1.setIgnoreMe("ignore me");
-
         CsvSchema schema2 = new CsvMapper().schemaFor(City.class).withHeader().withColumnSeparator(';');
         String csv2 = new CsvMapper().writerFor(City.class).with(schema2).writeValueAsString(c1);
 
-        String expected2 = "\"Some Date\";country;name;population\n"
-                + "\"1923-04-08 11:22:33\";DE;cologne;1046680\n";
+        // Order is alphabetically but strictly speaking "undefined" unless @JsonPropertyOrder is used
+        String expected2 = "\"Some Date\";camelCase;country;name;population\n"
+                + "\"1923-04-08 11:22:33\";foo;DE;cologne;1046680\n";
         assertEquals(expected2, csv2);
     }
 

@@ -100,7 +100,7 @@ public class JacksonTest {
                 + "  \"votes\" : 3.14,\n"
                 + "  \"tags\" : [ \"cool\", \"funny\" ]\n"
                 + "}";
-        assertEquals(prettyJson, producedJson);
+        assertEquals(prettyJson, producedJson.replace("\r", ""));
 
         Map<String, Object> map = new ObjectMapper().readValue(prettyJson, new TypeReference<Map<String, Object>>() {
         });
