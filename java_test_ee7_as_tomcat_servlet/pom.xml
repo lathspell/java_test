@@ -83,7 +83,7 @@
                     <!-- Bean Validation: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-validator</artifactId>
-                    <version>5.3.4.Final</version>
+                    <version>5.3.6.Final</version>
                     <scope>runtime</scope>
                 </dependency>
 
@@ -153,7 +153,7 @@
                     <!-- Bean Validation: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-validator</artifactId>
-                    <version>5.3.4.Final</version>
+                    <version>5.3.6.Final</version>
                     <scope>runtime</scope>
                 </dependency>
 
@@ -220,7 +220,7 @@
                     <!-- Bean Validation: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-validator</artifactId>
-                    <version>5.3.4.Final</version>
+                    <version>5.3.6.Final</version>
                     <scope>runtime</scope>
                 </dependency>
 
@@ -286,7 +286,7 @@
                     <!-- Bean Validation: Implementation -->
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-validator</artifactId>
-                    <version>5.3.4.Final</version>
+                    <version>5.3.6.Final</version>
                     <scope>runtime</scope>
                 </dependency>
 
