@@ -1,14 +1,16 @@
-= Frameworks und Libraries
+= Java & SSL =
 
-== SpringBoot 2
+== Frameworks und Libraries
+
+=== SpringBoot 2
 
 * benutzt im RestTemplate java.net, nicht mehr Apache HTTP Client!
 
-== SpringBoot 1
+=== SpringBoot 1
 
 * benutzt im RestTemplate noch Apache HTTP Client!
 
-== java.net HTTP Client
+=== java.net HTTP Client
 
 ; Java 8
 
@@ -19,24 +21,24 @@
     https://docs.oracle.com/en/java/javase/14/security/troubleshooting-security.html
     java -Djava.security.debug=all
     
+== Keytool
 
-
-= Keytool
-
-== PEM zu JKS Truststore
+=== PEM zu JKS Truststore
 
     keytool -import -v -trustcacerts -file input.pem -keystore output.jks -alias my-root-ca 
 
-== PKCS12 zu JKS
+=== PKCS12 zu JKS
 
     keytool -importkeystore \
         -srckeystore input.p12   -srcstoretype pkcs12 -srcalias foo \
         -destkeystore output.jks -deststoretype jks -destalias foo -deststorepass changeit
 
-== PEM zu PKCS12 Keystore
+=== PEM zu PKCS12 Keystore
 
+    keytool -importkeystore \
+        -srckeystore input.jks   -srcstoretype JKS \
+        -destkeystore output.p12 -deststoretype PKCS12 -deststorepass changeit
 
-== Keystore Passwort ändern
+=== Keystore Passwort ändern
 
     keytool -storepasswd -keystore server.keystore -storepass OLD_SECRET -new NEW_SECRET
-
