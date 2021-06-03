@@ -118,7 +118,7 @@
             <!-- JSF (PrimeFaces components) -->
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>5.2</version>
+            <version>6.0</version>
         </dependency>
 
     </dependencies>
