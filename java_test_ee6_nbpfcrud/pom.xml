@@ -20,7 +20,7 @@
             <!-- Logging (SLF2J implementation) -->
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.0.13</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <!-- Logging (java.util.logging to SLF2J) -->
