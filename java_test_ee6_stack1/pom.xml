@@ -198,7 +198,7 @@
             <!-- Logging (SFL4J Logging implementation) -->
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.0.13</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <!-- Logging (SLF4J Logging implementation) -->
