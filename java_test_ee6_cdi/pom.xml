@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <deltaspike.version>0.3-incubating</deltaspike.version>
         <spring.version>3.2.3.RELEASE</spring.version>
-        <log4j.version>2.0-beta7</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <skipTests>true</skipTests>        
     </properties>
     <build>
