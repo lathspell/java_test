@@ -81,7 +81,7 @@
             <!-- HTTP (Server) -->
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>9.3.1.v20150714</version>
+            <version>9.4.34.v20201102</version>
             <type>jar</type>
         </dependency>
         <dependency>
